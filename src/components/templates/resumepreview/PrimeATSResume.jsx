@@ -73,7 +73,7 @@ return (
         .join(" | ")}
     </div>
 
-    <div>
+    <div className="break-words">
         {personalInfo.address}
     </div>
 

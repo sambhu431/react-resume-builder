@@ -14,41 +14,48 @@ export default function PrecisionATSResume({ values }) {
   );
 
   return (
-    <div className="bg-white mt-10 text-black max-w-4xl mx-auto p-8 text-sm">
+    <div className="bg-white mt-6 sm:mt-10 text-black w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-6 text-sm leading-relaxed overflow-hidden">
       {/* HEADER */}
-      <header className="text-center mb-6">
-        <h1 className="text-3xl font-bold">
+      <header className="text-center mb-5 sm:mb-6">
+        <h1 className="text-2xl sm:text-3xl font-bold break-words">
           {personalInfo.firstName} {personalInfo.lastName}
         </h1>
 
-        <div className="mt-2 text-slate-700">
-          {[personalInfo.email, personalInfo.phone].filter(Boolean).join(" | ")}
+        <div className="mt-2 flex flex-wrap justify-center gap-x-2 gap-y-1 text-sm text-slate-700">
+          {[personalInfo.email, personalInfo.phone]
+            .filter(Boolean)
+            .map((item, i) => (
+              <span key={i} className="break-all">
+                {item}
+              </span>
+            ))}
         </div>
 
-        <div className="text-slate-700">{personalInfo.address}</div>
+        <div className="text-sm text-slate-700 break-words">
+          {personalInfo.address}
+        </div>
 
-        <div className="text-blue-500">
+        <div className="mt-2 flex flex-wrap justify-center gap-3 text-blue-600 text-sm">
           {personalInfo.linkedin && (
             <a
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
+              className="break-all underline"
             >
               LinkedIn
             </a>
           )}
 
           {personalInfo.github && (
-            <>
-              {personalInfo.linkedin && " | "}
-              <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                GitHub
-              </a>
-            </>
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="break-all underline"
+            >
+              GitHub
+            </a>
           )}
         </div>
       </header>
@@ -56,16 +63,16 @@ export default function PrecisionATSResume({ values }) {
       {/* SUMMARY */}
       {careerObjective && (
         <ATSSection title="Professional Summary">
-          <p>{careerObjective}</p>
+          <p className="break-words">{careerObjective}</p>
         </ATSSection>
       )}
 
       {/* SKILLS */}
       {validSkillGroups.length > 0 && (
-        <ATSSection title="Skills ">
+        <ATSSection title="Skills">
           <div className="space-y-2">
             {validSkillGroups.map((group, index) => (
-              <div key={index}>
+              <div key={index} className="break-words">
                 <strong>{group.category}:</strong>{" "}
                 {group.skills?.filter(Boolean).join(", ")}
               </div>
@@ -79,20 +86,23 @@ export default function PrecisionATSResume({ values }) {
         <ATSSection title="Professional Experience">
           <div className="space-y-5">
             {experience.map((exp, index) => (
-              <div key={index}>
-                <div className="flex justify-between">
-                  <strong>{exp.position}</strong>
+              <div key={index} className="break-inside-avoid">
+                {/* TOP ROW */}
+                <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
+                  <strong className="break-words text-base">
+                    {exp.position || exp.role}
+                  </strong>
 
-                  <span>
+                  <span className="text-sm text-slate-600 whitespace-nowrap">
                     {exp.startDate} - {exp.endDate}
                   </span>
                 </div>
 
-                <div className="text-slate-700">{exp.company}</div>
+                <div className="text-slate-700 break-words">{exp.company}</div>
 
                 {exp.description && (
-                  <ul className="mt-2 list-disc ml-5">
-                    <li>{exp.description}</li>
+                  <ul className="mt-2 list-disc ml-5 space-y-1 text-sm">
+                    <li className="break-words">{exp.description}</li>
                   </ul>
                 )}
               </div>
@@ -106,39 +116,39 @@ export default function PrecisionATSResume({ values }) {
         <ATSSection title="Projects">
           <div className="space-y-4">
             {projects.map((project, index) => (
-              <div key={index}>
-                {/* Project Name */}
-                <strong className="block text-base">{project.name}</strong>
+              <div key={index} className="break-inside-avoid">
+                {/* NAME */}
+                <strong className="block text-base break-words">
+                  {project.name}
+                </strong>
 
-                {/* Tech Stack + Link */}
+                {/* TECH + LINK */}
                 {project.techStack && (
-                  <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mt-1 text-slate-700">
-                    {/* Tech Stack */}
-                    <div className="flex-1 wrap-break-words">
+                  <div className="flex flex-col sm:flex-row sm:justify-between gap-2 mt-1 text-slate-700">
+                    <div className="flex-1 break-words">
                       <span className="font-medium">Tech Stack:</span>{" "}
                       {project.techStack}
                     </div>
 
-                    {/* Project Link */}
                     {project.link && (
-                      <div className="sm:shrink-0">
-                        <a
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          href={project.link}
-                          className="text-blue-600 underline break-all"
-                        >
-                          Project Link
-                        </a>
-                      </div>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 underline break-all shrink-0"
+                      >
+                        Project Link
+                      </a>
                     )}
                   </div>
                 )}
 
-                {/* Description */}
-                <div className="mt-1 text-sm leading-relaxed">
-                  {project.description}
-                </div>
+                {/* DESCRIPTION */}
+                {project.description && (
+                  <div className="mt-1 text-sm break-words">
+                    {project.description}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -150,14 +160,15 @@ export default function PrecisionATSResume({ values }) {
         <ATSSection title="Education">
           <div className="space-y-4">
             {education.map((edu, index) => (
-              <div key={index}>
-                <strong>{edu.course}</strong>
+              <div key={index} className="break-inside-avoid">
+                <strong className="break-words">{edu.course}</strong>
 
-                <div>{edu.institute}</div>
+                <div className="text-slate-700 break-words">
+                  {edu.institute}
+                </div>
 
-                <div className="text-slate-700">
+                <div className="text-slate-600 text-sm">
                   {edu.passingYear}
-
                   {edu.percentage && ` | ${edu.percentage}`}
                 </div>
               </div>
@@ -166,9 +177,9 @@ export default function PrecisionATSResume({ values }) {
         </ATSSection>
       )}
 
-      {/* PERSONAL DETAILS */}
+      {/* PERSONAL INFO */}
       <ATSSection title="Personal Information">
-        <div className="grid grid-cols-2 gap-y-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-sm">
           {personalInfo.dob && (
             <Detail label="Date of Birth" value={personalInfo.dob} />
           )}
@@ -190,21 +201,20 @@ export default function PrecisionATSResume({ values }) {
   );
 }
 
-/* ATS Section */
+/* ATS SECTION */
 function ATSSection({ title, children }) {
   return (
-    <section className="border border-slate-300 rounded-md p-4 mb-4">
-      <h2 className="font-bold uppercase text-sm mb-3">{title}</h2>
-
+    <section className="border border-slate-300 rounded-md p-3 sm:p-4 mb-4">
+      <h2 className="font-bold uppercase text-sm mb-3 break-words">{title}</h2>
       {children}
     </section>
   );
 }
 
-/* Detail */
+/* DETAIL */
 function Detail({ label, value }) {
   return (
-    <div>
+    <div className="break-words">
       <strong>{label}:</strong> {value}
     </div>
   );

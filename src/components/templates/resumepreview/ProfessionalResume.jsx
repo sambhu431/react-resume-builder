@@ -173,7 +173,7 @@ export default function ProfessionalResume({ values }) {
 
           {/* RIGHT */}
           <div className="text-sm text-slate-500 sm:text-right sm:shrink-0">
-            <p>{edu.passingYear}</p>
+            <p >{edu.passingYear}</p>
             {edu.percentage && (
               <p className="sm:block inline text-slate-400">
                 {edu.percentage}
