@@ -18,7 +18,16 @@ const EntryHeader = ({ left, right }) => (
   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1  min-w-0">
     <div className="text-slate-900">{left}</div>
     {right && (
-      <div className="text-xs text-slate-500 font-medium tracking-wide whitespace-nowrap">
+      <div
+className="
+text-xs
+text-slate-500
+font-medium
+tracking-wide
+break-words
+sm:whitespace-nowrap
+"
+>
         {right}
       </div>
     )}
@@ -57,10 +66,38 @@ export default function MinimalResume({ values = {} }) {
   );
 
   return (
-    <div className="bg-white mt-10 text-slate-800 max-w-4xl mx-auto px-10 py-12 font-sans leading-relaxed print:p-8 print:max-w-none">
+    <div
+className="
+w-full
+max-w-4xl
+mx-auto
+mt-4 sm:mt-10
+bg-white
+px-4 py-6
+sm:px-6 sm:py-8
+md:px-10 md:py-12
+font-sans
+leading-relaxed
+text-slate-800
+overflow-x-hidden
+print:p-8
+print:max-w-none
+print:mt-0
+"
+>
       {/* ================= HEADER ================= */}
       <header className="mb-10">
-        <h1 className="text-4xl font-light tracking-tight text-slate-900 mb-1 break-words">
+      <h1
+ className="
+ text-3xl
+ sm:text-4xl
+ font-light
+ tracking-tight
+ text-slate-900
+ mb-1
+ wrap-break-words
+"
+>
   {personalInfo.firstName} <span className="font-semibold">{personalInfo.lastName}</span>
 </h1>
 
@@ -82,7 +119,9 @@ export default function MinimalResume({ values = {} }) {
           {personalInfo.address && (
             <>
               <span className="text-slate-300">·</span>
-              <span>{personalInfo.address}</span>
+              <span className="break-words">
+ {personalInfo.address}
+</span>
             </>
           )}
         </div>
@@ -261,8 +300,18 @@ export default function MinimalResume({ values = {} }) {
         <Section title="Skills">
           <div className="space-y-2 text-sm">
             {validSkillGroups.map((group, index) => (
-              <div className="flex gap-3 min-w-0">
-  <span className="font-semibold text-slate-900 w-48 shrink-0 break-words">{group.category}</span>
+              <div
+               key={index}
+className="
+flex
+flex-col
+sm:flex-row
+gap-1
+sm:gap-3
+min-w-0
+"
+>
+  <span className="font-semibold text-slate-900 sm:w-48 break-words">{group.category}</span>
   <span className="text-slate-600 flex-1 min-w-0 break-words">{group.skills?.filter(Boolean).join(", ")}</span>
 </div>
 
@@ -274,7 +323,7 @@ export default function MinimalResume({ values = {} }) {
       {/* ================= ADDITIONAL INFO ================= */}
       {hasAdditionalInfo && (
         <Section title="Additional">
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-y-3 gap-x-6 text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-y-3 gap-x-6 text-sm">
             {personalInfo.dob && (
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-slate-400">
