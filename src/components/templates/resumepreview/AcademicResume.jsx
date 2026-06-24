@@ -116,7 +116,7 @@ export default function AcademicResume({ values }) {
           <SectionTitle>Skills</SectionTitle>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {skillGroups.map((group, index) => (
+            {validSkillGroups.map((group, index) => (
               <div key={index} className="break-inside-avoid">
                 <h3 className="font-semibold text-slate-900 mb-2">
                   {group.category}
