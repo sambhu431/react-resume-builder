@@ -13,19 +13,19 @@ const TemplatesPage = () => {
             ✨ Professional Resume Collection
           </span>
 
-          <h1 className="max-w-4xl text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          <h1 className="max-w-3xl text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
             Create a Resume That
             <span className="block bg-linear-to-r from-blue-600 via-violet-600 to-indigo-600 bg-clip-text text-transparent">
               Gets You Noticed
             </span>
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base text-slate-600 sm:text-lg md:text-xl">
+          <p className="mt-3 max-w-xl text-base text-slate-600 sm:text-md md:text-lg">
             Browse professionally crafted templates designed to help you stand
             out, impress recruiters, and land more interviews.
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-sm text-gray-600 font-semibold">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-sm text-slate-800 font-semibold">
             <span className="bg-pink-200 rounded px-2 py-1">
               📄 {templates.length}+ Templates
             </span>

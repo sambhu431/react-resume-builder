@@ -15,7 +15,7 @@ const Section = ({ title, children }) => {
 
 /* ---------------- ENTRY ROW ---------------- */
 const EntryHeader = ({ left, right }) => (
-  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
+  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1  min-w-0">
     <div className="text-slate-900">{left}</div>
     {right && (
       <div className="text-xs text-slate-500 font-medium tracking-wide whitespace-nowrap">
@@ -51,17 +51,13 @@ export default function MinimalResume({ values = {} }) {
     personalInfo.nationality ||
     personalInfo.languages;
 
-
-            const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
-
 
   return (
     <div className="bg-white mt-10 text-slate-800 max-w-4xl mx-auto px-10 py-12 font-sans leading-relaxed print:p-8 print:max-w-none">
-      
       {/* ================= HEADER ================= */}
       <header className="mb-10">
         <h1 className="text-4xl font-light tracking-tight text-slate-900 mb-1">
@@ -76,9 +72,10 @@ export default function MinimalResume({ values = {} }) {
         )}
 
         {/* Contact line */}
-        <div 
-        className="flex flex-wrap items-center gap-x-3 
-        gap-y-1 text-xs">
+        <div
+          className="flex flex-wrap items-center gap-x-3 
+        gap-y-1 text-xs"
+        >
           {personalInfo.email && <span>{personalInfo.email}</span>}
           {personalInfo.phone && (
             <>
@@ -88,9 +85,7 @@ export default function MinimalResume({ values = {} }) {
           )}
         </div>
 
-        <div
-        className="mt-1 flex flex-wrap text-xs"
-        > 
+        <div className="mt-1 flex flex-wrap text-xs">
           {personalInfo.address && (
             <>
               <span className="text-slate-300">·</span>
@@ -99,7 +94,7 @@ export default function MinimalResume({ values = {} }) {
           )}
         </div>
 
-        <div  className="mt-1 flex flex-wrap text-xs gap-1">
+        <div className="mt-1 flex flex-wrap text-xs gap-1">
           {personalInfo.linkedin && (
             <>
               <span className="text-slate-300">·</span>
@@ -135,7 +130,7 @@ export default function MinimalResume({ values = {} }) {
       {/* ================= EXPERIENCE ================= */}
       {experience.length > 0 && (
         <Section title="Experience">
-          <div className="space-y-5">
+          <div className="space-y-5 wrap-break-word ">
             {experience.map((exp, index) => (
               <div key={index} className="break-inside-avoid">
                 <EntryHeader
@@ -147,7 +142,10 @@ export default function MinimalResume({ values = {} }) {
                       <p className="text-sm text-slate-600">
                         {exp.company}
                         {exp.location && (
-                          <span className="text-slate-400"> · {exp.location}</span>
+                          <span className="text-slate-400">
+                            {" "}
+                            · {exp.location}
+                          </span>
                         )}
                       </p>
                     </div>
@@ -156,14 +154,16 @@ export default function MinimalResume({ values = {} }) {
                 />
 
                 {exp.description && (
-                  <ul className="mt-2 space-y-1 text-sm text-slate-600 list-none pl-0">
+                  <ul className="mt-2  space-y-1 text-sm  text-slate-600 list-none pl-0">
                     {exp.description
                       .split("\n")
                       .filter((line) => line.trim())
                       .map((line, i) => (
-                        <li key={i} className="flex gap-2">
+                        <li key={i} className="flex gap-2  min-w-0 ">
                           <span className="text-slate-400 select-none">—</span>
-                          <span className="whitespace-pre-line">{line}</span>
+                          <span className="whitespace-pre-line wrap-break-word  max-w-full ">
+                            {line}
+                          </span>
                         </li>
                       ))}
                   </ul>
@@ -174,20 +174,21 @@ export default function MinimalResume({ values = {} }) {
         </Section>
       )}
 
+
       {/* ================= PROJECTS ================= */}
       {projects.length > 0 && (
         <Section title="Projects">
-          <div className="space-y-5">
+          <div className="space-y-5 w-full ">
             {projects.map((project, index) => (
-              <div key={index} className="break-inside-avoid">
+              <div key={index} className="break-inside-avoid min-w-0">
                 <EntryHeader
                   left={
-                    <div>
+                    <div className="min-w-0">
                       <h3 className="font-semibold text-[15px] text-slate-900">
                         {project.name}
                       </h3>
                       {project.techStack && (
-                        <p className="text-xs text-slate-500 mt-0.5">
+                        <p className="text-xs text-slate-500 mt-0.5 wrap-break-word">
                           {project.techStack}
                         </p>
                       )}
@@ -199,9 +200,9 @@ export default function MinimalResume({ values = {} }) {
                         href={project.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-xs text-zinc-800 underline underline-offset-2"
+                        className="text-xs text-zinc-800 underline underline-offset-2 shrink-0"
                       >
-                        View Project 
+                        View Project
                       </a>
                     ) : null
                   }
@@ -213,9 +214,9 @@ export default function MinimalResume({ values = {} }) {
                       .split("\n")
                       .filter((line) => line.trim())
                       .map((line, i) => (
-                        <li key={i} className="flex gap-2">
-                          <span className="text-slate-400 select-none">—</span>
-                          <span className="whitespace-pre-line">{line}</span>
+                        <li key={i} className="flex gap-2 min-w-0">
+                          <span className="text-slate-400 select-none shrink-0">—</span>
+                          <span className="whitespace-pre-line wrap-break-word flex-1 min-w-0">{line}</span>
                         </li>
                       ))}
                   </ul>
@@ -225,6 +226,8 @@ export default function MinimalResume({ values = {} }) {
           </div>
         </Section>
       )}
+
+
 
       {/* ================= EDUCATION ================= */}
       {education.length > 0 && (
@@ -259,16 +262,16 @@ export default function MinimalResume({ values = {} }) {
       )}
 
       {/* ================= SKILLS ================= */}
-      {validSkillGroups.length > 0  && (
+      {validSkillGroups.length > 0 && (
         <Section title="Skills">
           <div className="space-y-2 text-sm">
             {validSkillGroups.map((group, index) => (
               <div key={index} className="flex gap-3">
-                <span className="font-semibold text-slate-900 
-                min-w-30">
+                <span className="font-semibold text-slate-900 w-48 shrink-0 wrap-break-word">
                   {group.category}
                 </span>
-                <span className="text-slate-600">
+
+                <span className="text-slate-600  flex-1 wrap-break-word">
                   {group.skills?.filter(Boolean).join(", ")}
                 </span>
               </div>

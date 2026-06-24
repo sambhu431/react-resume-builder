@@ -56,14 +56,17 @@ export default function ResumeFormPage() {
       languages: Yup.string().required("Required"),
 
       linkedin: Yup.string()
+        .transform((value) => (value === "" ? null : value))
+        .nullable()
         .url("Enter a valid URL")
         .matches(
           /^(https?:\/\/)?([\w]+\.)?linkedin\.com\/.*$/i,
           "Must be a valid LinkedIn URL",
-        )
-        .nullable(),
+        ),
 
       github: Yup.string()
+        .transform((value) => (value === "" ? null : value))
+        .nullable()
         .url("Enter a valid URL")
         .matches(
           /^(https?:\/\/)?([\w]+\.)?github\.com\/.*$/i,
@@ -231,12 +234,30 @@ export default function ResumeFormPage() {
                       label="Email Address"
                       placeholder="example@gmail.com"
                     />
+                    <div className="flex flex-col">
+                      <label className="mb-1 text-xs font-semibold text-gray-700">
+                        Phone Number
+                      </label>
 
-                    <FormField
-                      name="personalInfo.phone"
-                      label="Phone Number"
-                      placeholder="+91 XXXXX XXXXX"
-                    />
+                      <Field
+                        name="personalInfo.phone"
+                        placeholder="+91 XXXXX XXXXX"
+                        className={inputClass}
+                      />
+
+                      {values.personalInfo.phone &&
+                        /[a-zA-Z]/.test(values.personalInfo.phone) && (
+                          <div className="mt-1 text-xs text-yellow-600">
+                            Please enter a phone number instead of text.
+                          </div>
+                        )}
+
+                      <ErrorMessage
+                        name="personalInfo.phone"
+                        component="div"
+                        className="mt-1 text-xs text-red-500"
+                      />
+                    </div>
 
                     <FormField
                       name="personalInfo.address"
