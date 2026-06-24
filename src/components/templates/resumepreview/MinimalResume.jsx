@@ -60,10 +60,10 @@ export default function MinimalResume({ values = {} }) {
     <div className="bg-white mt-10 text-slate-800 max-w-4xl mx-auto px-10 py-12 font-sans leading-relaxed print:p-8 print:max-w-none">
       {/* ================= HEADER ================= */}
       <header className="mb-10">
-        <h1 className="text-4xl font-light tracking-tight text-slate-900 mb-1">
-          {personalInfo.firstName}{" "}
-          <span className="font-semibold">{personalInfo.lastName}</span>
-        </h1>
+        <h1 className="text-4xl font-light tracking-tight text-slate-900 mb-1 break-words">
+  {personalInfo.firstName} <span className="font-semibold">{personalInfo.lastName}</span>
+</h1>
+
 
         {careerObjective && (
           <p className="text-sm text-slate-500 italic mb-4 max-w-2xl">
@@ -72,18 +72,11 @@ export default function MinimalResume({ values = {} }) {
         )}
 
         {/* Contact line */}
-        <div
-          className="flex flex-wrap items-center gap-x-3 
-        gap-y-1 text-xs"
-        >
-          {personalInfo.email && <span>{personalInfo.email}</span>}
-          {personalInfo.phone && (
-            <>
-              <span className="text-slate-300">·</span>
-              <span>{personalInfo.phone}</span>
-            </>
-          )}
-        </div>
+<div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs break-words">
+  {personalInfo.email && <span className="break-all">{personalInfo.email}</span>}
+  {personalInfo.phone && <span className="break-all">{personalInfo.phone}</span>}
+</div>
+
 
         <div className="mt-1 flex flex-wrap text-xs">
           {personalInfo.address && (
@@ -159,12 +152,11 @@ export default function MinimalResume({ values = {} }) {
                       .split("\n")
                       .filter((line) => line.trim())
                       .map((line, i) => (
-                        <li key={i} className="flex gap-2  min-w-0 ">
-                          <span className="text-slate-400 select-none">—</span>
-                          <span className="whitespace-pre-line wrap-break-word  max-w-full ">
-                            {line}
-                          </span>
-                        </li>
+                    <li key={i} className="flex gap-2 min-w-0">
+  <span className="text-slate-400 select-none shrink-0">—</span>
+  <span className="whitespace-pre-line break-words flex-1 min-w-0">{line}</span>
+</li>
+
                       ))}
                   </ul>
                 )}
@@ -176,56 +168,59 @@ export default function MinimalResume({ values = {} }) {
 
 
       {/* ================= PROJECTS ================= */}
-      {projects.length > 0 && (
-        <Section title="Projects">
-          <div className="space-y-5 w-full ">
-            {projects.map((project, index) => (
-              <div key={index} className="break-inside-avoid min-w-0">
-                <EntryHeader
-                  left={
-                    <div className="min-w-0">
-                      <h3 className="font-semibold text-[15px] text-slate-900">
-                        {project.name}
-                      </h3>
-                      {project.techStack && (
-                        <p className="text-xs text-slate-500 mt-0.5 wrap-break-word">
-                          {project.techStack}
-                        </p>
-                      )}
-                    </div>
-                  }
-                  right={
-                    project.link ? (
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-xs text-zinc-800 underline underline-offset-2 shrink-0"
-                      >
-                        View Project
-                      </a>
-                    ) : null
-                  }
-                />
-
-                {project.description && (
-                  <ul className="mt-2 space-y-1 text-sm text-slate-600 list-none">
-                    {project.description
-                      .split("\n")
-                      .filter((line) => line.trim())
-                      .map((line, i) => (
-                        <li key={i} className="flex gap-2 min-w-0">
-                          <span className="text-slate-400 select-none shrink-0">—</span>
-                          <span className="whitespace-pre-line wrap-break-word flex-1 min-w-0">{line}</span>
-                        </li>
-                      ))}
-                  </ul>
+{projects.length > 0 && (
+  <Section title="Projects">
+    <div className="space-y-5 w-full">
+      {projects.map((project, index) => (
+        <div key={index} className="break-inside-avoid min-w-0">
+          <EntryHeader
+            left={
+              <div className="min-w-0 flex-1">
+                <h3 className="font-semibold text-[15px] text-slate-900 break-words">
+                  {project.name}
+                </h3>
+                {project.techStack && (
+                  <p className="text-xs text-slate-500 mt-0.5 break-words">
+                    {project.techStack}
+                  </p>
                 )}
               </div>
-            ))}
-          </div>
-        </Section>
-      )}
+            }
+            right={
+              project.link ? (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs text-zinc-800 underline underline-offset-2 shrink-0 break-all"
+                >
+                  View Project
+                </a>
+              ) : null
+            }
+          />
+
+          {project.description && (
+            <ul className="mt-2 space-y-1 text-sm text-slate-600 list-none">
+              {project.description
+                .split("\n")
+                .filter((line) => line.trim())
+                .map((line, i) => (
+                  <li key={i} className="flex gap-2 min-w-0">
+                    <span className="text-slate-400 select-none shrink-0">—</span>
+                    <span className="whitespace-pre-line break-words flex-1 min-w-0">
+                      {line}
+                    </span>
+                  </li>
+                ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  </Section>
+)}
+
 
 
 
@@ -266,15 +261,11 @@ export default function MinimalResume({ values = {} }) {
         <Section title="Skills">
           <div className="space-y-2 text-sm">
             {validSkillGroups.map((group, index) => (
-              <div key={index} className="flex gap-3">
-                <span className="font-semibold text-slate-900 w-48 shrink-0 wrap-break-word">
-                  {group.category}
-                </span>
+              <div className="flex gap-3 min-w-0">
+  <span className="font-semibold text-slate-900 w-48 shrink-0 break-words">{group.category}</span>
+  <span className="text-slate-600 flex-1 min-w-0 break-words">{group.skills?.filter(Boolean).join(", ")}</span>
+</div>
 
-                <span className="text-slate-600  flex-1 wrap-break-word">
-                  {group.skills?.filter(Boolean).join(", ")}
-                </span>
-              </div>
             ))}
           </div>
         </Section>
