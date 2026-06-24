@@ -186,7 +186,7 @@ export default function ResumeFormPage() {
             setFormError("");
           }}
         >
-          {({ values, validateForm, submitForm, setValues, setFieldValue  }) => {
+          {({ values, validateForm, submitForm, setValues, setFieldValue }) => {
             const canAddEducation = values.education.every(
               (e) =>
                 e.course?.trim() &&
@@ -241,24 +241,23 @@ export default function ResumeFormPage() {
 
                       <Field
                         name="personalInfo.phone"
-                         type="tel"
-  inputMode="tel"
                         placeholder="+91 XXXXX XXXXX"
                         className={inputClass}
-                        onChange={(e)=>{
+                        onChange={(e) => {
                           const value = e.target.value;
                           formikRef.current.setFieldValue(
-                            "personalInfo.phone",e.target.value
+                            "personalInfo.phone",
+                            e.target.value,
                           );
                         }}
                       />
 
                       {values.personalInfo.phone &&
-  !/^[0-9+\-\s()]+$/.test(values.personalInfo.phone) && (
-    <div className="mt-1 text-xs text-yellow-600">
-      Please enter a valid phone number.
-    </div>
-  )}
+                        /[a-zA-Z]/.test(values.personalInfo.phone.trim()) && (
+                          <div className="mt-1 text-xs text-yellow-600">
+                            Please avoid letters in phone number.
+                          </div>
+                        )}
 
                       <ErrorMessage
                         name="personalInfo.phone"
