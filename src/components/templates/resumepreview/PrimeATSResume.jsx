@@ -53,16 +53,18 @@ projects,
   );
 
 
-return ( <div className="bg-white mt-10 text-slate-900 max-w-4xl mx-auto px-10 py-8 text-sm leading-relaxed">
+return ( 
+
+<div className="bg-white mt-6 sm:mt-10 text-slate-900 w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-10 py-6 sm:py-8 text-sm leading-relaxed overflow-hidden">
 
   {/* HEADER */}
   <header className="text-center pb-6 border-b-2 border-slate-800">
 
-    <h1 className="text-4xl font-bold tracking-wide">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide break-words w-full max-w-full">
       {personalInfo.firstName} {personalInfo.lastName}
     </h1>
 
-    <div className="mt-3 text-slate-600">
+    <div className="mt-3 text-slate-600 break-words">
       {[
         personalInfo.email,
         personalInfo.phone,
@@ -75,7 +77,7 @@ return ( <div className="bg-white mt-10 text-slate-900 max-w-4xl mx-auto px-10 p
         {personalInfo.address}
     </div>
 
-    <div>
+    <div className="flex flex-col sm:flex-row sm:flex-wrap justify-center gap-2 mt-2" >
        {(personalInfo.linkedin ||
       personalInfo.github) && (
       <div className="flex flex-wrap justify-center gap-2">
@@ -95,7 +97,7 @@ return ( <div className="bg-white mt-10 text-slate-900 max-w-4xl mx-auto px-10 p
   {/* SUMMARY */}
   {careerObjective && (
     <Section title="Career Objective">
-      <p className="text-slate-700">
+      <p className="text-slate-700 text-sm break-words">
         {careerObjective}
       </p>
     </Section>
@@ -107,18 +109,18 @@ return ( <div className="bg-white mt-10 text-slate-900 max-w-4xl mx-auto px-10 p
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
 
       {validSkillGroups.map((group, index) => (
-        <div key={index} className="min-w-0">
+        <div key={index} className="min-w-0 flex flex-col">
 
-          <span className="font-semibold text-slate-900 text-sm">
+          <span className="font-semibold text-slate-900 break-words text-sm">
             {group.category}
           </span>
 
-          <div className="mt-1 text-slate-700 text-sm leading-6">
+          <div className="mt-1 text-slate-700 text-sm leading-6 flex flex-wrap min-w-0 ">
             {group.skills
               ?.filter(Boolean)
               .map((skill, idx) => (
-                <p key={idx} className="truncate">
-                  • {skill}
+                <p key={idx} className="break-words max-w-full">
+                  •{skill}
                 </p>
               ))}
           </div>
@@ -139,23 +141,23 @@ return ( <div className="bg-white mt-10 text-slate-900 max-w-4xl mx-auto px-10 p
         {experience.map((exp, index) => (
           <div
             key={index}
-            className="border-l-2 border-slate-300 pl-4"
+             className="border-l-2 border-slate-300 pl-3 sm:pl-4"
           >
-            <div className="flex justify-between items-start">
+            <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
 
-              <div>
-                <h3 className="font-bold text-base">
+              <div className="min-w-0">
+                <h3 className="font-bold text-base break-words">
                   {exp.role || exp.position}
                 </h3>
 
-                <div className="text-slate-600">
+                <div className="text-slate-600 break-words text-sm">
                   {exp.company}
                   {exp.location &&
                     ` • ${exp.location}`}
                 </div>
               </div>
 
-              <div className="text-slate-500 text-right whitespace-nowrap">
+              <div  className="text-slate-500 text-xs sm:text-right whitespace-nowrap">
                 {exp.startDate}
                 {exp.endDate &&
                   ` - ${exp.endDate}`}
@@ -163,12 +165,12 @@ return ( <div className="bg-white mt-10 text-slate-900 max-w-4xl mx-auto px-10 p
             </div>
 
             {exp.description && (
-              <ul className="list-disc ml-5 mt-2 text-slate-700">
+              <ul className="list-disc ml-5 mt-2 text-slate-700 text-sm">
                 {exp.description
                   .split("\n")
                   .filter(Boolean)
                   .map((line, i) => (
-                    <li key={i}>
+                    <li key={i} className="break-words">
                       {line}
                     </li>
                   ))}
@@ -189,42 +191,27 @@ return ( <div className="bg-white mt-10 text-slate-900 max-w-4xl mx-auto px-10 p
         {projects.map((project, index) => (
           <div
             key={index}
-            className="border border-slate-200 rounded-md p-4"
+             className="border border-slate-200 rounded-md p-4 min-w-0 flex flex-col sm:flex-row sm:justify-between gap-2"
           >
-            <div className="flex justify-between items-start">
-
-              <div>
-                <h3 className="font-semibold text-base">
-                  {project.name}
-                </h3>
-
-                {project.techStack && (
-                  <div className="text-slate-600 mt-1">
-                    <span className="font-medium">
-                      Tech Stack:
-                    </span>{" "}
-                    {project.techStack}
-                  </div>
-                )}
-              </div>
-
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-indigo-600 text-xs"
-                >
-                  View Project
-                </a>
-              )}
-            </div>
-
-            {project.description && (
-              <div className="mt-3 text-slate-700">
-                {project.description}
-              </div>
-            )}
+       <div className="flex-1 min-w-0">
+    <h3 className="font-semibold text-base break-words">{project.name}</h3>
+    {project.techStack && (
+      <div className="text-slate-600 mt-1 break-words">
+        <span className="font-medium">Tech Stack: </span> {project.techStack}
+      </div>
+    )}
+    {project.description && (
+      <div className="mt-3 text-slate-700 break-words whitespace-pre-wrap flex-1 min-w-0">
+        {project.description}
+      </div>
+    )}
+  </div>
+  {project.link && (
+    <a href={project.link} target="_blank" rel="noopener noreferrer"
+       className="text-indigo-600 text-xs break-all shrink-0">
+      View Project
+    </a>
+  )}
           </div>
         ))}
       </div>
@@ -236,36 +223,20 @@ return ( <div className="bg-white mt-10 text-slate-900 max-w-4xl mx-auto px-10 p
     <Section title="Education">
 
       <div className="space-y-4">
-
-        {education.map((edu, index) => (
-          <div
-            key={index}
-            className="flex justify-between"
-          >
-            <div>
-              <div className="font-semibold">
-                {edu.course}
-              </div>
-
-              <div className="text-slate-600">
-                {edu.institute}
-              </div>
-            </div>
-
-            <div className="text-right">
-              <div>
-                {edu.passingYear}
-              </div>
-
-              {edu.percentage && (
-                <div className="text-slate-600">
-                  {edu.percentage}
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
+  {education.map((edu, index) => (
+    <div key={index} className="flex flex-col sm:flex-row sm:justify-between gap-1">
+      <div className="min-w-0">
+        <div className="font-semibold break-words">{edu.course}</div>
+        <div className="text-slate-600 text-sm break-words">{edu.institute}</div>
       </div>
+      <div className="text-xs sm:text-right text-slate-500 whitespace-nowrap">
+        <div>{edu.passingYear}</div>
+        {edu.percentage && <div className="text-slate-600">{edu.percentage}</div>}
+      </div>
+    </div>
+  ))}
+</div>
+
     </Section>
   )}
 
