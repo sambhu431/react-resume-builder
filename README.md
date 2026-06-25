@@ -6,8 +6,16 @@ Responsive resume builder web application built using **React (Vite)** , **Tailw
 
 ---
 
+##  Live Demo (Website)
+
+🔗 https://react-resume-builder-orcin.vercel.app/
+
+Build professional resumes instantly with real-time preview and PDF export.
+
+---
 ## Features
 
+- Multiple resume templates
 - Dynamic form-based resume creation
 - Real-time preview updates
 - PDF download using `@react-pdf/renderer`
@@ -19,7 +27,6 @@ Responsive resume builder web application built using **React (Vite)** , **Tailw
   - Projects
   - Education
   - Skills
-  - Projects
 - Mobile-friendly design
 
 ---
@@ -38,30 +45,50 @@ Responsive resume builder web application built using **React (Vite)** , **Tailw
 
 ## Project Structure
 
+```text
 src/
- ├── components/
- ├── pages/
- ├── data/
- ├── localStorage/
- |── index.css
- ├── App.jsx
- └── main.jsx
-
+├── components/
+├── pages/
+├── data/
+├── localStorage/
+├── index.css
+├── App.jsx
+└── main.jsx
+```
 
 ---
 
-##  Installation & Setup
+## Installation & Setup
 
 Clone the repository:
 
+```bash
+git clone https://github.com/sambhu431/react-resume-builder
+```
+
+Navigate to the project:
+
+```bash
+cd <repo-name>
+```
+
 Install dependencies:
-- npm install
+
+```bash
+npm install
+```
 
 Run development server:
-- npm run dev
+
+```bash
+npm run dev
+```
 
 Build for production:
-- npm run build
+
+```bash
+npm run build
+```
 
 ---
 
@@ -82,8 +109,7 @@ This project is licensed under the MIT License.
 
 ## About
 
-This project was built as a personal learning project to strengthen skills in React, UI design, and PDF generation.
-
+This project was built to strengthen practical skills in React, Tailwind CSS, form handling, responsive UI design, and PDF generation. It focuses on providing a smooth resume-building experience with real-time preview and PDF export capabilities.
 
 ---
 
