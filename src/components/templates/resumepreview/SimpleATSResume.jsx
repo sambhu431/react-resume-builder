@@ -1,4 +1,4 @@
-export default function SimpleATSResume({ values }) {
+export default function SimpleATSResume({ values = {} }) {
   const {
     personalInfo = {},
     careerObjective,

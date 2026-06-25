@@ -1,4 +1,4 @@
-export default function AcademicResume({ values }) {
+export default function AcademicResume({ values = {} }) {
   const {
     personalInfo = {},
     careerObjective = "",

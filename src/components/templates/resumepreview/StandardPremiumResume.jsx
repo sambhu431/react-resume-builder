@@ -1,14 +1,15 @@
 import React from "react";
 
-export default function StandardPremiumResume({ values }) {
-  const {
-    personalInfo,
-    careerObjective,
-    education,
-    skillGroups,
-    experience,
-    projects,
-  } = values;
+export default function StandardPremiumResume({ values = {} }) {
+const {
+  personalInfo = {},
+  careerObjective = "",
+  education = [],
+  skillGroups = [],
+  experience = [],
+  projects = [],
+} = values;
+
 
   const validSkillGroups = (skillGroups || []).filter(
     (group) =>
@@ -18,25 +19,46 @@ export default function StandardPremiumResume({ values }) {
   return (
     <div className="bg-slate-100 min-h-screen py-6 sm:py-10 px-3 sm:px-6 lg:px-10 flex justify-center">
       {/* PAGE CONTAINER */}
-      <div className="w-full max-w-225 bg-white shadow-xl p-5 sm:p-8 lg:p-10">
+      <div
+  className="
+    w-full
+    min-w-0
+    max-w-225
+    bg-white
+    shadow-xl
+    p-5
+    sm:p-8
+    lg:p-10
+  "
+>
         {/* HEADER */}
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 wrap-break-words">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 [overflow-wrap:anywhere]">
             {personalInfo?.firstName} {personalInfo?.lastName}
           </h1>
 
-          <div className="mt-3 text-xs sm:text-sm lg:text-base text-slate-700 space-y-1">
-            <p className="wrap-break-words">
+          <div
+  className="
+    mt-3
+    text-xs
+    sm:text-sm
+    lg:text-base
+    text-slate-700
+    space-y-1
+    min-w-0
+  "
+>
+           <p className="break-all">
               <span className="font-semibold">Email:</span>{" "}
               {personalInfo?.email}
             </p>
 
-            <p className="wrap-break-words">
+            <p className="[overflow-wrap:anywhere]">
               <span className="font-semibold">Phone:</span>{" "}
               {personalInfo?.phone}
             </p>
 
-            <p className="wrap-break-words">
+            <p className="[overflow-wrap:anywhere]">
               <span className="font-semibold">Address:</span>{" "}
               {personalInfo?.address}
             </p>
@@ -70,7 +92,16 @@ export default function StandardPremiumResume({ values }) {
         {/* CAREER OBJECTIVE */}
         {careerObjective && (
           <Section title="Career Objective">
-            <p className="text-slate-700 text-sm sm:text-base leading-6 sm:leading-7 wrap-break-words">
+           <p
+  className="
+    text-slate-700
+    text-sm
+    sm:text-base
+    leading-6
+    sm:leading-7
+    [overflow-wrap:anywhere]
+  "
+>
               {careerObjective}
             </p>
           </Section>
@@ -81,15 +112,15 @@ export default function StandardPremiumResume({ values }) {
           <Section title="Projects">
             {projects.map((project, i) => (
               <div key={i} className="mb-4 sm:mb-6">
-                <p className="font-bold text-slate-900 text-sm sm:text-base wrap-break-words">
+                <p className="font-bold text-slate-900 text-sm sm:text-base [overflow-wrap:anywhere]">
                   {project.name}
                 </p>
 
-                <p className="text-xs sm:text-sm text-slate-500 wrap-break-words mt-1">
+                <p className="text-xs sm:text-sm text-slate-500 [overflow-wrap:anywhere] mt-1">
                   {project.techStack}
                 </p>
 
-                <p className="text-slate-700 text-sm mt-2 leading-6 wrap-break-words">
+                <p className="text-slate-700 text-sm mt-2 leading-6 [overflow-wrap:anywhere]">
                   {project.description}
                 </p>
 
@@ -114,7 +145,7 @@ export default function StandardPremiumResume({ values }) {
             {experience.map((exp, i) => (
               <div key={i} className="mb-5 sm:mb-7">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                  <p className="font-bold text-slate-900 text-sm sm:text-base wrap-break-words">
+                 <p className="font-bold text-slate-900 text-sm sm:text-base [overflow-wrap:anywhere]">
                     {exp.company}
                   </p>
 
@@ -123,17 +154,17 @@ export default function StandardPremiumResume({ values }) {
                   </p>
                 </div>
 
-                <p className="font-semibold text-slate-700 mt-1 text-sm wrap-break-words">
+                <p className="font-semibold text-slate-700 mt-1 text-sm [overflow-wrap:anywhere]">
                   {exp.role}
                 </p>
 
                 {exp.location && (
-                  <p className="text-xs sm:text-sm text-slate-500 wrap-break-words">
+                  <p className="text-xs sm:text-sm text-slate-500 [overflow-wrap:anywhere]">
                     {exp.location}
                   </p>
                 )}
 
-                <p className="text-slate-700 mt-2 text-sm leading-6 wrap-break-words whitespace-pre-line">
+                <p className="text-slate-700 mt-2 text-sm leading-6 [overflow-wrap:anywhere] whitespace-pre-line">
                   {exp.description}
                 </p>
               </div>
@@ -146,7 +177,7 @@ export default function StandardPremiumResume({ values }) {
 {validSkillGroups?.length > 0 && (
   <Section title="Skills">
     {validSkillGroups.map((group, i) => (
-      <div key={i} className="mb-3 text-sm sm:text-base wrap-break-words">
+      <div key={i} className="mb-3 text-sm sm:text-base [overflow-wrap:anywhere]">
         <span className="font-bold text-slate-900">
           {group.category}:
         </span>{" "}
@@ -175,10 +206,10 @@ export default function StandardPremiumResume({ values }) {
                 <tbody>
                   {education.map((edu, i) => (
                     <tr key={i} className="border-t">
-                      <td className="px-3 py-2 font-semibold wrap-break-words">
+                      <td className="px-3 py-2 font-semibold [overflow-wrap:anywhere]">
                         {edu.course}
                       </td>
-                      <td className="px-3 py-2 wrap-break-words">{edu.institute}</td>
+                      <td className="px-3 py-2 [overflow-wrap:anywhere]">{edu.institute}</td>
                       <td className="px-3 py-2">{edu.passingYear}</td>
                       <td className="px-3 py-2">{edu.percentage}</td>
                     </tr>
@@ -249,7 +280,7 @@ export default function StandardPremiumResume({ values }) {
 function Section({ title, children }) {
   return (
     <div className="mb-6 sm:mb-10">
-      <div className="bg-gray-200 px-3 py-2 mb-4 rounded">
+    <div className="bg-gray-200 px-2 sm:px-3 py-2 mb-4 rounded max-w-full">
         <h2 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-800">
           {title}
         </h2>

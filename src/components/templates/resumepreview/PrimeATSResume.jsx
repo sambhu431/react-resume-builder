@@ -36,15 +36,16 @@ return ( <div> <div className="text-xs uppercase tracking-wide text-slate-500">
 );
 }
 
-export default function PrimeATSResume({ values }) {
+export default function PrimeATSResume({ values = {} }) {
 const {
-personalInfo,
-careerObjective,
-education,
-skillGroups,
-experience,
-projects,
+  personalInfo = {},
+  careerObjective = "",
+  education = [],
+  skillGroups = [],
+  experience = [],
+  projects = [],
 } = values;
+
 
         const validSkillGroups = skillGroups.filter(
     (group) =>
