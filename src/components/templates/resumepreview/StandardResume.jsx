@@ -1,14 +1,14 @@
 import React from "react";
 
-export default function StandardResume({ values }) {
-  const {
-    personalInfo,
-    careerObjective,
-    education,
-    skillGroups,
-    experience,
-    projects,
-  } = values;
+export default function StandardResume({ values = {} }) {
+const {
+  personalInfo = {},
+  careerObjective = "",
+  education = [],
+  skillGroups = [],
+  experience = [],
+  projects = [],
+} = values;
 
             const validSkillGroups = skillGroups.filter(
     (group) =>
@@ -17,56 +17,66 @@ export default function StandardResume({ values }) {
   );
 
   return (
-    <div className="bg-[#f4f6f8] py-10 px-4">
-      <div className="max-w-4xl mx-auto bg-white shadow-xl rounded-xl overflow-hidden">
+    <div className="bg-[#f4f6f8] py-6 sm:py-10 px-4">
+      <div
+  className="
+    w-full
+    min-w-0
+    max-w-4xl
+    mx-auto
+    bg-white
+    shadow-xl
+    rounded-lg
+    overflow-hidden
+    text-xs
+    sm:text-sm
+    leading-relaxed
+  "
+>
 
         {/* HEADER (ALL PERSONAL INFO LEFT STACKED) */}
-        <div className="px-10 py-4">
+        <div className="px-4 sm:px-8 md:px-10 py-4">
 
-          <div className="text-4xl uppercase tracking-tight">
-            <span className="font-medium"> 
-               {personalInfo.firstName}{" "}
-            </span>
-            <span >
-              {personalInfo.lastName}
-            </span>
-          </div>
+      <div
+  className="
+    text-xl
+    sm:text-2xl
+    md:text-3xl
+    uppercase
+    tracking-tight
+    w-full
+    min-w-0
+    [overflow-wrap:anywhere]
+  "
+>
+    <span className="font-medium">{personalInfo.firstName} </span>
+    <span>{personalInfo.lastName}</span>
+  </div>
 
-          <div className="mt-4 text- space-y-1">
+         <div className="mt-4 space-y-1 text-sm text-slate-700 break-words">
+    {personalInfo.email && <p className="break-all">{personalInfo.email}</p>}
+    {personalInfo.phone && <p className="break-all">{personalInfo.phone}</p>}
+    {personalInfo.address && <p className="[overflow-wrap:anywhere]"> {personalInfo.address}</p>}
+    <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 mt-2 text-xs">
+      {personalInfo.linkedin && <a href={personalInfo.linkedin}   target="_blank"
+  rel="noopener noreferrer"
+  className="break-all ">LinkedIn</a>}
+      {personalInfo.github && <a href={personalInfo.github} target="_blank" rel="noopener noreferrer"
+  className="break-all ">GitHub</a>}
+    </div>
+  </div>
 
-            <p>
-              {personalInfo.email}
-            </p>
-
-            <p >
-              {personalInfo.phone}
-            </p>
-
-            <p>
-              {personalInfo.address}
-            </p>
-
-            <p className="text-xs mt-2 space-x-4">
-              {personalInfo.linkedin && (
-                <a href={personalInfo.linkedin}>LinkedIn</a>
-              )}
-              {personalInfo.github && (
-                <a href={personalInfo.github}>GitHub</a>
-              )}
-            </p>
-
-          </div>
         </div>
 
         {/* BODY */}
-        <div className="px-10 py-2 space-y-6">
+        <div className="px-4 sm:px-6 md:px-10 py-2 space-y-6">
 
           {/* PROFILE */}
           {careerObjective && (
             <section>
               <SectionTitle title="Career Objective" />
 
-              <p className="mt-3 text-sm text-slate-700 leading-relaxed">
+              <p className="mt-3 text-sm sm:text-base text-slate-700 leading-relaxed [overflow-wrap:anywhere] whitespace-pre-line">
                 {careerObjective}
               </p>
             </section>
@@ -79,39 +89,41 @@ export default function StandardResume({ values }) {
 
               <div className="mt-4 space-y-6">
                 {experience.map((exp, i) => (
-                  <div key={i} className="border-l-2 border-slate-900 pl-4">
+                  <div key={i} className="border-l-2 border-slate-900 pl-4 min-w-0 sm:justify-between gap-2">
 
-                    {/* ROLE (BOLD) */}
-                    <p className="font-bold text-slate-900">
-                      {exp.role || exp.position}
-                    </p>
-
-                    {/* COMPANY (BOLD) */}
-                    <p className="font-semibold text-slate-800">
-                      {exp.company}
-                    </p>
-
-                    <p className="text-xs text-slate-500">
-                      {exp.startDate} - {exp.endDate}
-                    </p>
-
-                    {exp.location && (
-                      <p className="text-xs text-slate-400">
-                        {exp.location}
-                      </p>
-                    )}
-
-                    {exp.description && (
-                      <p className="text-sm text-slate-600 mt-2">
-                        • {exp.description}
-                      </p>
-                    )}
+                   <div className="flex-1 min-w-0">
+    <p className="font-bold text-slate-900  [overflow-wrap:anywhere]">{exp.role || exp.position}</p>
+    <p className="font-semibold text-slate-800 break-words">{exp.company}</p>
+    <p className="text-xs text-slate-500 whitespace-nowrap">
+  {exp.startDate} - {exp.endDate}
+</p>
+    {exp.location && <p className="text-xs text-slate-400 break-words">{exp.location}</p>}
+  </div>
+  {exp.description && (
+    <p
+  className="
+    text-sm
+    text-slate-600
+    mt-2
+    whitespace-pre-wrap
+    flex-1
+    min-w-0
+    [overflow-wrap:anywhere]
+  "
+>
+      {exp.description}
+    </p>
+  )}
 
                   </div>
                 ))}
               </div>
             </section>
           )}
+
+
+
+
 
           {/* EDUCATION */}
           {education?.length > 0 && (
@@ -121,21 +133,23 @@ export default function StandardResume({ values }) {
               <div className="mt-4 space-y-4">
 
                 {education.map((edu, i) => (
-                  <div key={i} className="border-l-2 border-slate-900 pl-4">
+                  <div key={i} className="border-l-2 border-slate-900 pl-4 min-w-0 flex flex-col sm:flex-row sm:justify-between gap-2">
 
-                    <p className="font-bold text-slate-900">
-                      {edu.course}
-                    </p>
-
-                    <p className="font-semibold text-slate-700">
-                      {edu.institute}
-                    </p>
-
-                    <p className="text-xs text-slate-500 font-semibold">
-                      {edu.passingYear}
-                      {edu.percentage ? ` • ${edu.percentage}` : ""}
-                    </p>
-
+            <div className="flex-1 min-w-0">
+    <p className="font-bold text-slate-900 break-words">{edu.course}</p>
+    <p className="font-semibold text-slate-700 break-words">{edu.institute}</p>
+  </div>
+  <div
+  className="
+    text-xs
+    text-slate-500
+    font-semibold
+    shrink-0
+    sm:whitespace-nowrap
+  "
+>
+    {edu.passingYear}{edu.percentage ? ` • ${edu.percentage}` : ""}
+  </div>
                   </div>
                 ))}
 
@@ -148,16 +162,22 @@ export default function StandardResume({ values }) {
             <section>
               <SectionTitle title="Skills" />
 
-              <div className="mt-3 space-y-2">
+              <div className="mt-3 space-y-2 min-w-0">
 
                 {validSkillGroups.map((group, i) => (
                   <div key={i}>
 
-                    <p className="font-bold text-slate-800">
+                    <p className="font-bold text-slate-800 [overflow-wrap:anywhere]">
                       {group.category}
                     </p>
 
-                    <p className="text-sm text-slate-600">
+                    <p
+  className="
+    text-sm
+    text-slate-600
+    [overflow-wrap:anywhere]
+  "
+>
                       {group.skills?.filter(Boolean).join(", ")}
                     </p>
 
@@ -176,32 +196,37 @@ export default function StandardResume({ values }) {
               <div className="mt-4 space-y-5">
 
                 {projects.map((project, i) => (
-                  <div key={i} className="border-l-2 border-slate-900 pl-4">
+                  <div key={i} className="border-l-2 border-slate-900 pl-4 min-w-0 flex flex-col sm:flex-row sm:justify-between gap-2">
 
-                    {/* PROJECT NAME (BOLD) */}
-                    <p className="font-bold text-slate-900">
-                      {project.name}
-                    </p>
-
-                    {project.techStack && (
-                      <p className="text-xs text-slate-500">
-                        {project.techStack}
-                      </p>
-                    )}
-
-                    <p className="text-sm text-slate-600 mt-1">
-                      {project.description}
-                    </p>
-
-                    {project.link && (
-                      <a
-                        href={project.link}
-                        className="text-xs text-blue-600 mt-1 inline-block"
-                      >
-                        View Project 
-                      </a>
-                    )}
-
+                     <div className="flex-1 min-w-0">
+    <p className="font-bold text-slate-900 break-words">{project.name}</p>
+    {project.techStack && <p className="text-xs text-slate-500 break-words">{project.techStack}</p>}
+   <p
+  className="
+    text-sm
+    text-slate-600
+    mt-1
+    whitespace-pre-wrap
+    flex-1
+    min-w-0
+    [overflow-wrap:anywhere]
+  "
+>{project.description}</p>
+  </div>
+  {project.link && (
+    <a href={project.link} target="_blank"
+  rel="noopener noreferrer"
+  className="
+    text-xs
+    text-blue-600
+    mt-1
+    inline-block
+    break-all
+    shrink-0
+  ">
+      View Project
+    </a>
+  )}
                   </div>
                 ))}
 
@@ -211,26 +236,35 @@ export default function StandardResume({ values }) {
 
 
           <section>
-            <SectionTitle title="Personal Informartion" />
-            {(personalInfo.dob ||
-              personalInfo.maritalStatus ||
-              personalInfo.nationality) && (
-              <p className="text-slate-600 mt-1 flex flex-wrap gap-6">
-                <span> {personalInfo.dob && `DOB: ${personalInfo.dob}`} </span>
-                <span> {personalInfo.maritalStatus &&
-                    `Status: ${personalInfo.maritalStatus}`} </span>
-                <span> {personalInfo.nationality &&
-                    `Nationality: ${personalInfo.nationality}`} </span>
-              </p>
-            )}
+  <SectionTitle title="Personal Information" />
 
-            {personalInfo.languages && (
-              <p>
-                <span className="font-bold">Languages:</span>{" "}
-                {personalInfo.languages}
-              </p>
-            )}
-          </section>
+  <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-3">
+    {personalInfo.dob && (
+      <span className="[overflow-wrap:anywhere]">
+        <strong>DOB:</strong> {personalInfo.dob}
+      </span>
+    )}
+    {personalInfo.maritalStatus && (
+      <span className="[overflow-wrap:anywhere]">
+        <strong>Status:</strong> {personalInfo.maritalStatus}
+      </span>
+    )}
+    {personalInfo.nationality && (
+      <span className="[overflow-wrap:anywhere]">
+        <strong>Nationality:</strong> {personalInfo.nationality}
+      </span>
+    )}
+
+    {personalInfo.languages && (
+    <p className="mt-2 text-sm text-slate-600 [overflow-wrap:anywhere]">
+      <strong>Languages:</strong> {personalInfo.languages}
+    </p>
+  )}
+  </div>
+
+  
+</section>
+
           
 
         </div>
@@ -242,8 +276,8 @@ export default function StandardResume({ values }) {
 /* SECTION HEADER (GRAY BAR + UPPERCASE) */
 function SectionTitle({ title }) {
   return (
-    <div className="bg-gray-200 px-3 py-1 inline-block">
-      <h2 className="text-xs font-bold uppercase tracking-widest text-gray-800">
+    <div className="bg-gray-200 px-2 sm:px-3 py-1 inline-block max-w-full">
+      <h2 className="text-[11px] sm:text-xs font-bold uppercase tracking-widest text-gray-800">
         {title}
       </h2>
     </div>
