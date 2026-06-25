@@ -325,7 +325,7 @@ print:mt-0
       {/* ================= ADDITIONAL INFO ================= */}
       {hasAdditionalInfo && (
         <Section title="Additional">
-          <div className="grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-y-2 gap-x-4 text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-y-2 gap-x-4 text-sm">
             {personalInfo.dob && (
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-slate-400">

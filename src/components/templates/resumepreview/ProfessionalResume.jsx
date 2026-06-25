@@ -197,7 +197,7 @@ export default function ProfessionalResume({ values = {} }) {
           <h2 className="text-xs uppercase tracking-[0.25em] text-slate-500">
             Personal Information
           </h2>
-          <div className="mt-2 grid grid-cols-4 sm:grid-cols-4 lg:grid-cols-4 gap-y-2 gap-x-4 text-sm">
+          <div className="mt-2 grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-y-2 gap-x-4 text-sm">
             {personalInfo.dob && (
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-slate-400">
