@@ -1,7 +1,7 @@
 export default function ClassicResume({ values = {} }) {
   const {
-    personalInfo={},
-    careerObjective="",
+    personalInfo = {},
+    careerObjective = "",
     education = [],
     skillGroups = [],
     experience = [],

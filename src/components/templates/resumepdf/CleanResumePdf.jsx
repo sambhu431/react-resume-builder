@@ -12,7 +12,7 @@ import {
 
 const styles = StyleSheet.create({
   page: {
-      paddingTop: 8,
+    paddingTop: 8,
     paddingHorizontal: 20,
     paddingBottom: 8,
     fontFamily: "Helvetica",
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 700,
     color: "#0f172a",
-    marginBottom: 14,
+    marginBottom: 16,
   },
 
   contactRow: {
@@ -131,43 +131,43 @@ const styles = StyleSheet.create({
     marginTop: 2,
   },
 
-/* SKILLS GRID (matches sm:grid-cols-2 gap-6) */
+  /* SKILLS GRID (matches sm:grid-cols-2 gap-6) */
 
-skillsGrid: {
-  flexDirection: "row",
-  flexWrap: "wrap",
-  justifyContent: "space-between",
-},
+  skillsGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+  },
 
-skillCard: {
-  width: "48%",   // 👈 matches 2-column grid
-  marginBottom: 10,
-},
+  skillCard: {
+    width: "48%", // 👈 matches 2-column grid
+    marginBottom: 10,
+  },
 
-skillCategory: {
-  fontSize: 9.5,
-  fontWeight: 700,
-  color: "#334155",
-  marginBottom: 4,
-},
+  skillCategory: {
+    fontSize: 9.5,
+    fontWeight: 700,
+    color: "#334155",
+    marginBottom: 4,
+  },
 
-skillsWrap: {
-  flexDirection: "row",
-  flexWrap: "wrap",
-},
+  skillsWrap: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
 
-skillTag: {
-  fontSize: 8.5,
-  backgroundColor: "#f1f5f9",
-  borderWidth: 1,
-  borderColor: "#e2e8f0",
-  paddingHorizontal: 6,
-  paddingVertical: 2,
-  marginRight: 4,
-  marginBottom: 4,
-  color: "#334155",
-  borderRadius: 3,
-},
+  skillTag: {
+    fontSize: 8.5,
+    backgroundColor: "#f1f5f9",
+    borderWidth: 1,
+    borderColor: "#e2e8f0",
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    marginRight: 4,
+    marginBottom: 4,
+    color: "#334155",
+    borderRadius: 3,
+  },
   /* ⭐ ADDITIONAL INFO 4-COLUMN GRID */
   grid4: {
     flexDirection: "row",
@@ -211,18 +211,14 @@ const CleanResumePdf = ({ values = {} }) => {
     personalInfo.nationality ||
     personalInfo.languages;
 
-
-    const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
-
 
   return (
     <Document>
       <Page size="A4" style={styles.page} wrap>
-
         {/* ---------------- HEADER ---------------- */}
         <View style={styles.header}>
           <Text style={styles.name}>
@@ -238,10 +234,9 @@ const CleanResumePdf = ({ values = {} }) => {
             )}
           </View>
 
-          <View style={styles.contactRow}> 
+          <View style={styles.contactRow}>
             {personalInfo.address && (
-              <Text style={styles.contactText}> 
-              {personalInfo.address}</Text>
+              <Text style={styles.contactText}>{personalInfo.address}</Text>
             )}
           </View>
 
@@ -281,9 +276,7 @@ const CleanResumePdf = ({ values = {} }) => {
                   </Text>
                 </View>
 
-                <Text style={styles.small}>
-                  {exp.company}
-                </Text>
+                <Text style={styles.small}>{exp.company}</Text>
 
                 {exp.description && (
                   <Text style={styles.text}>{exp.description}</Text>
@@ -337,46 +330,37 @@ const CleanResumePdf = ({ values = {} }) => {
                 <Text style={styles.small}>{edu.institute}</Text>
 
                 {edu.percentage && (
-                  <Text style={styles.small}>
-                    Score: {edu.percentage}
-                  </Text>
+                  <Text style={styles.small}>Score: {edu.percentage}</Text>
                 )}
               </View>
             ))}
           </View>
         )}
 
+        {/* ---------------- SKILLS ---------------- */}
+        {validSkillGroups?.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Skills</Text>
 
-{/* ---------------- SKILLS ---------------- */}
-{validSkillGroups?.length > 0 && (
-  <View style={styles.section}>
-    <Text style={styles.sectionTitle}>Skills</Text>
+            <View style={styles.skillsGrid}>
+              {validSkillGroups.map((group, i) => (
+                <View key={i} style={styles.skillCard}>
+                  {/* Category */}
+                  <Text style={styles.skillCategory}>{group.category}</Text>
 
-    <View style={styles.skillsGrid}>
-      {validSkillGroups.map((group, i) => (
-        <View key={i} style={styles.skillCard}>
-
-          {/* Category */}
-          <Text style={styles.skillCategory}>
-            {group.category}
-          </Text>
-
-          {/* Skills */}
-          <View style={styles.skillsWrap}>
-            {group.skills?.filter(Boolean).map((s, j) => (
-              <Text key={j} style={styles.skillTag}>
-                {s}
-              </Text>
-            ))}
+                  {/* Skills */}
+                  <View style={styles.skillsWrap}>
+                    {group.skills?.filter(Boolean).map((s, j) => (
+                      <Text key={j} style={styles.skillTag}>
+                        {s}
+                      </Text>
+                    ))}
+                  </View>
+                </View>
+              ))}
+            </View>
           </View>
-
-        </View>
-      ))}
-    </View>
-
-  </View>
-)}
-
+        )}
 
         {/* ---------------- ADDITIONAL INFO ---------------- */}
         {hasAdditionalInfo && (
@@ -394,7 +378,9 @@ const CleanResumePdf = ({ values = {} }) => {
               {personalInfo.nationality && (
                 <View style={styles.gridItem}>
                   <Text style={styles.gridLabel}>Nationality</Text>
-                  <Text style={styles.gridValue}>{personalInfo.nationality}</Text>
+                  <Text style={styles.gridValue}>
+                    {personalInfo.nationality}
+                  </Text>
                 </View>
               )}
 
@@ -410,15 +396,12 @@ const CleanResumePdf = ({ values = {} }) => {
               {personalInfo.languages && (
                 <View style={styles.gridItem}>
                   <Text style={styles.gridLabel}>Languages</Text>
-                  <Text style={styles.gridValue}>
-                    {personalInfo.languages}
-                  </Text>
+                  <Text style={styles.gridValue}>{personalInfo.languages}</Text>
                 </View>
               )}
             </View>
           </View>
         )}
-
       </Page>
     </Document>
   );

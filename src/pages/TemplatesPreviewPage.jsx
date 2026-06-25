@@ -1,7 +1,7 @@
 import { templates } from "../data/templates";
 import Card from "../components/landingpage/Card";
 import Footer from "../components/landingpage/Footer";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const TemplatesPage = () => {
   return (
@@ -20,7 +20,17 @@ const TemplatesPage = () => {
             </span>
           </h1>
 
-          <p className="mt-3 max-w-xl text-base text-slate-600 sm:text-md md:text-lg">
+          <p
+            className="
+        mx-auto
+        mt-4
+        max-w-2xl
+        text-sm
+        sm:text-base
+        lg:text-lg
+        text-slate-600
+"
+          >
             Browse professionally crafted templates designed to help you stand
             out, impress recruiters, and land more interviews.
           </p>
@@ -38,8 +48,6 @@ const TemplatesPage = () => {
               🎨 Modern Designs
             </span>
           </div>
-
-          
         </div>
       </div>
 
@@ -83,17 +91,17 @@ const TemplatesPage = () => {
             );
           })}
         </div>
-        
-        <div className="flex justify-center mt-12 w-full col-span-full">
-            <Link to="/userdetails">
-              <button 
-              className="w-40 font-semibold bg-purple-300 
-              cursor-pointer underline">
-                Build Your Resume
-              </button>
-            </Link>
-        </div>
 
+        <div className="flex justify-center mt-12 w-full col-span-full">
+          <Link to="/userdetails">
+            <button
+              className="w-40 font-semibold bg-purple-300 
+              cursor-pointer underline"
+            >
+              Build Your Resume
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );

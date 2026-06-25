@@ -151,6 +151,11 @@ export default function ResumeFormPage() {
 
       {/* CONTENT */}
       <div className="mx-auto max-w-4xl px-4 py-8">
+        <div className="mb-2 rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600">
+          Resume form data is stored locally in the browser and will be
+          automatically removed after 48 hours.
+        </div>
+
         <div className="text-sm mb-2 font-semibold">
           <button
             className="underline cursor-pointer"

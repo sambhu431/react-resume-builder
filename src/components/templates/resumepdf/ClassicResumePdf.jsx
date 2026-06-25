@@ -9,7 +9,7 @@ import {
 
 const styles = StyleSheet.create({
   page: {
-       paddingTop: 8,
+    paddingTop: 8,
     paddingHorizontal: 20,
     paddingBottom: 8,
     fontSize: 10,
@@ -106,15 +106,15 @@ const styles = StyleSheet.create({
     fontFamily: "Helvetica",
   },
 
-skillText: {
-  fontFamily: "Helvetica",
-  fontSize: 10,
-  marginBottom: 4,
-},
+  skillText: {
+    fontFamily: "Helvetica",
+    fontSize: 10,
+    marginBottom: 4,
+  },
 
-skillCategory: {
-  fontFamily: "Helvetica-Bold",
-},
+  skillCategory: {
+    fontFamily: "Helvetica-Bold",
+  },
 
   experienceBlock: {
     marginBottom: 12,
@@ -235,34 +235,28 @@ export default function ClassicResumePdf({ values }) {
 
         {/* SKILLS */}
 
-       {/* SKILLS */}
-{validSkillGroups?.length > 0 && (
-  <Section title="Skills">
-    {validSkillGroups.map((group, index) => {
-      const skills = group.skills?.filter((s) => s?.trim()) || [];
+        {/* SKILLS */}
+        {validSkillGroups?.length > 0 && (
+          <Section title="Skills">
+            {validSkillGroups.map((group, index) => {
+              const skills = group.skills?.filter((s) => s?.trim()) || [];
 
-      return (
-        <Text key={index} style={styles.skillText}>
-          {group.category?.trim() ? (
-            <>
-              <Text style={styles.skillCategory}>
-                {group.category}
-              </Text>
+              return (
+                <Text key={index} style={styles.skillText}>
+                  {group.category?.trim() ? (
+                    <>
+                      <Text style={styles.skillCategory}>{group.category}</Text>
 
-              {skills.length > 0 && (
-                <Text>
-                  : {skills.join(", ")}
+                      {skills.length > 0 && <Text>: {skills.join(", ")}</Text>}
+                    </>
+                  ) : (
+                    <Text>{skills.join(", ")}</Text>
+                  )}
                 </Text>
-              )}
-            </>
-          ) : (
-            <Text>{skills.join(", ")}</Text>
-          )}
-        </Text>
-      );
-    })}
-  </Section>
-)}
+              );
+            })}
+          </Section>
+        )}
 
         {/* EXPERIENCE */}
 

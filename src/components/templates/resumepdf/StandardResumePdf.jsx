@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
 
   linksRow: {
-    flexDirection:"row",
+    flexDirection: "row",
     flexWrap: "wrap",
     marginTop: 6,
   },
@@ -54,16 +54,16 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
 
-  projectLink:{
-    fontSize: 10,
+  projectLink: {
+    fontSize: 9,
     textDecoration: "none",
-    color:"#2563eb",
+    color: "#2563eb",
   },
 
   /* SECTION HEADER */
   sectionHeaderWrap: {
-    flexDirection:"row",
-    flexWrap:"wrap",
+    flexDirection: "row",
+    flexWrap: "wrap",
     alignSelf: "flex-start",
     marginTop: 14,
     marginBottom: 8,
@@ -87,13 +87,13 @@ const styles = StyleSheet.create({
 
   bold: {
     fontWeight: 700,
-    marginBottom:2,
+    marginBottom: 2,
   },
 
   subtle: {
     color: "#6b7280",
     fontSize: 9,
-     marginBottom:2,
+    marginBottom: 2,
   },
 
   text: {
@@ -110,10 +110,29 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
-  bullet: {
-    fontSize: 9,
-    marginTop: 2,
-    lineHeight:1.5,
+  projectHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+    marginBottom: 2,
+  },
+
+  infoRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginTop: 4,
+    marginBottom: 6,
+  },
+
+  infoItem: {
+    fontSize: 10,
+    color: "#475569",
+    marginRight: 10,
+    marginBottom: 2,
+  },
+
+  bold: {
+    fontWeight: 700,
   },
 });
 
@@ -142,41 +161,31 @@ export default function StandardResumePdf({ values }) {
     projects,
   } = values;
 
-            const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
-
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View>
-
           {/* ================= HEADER ================= */}
           <Text style={styles.name}>
             {personalInfo.firstName}{" "}
-            <Text style={styles.lastName}>
-              {personalInfo.lastName}
-            </Text>
+            <Text style={styles.lastName}>{personalInfo.lastName}</Text>
           </Text>
 
           <View style={styles.infoBlock}>
-            <Text>
-              {personalInfo.email}
-            </Text>
+            <Text>{personalInfo.email}</Text>
 
-            <Text>
-               {personalInfo.phone}
-            </Text>
+            <Text>{personalInfo.phone}</Text>
 
             <Text>{personalInfo.address}</Text>
 
             <View style={styles.linksRow}>
               {personalInfo.linkedin && (
-                <Link style={styles.link} 
-                src={personalInfo.linkedin}>
+                <Link style={styles.link} src={personalInfo.linkedin}>
                   LinkedIn
                 </Link>
               )}
@@ -200,29 +209,19 @@ export default function StandardResumePdf({ values }) {
             <Section title="Experience">
               {experience.map((exp, i) => (
                 <View key={i} style={styles.timelineItem}>
-                  <Text style={styles.bold}>
-                    {exp.role || exp.position}
-                  </Text>
+                  <Text style={styles.bold}>{exp.role || exp.position}</Text>
 
-                  <Text style={styles.subtle}>
-                    {exp.company}
-                  </Text>
+                  <Text style={styles.subtle}>{exp.company}</Text>
 
                   <Text style={styles.subtle}>
                     {exp.startDate} - {exp.endDate}
                   </Text>
 
                   {exp.location && (
-                    <Text style={styles.subtle}>
-                      {exp.location}
-                    </Text>
+                    <Text style={styles.subtle}>{exp.location}</Text>
                   )}
 
-                  {exp.description && (
-                    <Text style={styles.bullet}>
-                      • {exp.description}
-                    </Text>
-                  )}
+                  {exp.description && <Text>{exp.description}</Text>}
                 </View>
               ))}
             </Section>
@@ -263,51 +262,60 @@ export default function StandardResumePdf({ values }) {
             <Section title="Projects">
               {projects.map((project, i) => (
                 <View key={i} style={styles.timelineItem}>
-                  <Text style={styles.bold}>
-                    {project.name}
-                  </Text>
+                  {/* HEADER ROW: NAME + LINK */}
+                  <View style={styles.projectHeader}>
+                    <Text style={styles.bold}>{project.name}</Text>
 
+                    {project.link && (
+                      <Link style={styles.projectLink} src={project.link}>
+                        View Project
+                      </Link>
+                    )}
+                  </View>
+
+                  {/* TECH STACK */}
                   {project.techStack && (
-                    <Text style={styles.subtle}>
-                      {project.techStack}
-                    </Text>
+                    <Text style={styles.subtle}>{project.techStack}</Text>
                   )}
 
-                  <Text style={styles.text}>
-                    {project.description}
-                  </Text>
-
-                  {project.link && (
-                    <Link style={styles.projectLink} src={project.link}>
-                      View Project
-                    </Link>
-                  )}
+                  {/* DESCRIPTION */}
+                  <Text style={styles.text}>{project.description}</Text>
                 </View>
               ))}
             </Section>
           )}
 
-          {/* ================= PERSONAL INFO ================= */}
+          {/* ================= PERSONAL INFORMATION ================= */}
           <Section title="Personal Information">
-            <Text style={styles.text}>
-              {[
-                personalInfo.dob && `DOB: ${personalInfo.dob}`,
-                personalInfo.maritalStatus &&
-                  `Status: ${personalInfo.maritalStatus}`,
-                personalInfo.nationality &&
-                  `Nationality: ${personalInfo.nationality}`,
-              ]
-                .filter(Boolean)
-                .join(" • ")}
-            </Text>
+            <View style={styles.infoRow}>
+              {personalInfo.dob && (
+                <Text style={styles.infoItem}>
+                  <Text style={styles.bold}>DOB:</Text> {personalInfo.dob}
+                </Text>
+              )}
+
+              {personalInfo.maritalStatus && (
+                <Text style={styles.infoItem}>
+                  <Text style={styles.bold}>Status:</Text>{" "}
+                  {personalInfo.maritalStatus}
+                </Text>
+              )}
+
+              {personalInfo.nationality && (
+                <Text style={styles.infoItem}>
+                  <Text style={styles.bold}>Nationality:</Text>{" "}
+                  {personalInfo.nationality}
+                </Text>
+              )}
+            </View>
 
             {personalInfo.languages && (
-              <Text style={styles.text}>
-                <Text style={{ fontWeight: 700 }}> Languages: </Text> {personalInfo.languages}
+              <Text style={styles.infoItem}>
+                <Text style={styles.bold}>Languages:</Text>{" "}
+                {personalInfo.languages}
               </Text>
             )}
           </Section>
-
         </View>
       </Page>
     </Document>

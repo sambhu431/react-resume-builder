@@ -140,8 +140,9 @@ const styles = StyleSheet.create({
   },
 
   eduItem: {
-    width: "33%",
-    paddingRight: 12,
+    width: "28%",
+    paddingLeft: 10,
+    paddingRight: 5,
     marginBottom: 8,
   },
 
@@ -215,7 +216,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 2,
     borderLeftColor: "#e5e7eb",
     paddingLeft: 8,
-    marginBottom: 6,
+    marginBottom: 5,
+    marginTop: 5,
   },
 
   projectName: {
@@ -238,7 +240,7 @@ const styles = StyleSheet.create({
   projectLink: {
     fontSize: 8,
     color: "#2563eb",
-    marginTop: 3,
+    marginTop: 1,
   },
 
   /* PERSONAL DETAILS */
@@ -296,11 +298,9 @@ export default function TraditionalResumePdf({ values }) {
               <Text style={styles.lastNameLight}>{personalInfo.lastName}</Text>
             </Text>
 
-            <Text style={styles.headerText}>
-              {[personalInfo.email, personalInfo.phone]
-                .filter(Boolean)
-                .join(" • ")}
-            </Text>
+            <Text style={styles.headerText}>{personalInfo.email}</Text>
+
+            <Text style={styles.headerText}>{personalInfo.phone}</Text>
 
             <Text style={styles.headerText}>{personalInfo.address}</Text>
 
@@ -353,7 +353,7 @@ export default function TraditionalResumePdf({ values }) {
                     )}
 
                     {exp.description && (
-                      <Text style={styles.expDesc}>• {exp.description}</Text>
+                      <Text style={styles.expDesc}> {exp.description}</Text>
                     )}
                   </View>
                 ))}

@@ -1,15 +1,14 @@
 import React from "react";
 
 export default function StandardPremiumResume({ values = {} }) {
-const {
-  personalInfo = {},
-  careerObjective = "",
-  education = [],
-  skillGroups = [],
-  experience = [],
-  projects = [],
-} = values;
-
+  const {
+    personalInfo = {},
+    careerObjective = "",
+    education = [],
+    skillGroups = [],
+    experience = [],
+    projects = [],
+  } = values;
 
   const validSkillGroups = (skillGroups || []).filter(
     (group) =>
@@ -20,7 +19,7 @@ const {
     <div className="bg-slate-100 min-h-screen py-6 sm:py-10 px-3 sm:px-6 lg:px-10 flex justify-center">
       {/* PAGE CONTAINER */}
       <div
-  className="
+        className="
     w-full
     min-w-0
     max-w-225
@@ -30,7 +29,7 @@ const {
     sm:p-8
     lg:p-10
   "
->
+      >
         {/* HEADER */}
         <div className="mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 [overflow-wrap:anywhere]">
@@ -38,7 +37,7 @@ const {
           </h1>
 
           <div
-  className="
+            className="
     mt-3
     text-xs
     sm:text-sm
@@ -47,8 +46,8 @@ const {
     space-y-1
     min-w-0
   "
->
-           <p className="break-all">
+          >
+            <p className="break-all">
               <span className="font-semibold">Email:</span>{" "}
               {personalInfo?.email}
             </p>
@@ -92,8 +91,8 @@ const {
         {/* CAREER OBJECTIVE */}
         {careerObjective && (
           <Section title="Career Objective">
-           <p
-  className="
+            <p
+              className="
     text-slate-700
     text-sm
     sm:text-base
@@ -101,7 +100,7 @@ const {
     sm:leading-7
     [overflow-wrap:anywhere]
   "
->
+            >
               {careerObjective}
             </p>
           </Section>
@@ -145,7 +144,7 @@ const {
             {experience.map((exp, i) => (
               <div key={i} className="mb-5 sm:mb-7">
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
-                 <p className="font-bold text-slate-900 text-sm sm:text-base [overflow-wrap:anywhere]">
+                  <p className="font-bold text-slate-900 text-sm sm:text-base [overflow-wrap:anywhere]">
                     {exp.company}
                   </p>
 
@@ -172,22 +171,24 @@ const {
           </Section>
         )}
 
-
- {/* SKILLS */}
-{validSkillGroups?.length > 0 && (
-  <Section title="Skills">
-    {validSkillGroups.map((group, i) => (
-      <div key={i} className="mb-3 text-sm sm:text-base [overflow-wrap:anywhere]">
-        <span className="font-bold text-slate-900">
-          {group.category}:
-        </span>{" "}
-        <span className="text-slate-700">
-          {group.skills?.filter(Boolean).join(", ")}
-        </span>
-      </div>
-    ))}
-  </Section>
-)}
+        {/* SKILLS */}
+        {validSkillGroups?.length > 0 && (
+          <Section title="Skills">
+            {validSkillGroups.map((group, i) => (
+              <div
+                key={i}
+                className="mb-3 text-sm sm:text-base [overflow-wrap:anywhere]"
+              >
+                <span className="font-bold text-slate-900">
+                  {group.category}:
+                </span>{" "}
+                <span className="text-slate-700">
+                  {group.skills?.filter(Boolean).join(", ")}
+                </span>
+              </div>
+            ))}
+          </Section>
+        )}
 
         {/* EDUCATION (RESPONSIVE TABLE + MOBILE STACK) */}
         {education?.length > 0 && (
@@ -209,7 +210,9 @@ const {
                       <td className="px-3 py-2 font-semibold [overflow-wrap:anywhere]">
                         {edu.course}
                       </td>
-                      <td className="px-3 py-2 [overflow-wrap:anywhere]">{edu.institute}</td>
+                      <td className="px-3 py-2 [overflow-wrap:anywhere]">
+                        {edu.institute}
+                      </td>
                       <td className="px-3 py-2">{edu.passingYear}</td>
                       <td className="px-3 py-2">{edu.percentage}</td>
                     </tr>
@@ -246,8 +249,6 @@ const {
           </Section>
         )}
 
-
-
         {/* PERSONAL DETAILS */}
         <Section title="Personal Details">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 text-xs sm:text-sm text-slate-700">
@@ -269,8 +270,6 @@ const {
             </p>
           </div>
         </Section>
-
-        
       </div>
     </div>
   );
@@ -280,7 +279,7 @@ const {
 function Section({ title, children }) {
   return (
     <div className="mb-6 sm:mb-10">
-    <div className="bg-gray-200 px-2 sm:px-3 py-2 mb-4 rounded max-w-full">
+      <div className="bg-gray-200 px-2 sm:px-3 py-2 mb-4 rounded max-w-full">
         <h2 className="text-xs sm:text-sm font-bold uppercase tracking-widest text-slate-800">
           {title}
         </h2>

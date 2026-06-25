@@ -23,7 +23,7 @@ const COLORS = {
 
 const styles = StyleSheet.create({
   page: {
-      paddingTop: 8,
+    paddingTop: 8,
     paddingHorizontal: 20,
     paddingBottom: 8,
     fontFamily: "Helvetica",
@@ -63,11 +63,6 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: "#000301",
     alignItems: "center",
-  },
-
-  dot: {
-    color: COLORS.light,
-    marginHorizontal: 4,
   },
 
   divider: {
@@ -146,7 +141,7 @@ const styles = StyleSheet.create({
   },
 
   skillCategory: {
-    width: 95,
+    width: 110,
     fontSize: 10,
     fontWeight: 700,
     color: COLORS.text,
@@ -198,7 +193,7 @@ const Section = ({ title, children }) => {
   if (!children) return null;
 
   return (
-    <View style={styles.section} >
+    <View style={styles.section}>
       <Text style={styles.sectionTitle}>{title}</Text>
       {children}
     </View>
@@ -223,59 +218,47 @@ export default function MinimalResumePdf({ values = {} }) {
     personalInfo.maritalStatus ||
     personalInfo.languages;
 
-
-            const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
-
 
   return (
     <Document>
       <Page size="A4" style={styles.page} wrap>
-
         {/* ================= HEADER ================= */}
         <View style={styles.header}>
           <Text style={styles.name}>
             {personalInfo.firstName}{" "}
-            <Text style={styles.lastName}>
-              {personalInfo.lastName}
-            </Text>
+            <Text style={styles.lastName}>{personalInfo.lastName}</Text>
           </Text>
 
           {careerObjective && (
-            <Text style={styles.objective}>
-              {careerObjective}
-            </Text>
+            <Text style={styles.objective}>{careerObjective}</Text>
           )}
 
           <View style={styles.contactRow}>
-            {personalInfo.email && <Text>{personalInfo.email}
-                </Text>}
+            {personalInfo.email && <Text>{personalInfo.email}</Text>}
 
             {personalInfo.phone && (
               <>
-                <Text style={styles.dot}>•</Text>
                 <Text>{personalInfo.phone}</Text>
               </>
             )}
           </View>
 
-          <View style={styles.contactRow}> 
-               {personalInfo.address && (
+          <View style={styles.contactRow}>
+            {personalInfo.address && (
               <>
                 <Text>{personalInfo.address}</Text>
               </>
             )}
           </View>
 
-          <View style={styles.contactRow}> 
+          <View style={styles.contactRow}>
             {personalInfo.linkedin && (
               <>
-                <Link  
-                style={styles.link}
-                src={personalInfo.linkedin}>
+                <Link style={styles.link} src={personalInfo.linkedin}>
                   LinkedIn
                 </Link>
               </>
@@ -283,9 +266,7 @@ export default function MinimalResumePdf({ values = {} }) {
 
             {personalInfo.github && (
               <>
-                <Link  
-                style={styles.link}
-                src={personalInfo.github}>
+                <Link style={styles.link} src={personalInfo.github}>
                   GitHub
                 </Link>
               </>
@@ -299,7 +280,7 @@ export default function MinimalResumePdf({ values = {} }) {
         {experience.length > 0 && (
           <Section title="Experience">
             {experience.map((exp, i) => (
-              <View key={i} style={{ marginBottom: 10 }} >
+              <View key={i} style={{ marginBottom: 10 }}>
                 <View style={styles.entryRow}>
                   <View>
                     <Text style={styles.title}>{exp.role}</Text>
@@ -341,9 +322,7 @@ export default function MinimalResumePdf({ values = {} }) {
                   <View>
                     <Text style={styles.title}>{project.name}</Text>
                     {project.techStack && (
-                      <Text style={styles.subtitle}>
-                        {project.techStack}
-                      </Text>
+                      <Text style={styles.subtitle}>{project.techStack}</Text>
                     )}
                   </View>
 
@@ -380,9 +359,7 @@ export default function MinimalResumePdf({ values = {} }) {
                 <View style={styles.entryRow}>
                   <View>
                     <Text style={styles.title}>{edu.course}</Text>
-                    <Text style={styles.subtitle}>
-                      {edu.institute}
-                    </Text>
+                    <Text style={styles.subtitle}>{edu.institute}</Text>
                   </View>
 
                   <Text style={styles.rightText}>
@@ -400,9 +377,7 @@ export default function MinimalResumePdf({ values = {} }) {
           <Section title="Skills">
             {validSkillGroups.map((group, i) => (
               <View key={i} style={styles.skillRow}>
-                <Text style={styles.skillCategory}>
-                  {group.category}
-                </Text>
+                <Text style={styles.skillCategory}>{group.category}</Text>
                 <Text style={styles.skillText}>
                   {group.skills?.filter(Boolean).join(", ")}
                 </Text>
@@ -425,33 +400,26 @@ export default function MinimalResumePdf({ values = {} }) {
               {personalInfo.nationality && (
                 <View style={styles.gridItem}>
                   <Text style={styles.label}>Nationality</Text>
-                  <Text style={styles.value}>
-                    {personalInfo.nationality}
-                  </Text>
+                  <Text style={styles.value}>{personalInfo.nationality}</Text>
                 </View>
               )}
 
               {personalInfo.maritalStatus && (
                 <View style={styles.gridItem}>
                   <Text style={styles.label}>Status</Text>
-                  <Text style={styles.value}>
-                    {personalInfo.maritalStatus}
-                  </Text>
+                  <Text style={styles.value}>{personalInfo.maritalStatus}</Text>
                 </View>
               )}
 
               {personalInfo.languages && (
                 <View style={styles.gridItem}>
                   <Text style={styles.label}>Languages</Text>
-                  <Text style={styles.value}>
-                    {personalInfo.languages}
-                  </Text>
+                  <Text style={styles.value}>{personalInfo.languages}</Text>
                 </View>
               )}
             </View>
           </Section>
         )}
-
       </Page>
     </Document>
   );

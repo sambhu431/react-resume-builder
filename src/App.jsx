@@ -1,4 +1,3 @@
-
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import TemplatesPreviewPage from "./pages/TemplatesPreviewPage";
@@ -13,27 +12,26 @@ import TermsPage from "./pages/TermsPage";
 import ContactPage from "./pages/ContactPage";
 
 function App() {
-
   return (
     <>
-    <BrowserRouter>
-    <ScrollToTop/>
-    <Routes>
-    <Route path="/" element={<HomePage/>} />
-    <Route path="/preview" element={<TemplatesPreviewPage/>} />
-    <Route path="/userdetails" element={<ResumeFormPage/>} />
-    <Route path="/templates" element={<ResumeTemplates/>} />
-    <Route path="/resume/:templateId" element={<ResumeDownload/>} />
-    <Route path="/policy" element={<PolicyPage/>} />
-    <Route path="/terms" element={<TermsPage/>} />
-    <Route path="/contact" element={<ContactPage/>} />
-    <Route path="*" element={<NotFoundPage/>} />
-    </Routes>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/preview" element={<TemplatesPreviewPage />} />
+          <Route path="/userdetails" element={<ResumeFormPage />} />
+          <Route path="/templates" element={<ResumeTemplates />} />
+          <Route path="/resume/:templateId" element={<ResumeDownload />} />
+          <Route path="/policy" element={<PolicyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
 
-    <Footer/>
-    </BrowserRouter>
+        <Footer />
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

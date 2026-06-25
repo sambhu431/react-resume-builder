@@ -10,7 +10,7 @@ import {
 
 const styles = StyleSheet.create({
   page: {
-        paddingTop: 8,
+    paddingTop: 8,
     paddingHorizontal: 20,
     paddingBottom: 8,
     fontFamily: "Helvetica",
@@ -23,8 +23,8 @@ const styles = StyleSheet.create({
   middleLine: {
     borderBottomWidth: 1,
     borderBottomColor: "#e2e8f0",
-    marginTop:10,
-    marginBottom:10,
+    marginTop: 10,
+    marginBottom: 10,
   },
 
   name: {
@@ -77,6 +77,12 @@ const styles = StyleSheet.create({
     color: "#475569",
   },
 
+  projectTechStack: {
+    fontSize: 10,
+    color: "#475569",
+    marginBottom: 2,
+  },
+
   rightText: {
     fontSize: 9,
     color: "#64748b",
@@ -95,9 +101,34 @@ const styles = StyleSheet.create({
     lineHeight: 1.5,
   },
 
-  projectLink : {
+  projectLink: {
     color: "#1D4ED8",
     textDecoration: "none",
+  },
+
+  /* GRID */
+  grid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+  },
+
+  gridItem: {
+    width: "22%",
+    borderRadius: 3,
+  },
+
+  label: {
+    fontSize: 8,
+    color: "#94a3b8",
+    textTransform: "uppercase",
+    letterSpacing: 1,
+    marginBottom: 1,
+  },
+
+  value: {
+    fontSize: 10,
+    color: "#334155",
   },
 });
 
@@ -111,18 +142,20 @@ export default function ProfessionalResumePdf({ values }) {
     projects = [],
   } = values;
 
-              const validSkillGroups = skillGroups.filter(
+  const hasAdditionalInfo =
+    personalInfo.dob ||
+    personalInfo.nationality ||
+    personalInfo.maritalStatus ||
+    personalInfo.languages;
+
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
-
-
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-
         {/* HEADER */}
         <View style={styles.header}>
           <Text style={styles.name}>
@@ -131,9 +164,7 @@ export default function ProfessionalResumePdf({ values }) {
 
           <View style={styles.row}>
             {personalInfo.email && (
-              <Text style={styles.text}>
-                {personalInfo.email}
-              </Text>
+              <Text style={styles.text}>{personalInfo.email}</Text>
             )}
 
             {personalInfo.phone && (
@@ -144,67 +175,49 @@ export default function ProfessionalResumePdf({ values }) {
           </View>
 
           {personalInfo.address && (
-            <Text style={styles.text}>
-              {personalInfo.address}
-            </Text>
+            <Text style={styles.text}>{personalInfo.address}</Text>
           )}
 
           <View style={styles.row}>
             {personalInfo.linkedin && (
-              <Link
-                src={personalInfo.linkedin}
-                style={styles.link}
-              >
+              <Link src={personalInfo.linkedin} style={styles.link}>
                 LinkedIn
               </Link>
             )}
 
             {personalInfo.github && (
-              <Link
-                src={personalInfo.github}
-                style={styles.link}
-              >
+              <Link src={personalInfo.github} style={styles.link}>
                 GitHub
               </Link>
             )}
           </View>
         </View>
 
-        {" Line "}
+        {/* Line */}
         <View style={styles.middleLine}> </View>
 
         {/* CAREER OBJECTIVE */}
         {careerObjective && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Career Objective
-            </Text>
+            <Text style={styles.sectionTitle}>Career Objective</Text>
 
-            <Text style={styles.description}>
-              {careerObjective}
-            </Text>
+            <Text style={styles.description}>{careerObjective}</Text>
           </View>
         )}
 
         {/* SKILLS */}
         {validSkillGroups.length > 0 && (
-          <View style={styles.section}> 
-            <Text style={styles.sectionTitle}>
-              Skills
-            </Text>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Skills</Text>
 
             {validSkillGroups.map((group, i) => (
               <View key={i} style={styles.block}>
-                <Text style={styles.title}>
-                  {group.category}
-                </Text>
+                <Text style={styles.title}>{group.category}</Text>
 
                 <Text style={styles.subtitle}>
-                  {group.skills
-                    ?.filter(Boolean)
-                    .map((skill,id)=>(
-                        <Text> {skill} </Text>
-                    ))}
+                  {group.skills?.filter(Boolean).map((skill, id) => (
+                    <Text key={id}> {skill} </Text>
+                  ))}
                 </Text>
               </View>
             ))}
@@ -214,17 +227,13 @@ export default function ProfessionalResumePdf({ values }) {
         {/* EXPERIENCE */}
         {experience?.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Experience
-            </Text>
+            <Text style={styles.sectionTitle}>Experience</Text>
 
             {experience.map((exp, i) => (
               <View key={i} style={styles.block}>
                 <View style={styles.flexBetween}>
                   <View>
-                    <Text style={styles.title}>
-                      {exp.role}
-                    </Text>
+                    <Text style={styles.title}>{exp.role}</Text>
 
                     <Text style={styles.subtitle}>
                       {exp.company}
@@ -238,9 +247,7 @@ export default function ProfessionalResumePdf({ values }) {
                 </View>
 
                 {exp.description && (
-                  <Text style={styles.description}>
-                    {exp.description}
-                  </Text>
+                  <Text style={styles.description}>{exp.description}</Text>
                 )}
               </View>
             ))}
@@ -250,16 +257,12 @@ export default function ProfessionalResumePdf({ values }) {
         {/* PROJECTS */}
         {projects?.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Projects
-            </Text>
+            <Text style={styles.sectionTitle}>Projects</Text>
 
             {projects.map((p, i) => (
               <View key={i} style={styles.block}>
                 <View style={styles.flexBetween}>
-                  <Text style={styles.title}>
-                    {p.name}
-                  </Text>
+                  <Text style={styles.title}>{p.name}</Text>
 
                   {p.link && (
                     <Link src={p.link} style={styles.projectLink}>
@@ -269,15 +272,11 @@ export default function ProfessionalResumePdf({ values }) {
                 </View>
 
                 {p.techStack && (
-                  <Text style={styles.subtitle}>
-                    {p.techStack}
-                  </Text>
+                  <Text style={styles.projectTechStack}>{p.techStack}</Text>
                 )}
 
                 {p.description && (
-                  <Text style={styles.description}>
-                    {p.description}
-                  </Text>
+                  <Text style={styles.description}>{p.description}</Text>
                 )}
               </View>
             ))}
@@ -287,31 +286,21 @@ export default function ProfessionalResumePdf({ values }) {
         {/* EDUCATION */}
         {education?.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Education
-            </Text>
+            <Text style={styles.sectionTitle}>Education</Text>
 
             {education.map((edu, i) => (
               <View key={i} style={styles.flexBetween}>
                 <View>
-                  <Text style={styles.title}>
-                    {edu.course}
-                  </Text>
+                  <Text style={styles.title}>{edu.course}</Text>
 
-                  <Text style={styles.subtitle}>
-                    {edu.institute}
-                  </Text>
+                  <Text style={styles.subtitle}>{edu.institute}</Text>
                 </View>
 
                 <View>
-                  <Text style={styles.rightText}>
-                    {edu.passingYear}
-                  </Text>
+                  <Text style={styles.rightText}>{edu.passingYear}</Text>
 
                   {edu.percentage && (
-                    <Text style={styles.rightText}>
-                      {edu.percentage}
-                    </Text>
+                    <Text style={styles.rightText}>{edu.percentage}</Text>
                   )}
                 </View>
               </View>
@@ -319,6 +308,42 @@ export default function ProfessionalResumePdf({ values }) {
           </View>
         )}
 
+        {/* ================= ADDITIONAL ================= */}
+        {hasAdditionalInfo && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Personal Information</Text>
+
+            <View style={styles.grid}>
+              {personalInfo.dob && (
+                <View style={styles.gridItem}>
+                  <Text style={styles.label}>DOB</Text>
+                  <Text style={styles.value}>{personalInfo.dob}</Text>
+                </View>
+              )}
+
+              {personalInfo.nationality && (
+                <View style={styles.gridItem}>
+                  <Text style={styles.label}>Nationality</Text>
+                  <Text style={styles.value}>{personalInfo.nationality}</Text>
+                </View>
+              )}
+
+              {personalInfo.maritalStatus && (
+                <View style={styles.gridItem}>
+                  <Text style={styles.label}>Status</Text>
+                  <Text style={styles.value}>{personalInfo.maritalStatus}</Text>
+                </View>
+              )}
+
+              {personalInfo.languages && (
+                <View style={styles.gridItem}>
+                  <Text style={styles.label}>Languages</Text>
+                  <Text style={styles.value}>{personalInfo.languages}</Text>
+                </View>
+              )}
+            </View>
+          </View>
+        )}
       </Page>
     </Document>
   );

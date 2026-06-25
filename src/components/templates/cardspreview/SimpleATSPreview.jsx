@@ -1,7 +1,6 @@
 export default function SimpleATSPreview() {
   return (
     <div className="h-72 bg-white border rounded-lg p-5 overflow-hidden text-slate-400">
-      
       {/* HEADER */}
       <div className="mb-4">
         <div className="h-5 bg-slate-800 rounded w-40" />

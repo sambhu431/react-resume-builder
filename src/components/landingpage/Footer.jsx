@@ -1,5 +1,4 @@
-
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -7,21 +6,16 @@ export default function Footer() {
       <div className="container mx-auto px-6 py-4 ">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <h3 className="font-bold text-slate-900">
-              ResumeMaker
-            </h3>
+            <h3 className="font-bold text-slate-900">ResumeMaker</h3>
 
             <p className="mt-3 text-sm text-slate-500">
-              Free resume builder designed to help students,
-              freshers, and professionals create ATS-friendly
-              resumes quickly.
+              Free resume builder designed to help students, freshers, and
+              professionals create ATS-friendly resumes quickly.
             </p>
           </div>
 
           <div>
-            <h4 className="font-semibold text-slate-900">
-              Product
-            </h4>
+            <h4 className="font-semibold text-slate-900">Product</h4>
 
             <ul className="mt-3 space-y-2 text-sm text-slate-500">
               <li>
@@ -37,9 +31,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-semibold text-slate-900">
-              Resources
-            </h4>
+            <h4 className="font-semibold text-slate-900">Resources</h4>
 
             <ul className="mt-3 space-y-2 text-sm text-slate-500">
               <li>

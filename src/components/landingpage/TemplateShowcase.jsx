@@ -37,18 +37,15 @@ export default function TemplateShowcase() {
 
           <div className="flex justify-center mt-4 w-full col-span-full">
             <Link to="/preview">
-              <button 
-              className="w-40 font-semibold bg-green-300 
-              cursor-pointer underline">
+              <button
+                className="w-40 font-semibold bg-green-300 
+              cursor-pointer underline"
+              >
                 View All Templates
               </button>
             </Link>
           </div>
-
-
         </div>
-
-        
       </div>
     </section>
   );

@@ -10,7 +10,7 @@ import {
 
 const styles = StyleSheet.create({
   page: {
-       paddingTop: 8,
+    paddingTop: 8,
     paddingHorizontal: 20,
     paddingBottom: 8,
     fontFamily: "Helvetica",

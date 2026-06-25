@@ -1,13 +1,12 @@
 export default function PrecisionATSResume({ values = {} }) {
-const {
-  personalInfo = {},
-  careerObjective = "",
-  education = [],
-  skillGroups = [],
-  experience = [],
-  projects = [],
-} = values;
-
+  const {
+    personalInfo = {},
+    careerObjective = "",
+    education = [],
+    skillGroups = [],
+    experience = [],
+    projects = [],
+  } = values;
 
   const validSkillGroups = skillGroups.filter(
     (group) =>

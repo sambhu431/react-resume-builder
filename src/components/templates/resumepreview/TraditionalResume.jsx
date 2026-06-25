@@ -73,16 +73,22 @@ export default function TraditionalResume({ values }) {
                     className="relative border-l-2 border-gray-200 pl-4 space-y-1 sm:space-y-2 min-w-0"
                   >
                     <span className="absolute w-3.5 h-3.5 -left-2 top-1 bg-gray-900 rounded-full" />
-                    <p className="font-bold text-gray-900 break-words">
-                      {exp.role || exp.position}
-                    </p>
-                    <p className="font-semibold text-gray-700 break-words">
-                      {exp.company}
-                    </p>
-                    <p className="text-xs text-gray-500 break-words">
-                      {exp.startDate} - {exp.endDate}{" "}
-                      {exp.location && ` • ${exp.location}`}
-                    </p>
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-1">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-bold text-gray-900 break-words">
+                          {exp.role || exp.position}
+                        </p>
+
+                        <p className="font-semibold text-gray-700 break-words">
+                          {exp.company}
+                        </p>
+                      </div>
+
+                      <p className="text-xs text-gray-500 break-words sm:ml-auto sm:text-right">
+                        {exp.startDate} - {exp.endDate}
+                        {exp.location && ` • ${exp.location}`}
+                      </p>
+                    </div>
                     {exp.description && (
                       <p className="text-sm text-gray-700 mt-2 leading-6 break-words whitespace-pre-wrap flex-1 min-w-0">
                         {exp.description}
@@ -97,9 +103,9 @@ export default function TraditionalResume({ values }) {
           {/* EDUCATION */}
           {education?.length > 0 && (
             <Section title="Education">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-6 gap-y-4">
                 {education.map((edu, i) => (
-                  <div key={i} className="flex flex-col min-w-0">
+                  <div key={i} className="flex flex-col min-w-0 pl-3">
                     <p className="font-semibold text-gray-900 text-sm break-words">
                       {edu.course}
                     </p>
@@ -132,7 +138,7 @@ export default function TraditionalResume({ values }) {
                       {group.skills?.filter(Boolean).map((skill, idx) => (
                         <span
                           key={idx}
-                          className="text-xs bg-gray-200 px-2 py-1 rounded-md text-gray-800 break-words max-w-full"
+                          className="text-xs rounded-md text-gray-800 break-words max-w-full"
                         >
                           {skill}
                         </span>
@@ -167,7 +173,7 @@ export default function TraditionalResume({ values }) {
                     {project.link && (
                       <a
                         href={project.link}
-                        className="text-xs text-blue-600 mt-1 inline-block break-all"
+                        className="text-xs underline text-blue-600 mt-1 inline-block break-all"
                       >
                         View Project
                       </a>

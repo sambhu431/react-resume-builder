@@ -1,12 +1,9 @@
-
 import Section from "../components/landingpage/Section";
 
 export default function TermsPage() {
   return (
     <div className="min-h-screen bg-slate-50 py-10 px-4">
-
       <div className="max-w-3xl mx-auto bg-white shadow-xl border border-slate-200 rounded-xl p-6 sm:p-10">
-
         {/* HEADER */}
         <div className="mb-8 border-b pb-6">
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
@@ -14,8 +11,8 @@ export default function TermsPage() {
           </h1>
 
           <p className="text-sm text-slate-500 mt-2 leading-relaxed">
-            By using ResumeMaker, you agree to the following terms and conditions
-            outlined below.
+            By using ResumeMaker, you agree to the following terms and
+            conditions outlined below.
           </p>
         </div>
 
@@ -38,7 +35,6 @@ export default function TermsPage() {
           Continued use of the platform after changes implies acceptance of the
           updated terms.
         </Section>
-
       </div>
     </div>
   );

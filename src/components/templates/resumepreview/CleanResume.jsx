@@ -37,13 +37,11 @@ export default function CleanResume({ values = {} }) {
 
   const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
 
   return (
     <div className="bg-white mt-6 sm:mt-10 text-slate-800 max-w-4xl mx-auto px-4 sm:px-8 md:px-12 py-6 sm:py-10 font-sans leading-relaxed overflow-x-hidden">
-
       {/* HEADER */}
       <header className="mb-4 text-center sm:text-left border-b border-slate-100 pb-6">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-2 break-words">
@@ -102,7 +100,6 @@ export default function CleanResume({ values = {} }) {
           <div className="space-y-6">
             {experience.map((exp, index) => (
               <div key={index} className="break-inside-avoid min-w-0">
-
                 {/* STACK ON MOBILE FIX */}
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-1">
                   <h3 className="font-bold text-slate-900 text-base sm:text-lg break-words min-w-0">
@@ -141,7 +138,6 @@ export default function CleanResume({ values = {} }) {
           <div className="space-y-6">
             {projects.map((project, index) => (
               <div key={index} className="break-inside-avoid min-w-0">
-
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
                   <h3 className="font-bold text-slate-900 text-base break-words">
                     {project.name}
@@ -180,7 +176,6 @@ export default function CleanResume({ values = {} }) {
           <div className="space-y-4">
             {education.map((edu, index) => (
               <div key={index} className="break-inside-avoid min-w-0">
-
                 <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
                   <h3 className="font-bold text-slate-900 break-words">
                     {edu.course}
@@ -236,35 +231,41 @@ export default function CleanResume({ values = {} }) {
       {hasAdditionalInfo && (
         <Section title="Additional Information">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-
             {personalInfo.dob && (
               <div className="break-words">
-                <span className="block text-xs text-slate-400 uppercase font-semibold">DOB</span>
+                <span className="block text-xs text-slate-400 uppercase font-semibold">
+                  DOB
+                </span>
                 <span>{personalInfo.dob}</span>
               </div>
             )}
 
             {personalInfo.nationality && (
               <div className="break-words">
-                <span className="block text-xs text-slate-400 uppercase font-semibold">Nationality</span>
+                <span className="block text-xs text-slate-400 uppercase font-semibold">
+                  Nationality
+                </span>
                 <span>{personalInfo.nationality}</span>
               </div>
             )}
 
             {personalInfo.maritalStatus && (
               <div className="break-words">
-                <span className="block text-xs text-slate-400 uppercase font-semibold">Status</span>
+                <span className="block text-xs text-slate-400 uppercase font-semibold">
+                  Status
+                </span>
                 <span>{personalInfo.maritalStatus}</span>
               </div>
             )}
 
             {personalInfo.languages && (
               <div className="break-words">
-                <span className="block text-xs text-slate-400 uppercase font-semibold">Languages</span>
+                <span className="block text-xs text-slate-400 uppercase font-semibold">
+                  Languages
+                </span>
                 <span>{personalInfo.languages}</span>
               </div>
             )}
-
           </div>
         </Section>
       )}

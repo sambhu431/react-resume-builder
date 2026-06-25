@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
   },
 
-
   /* HEADER */
   name: {
     fontSize: 20,
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
   /* SECTION */
   section: {
     marginTop: 2,
-    marginBottom:4,
+    marginBottom: 4,
   },
 
   sectionTitleWrap: {
@@ -73,6 +72,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     lineHeight: 1.4,
     color: "#0f172b",
+    marginTop: 4,
   },
 
   bold: {
@@ -99,51 +99,52 @@ const styles = StyleSheet.create({
     fontWeight: 600,
   },
 
-  expLocationText : {
+  expLocationText: {
     fontSize: 9,
     color: "#64748B",
   },
 
   /* EDUCATION TABLE (PDF SAFE) */
-tableRow: {
-  flexDirection: "row",
-  borderBottomWidth: 0.5,
-  borderBottomColor: "#18191a",
-},
+  tableRow: {
+    flexDirection: "row",
+    borderBottomWidth: 0.5,
+    borderBottomColor: "#18191a",
+  },
 
-tableHeader: {
-  backgroundColor: "#e2e8f0",
-  borderBottomWidth: 0.8,
-  borderBottomColor: "#94a3b8",
-},
+  tableHeader: {
+    backgroundColor: "#e2e8f0",
+    borderBottomWidth: 0.8,
+    borderBottomColor: "#94a3b8",
+  },
 
-cell: {
-  fontSize: 9,
-  paddingVertical: 5,
-  paddingHorizontal: 4,
-  color: "#0f172a",
-},
+  cell: {
+    fontSize: 9,
+    paddingVertical: 5,
+    paddingHorizontal: 4,
+    color: "#0f172a",
+  },
 
-cellBold: {
-  fontWeight: 700,
-},
-
-
-
+  cellBold: {
+    fontWeight: 700,
+  },
 
   /* PERSONAL DETAILS */
-personalRow: {
-  flexDirection: "row",
-  justifyContent: "space-between",
-  marginBottom: 4,
-},
+  personalRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 4,
+  },
 
-personalCell: {
-  width: "48%",
-  fontSize: 9,
-  color: "#334155",
-},
+  personalCell: {
+    width: "48%",
+    fontSize: 9,
+    color: "#334155",
+  },
 
+  /* Project */
+  projectTechStack: {
+    color: "#64748B",
+  },
 });
 
 /* SECTION */
@@ -167,32 +168,24 @@ export default function StandardPremiumResumePdf({ values }) {
     projects,
   } = values;
 
-    
-            const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
-
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View>
-
           {/* HEADER */}
           <View style={styles.headerBlock}>
             <Text style={styles.name}>
               {personalInfo.firstName} {personalInfo.lastName}
             </Text>
 
-            <Text style={styles.labelText}>
-              Email: {personalInfo.email}
-            </Text>
+            <Text style={styles.labelText}>Email: {personalInfo.email}</Text>
 
-            <Text style={styles.labelText}>
-              Phone: {personalInfo.phone}
-            </Text>
+            <Text style={styles.labelText}>Phone: {personalInfo.phone}</Text>
 
             <Text style={styles.labelText}>
               Address: {personalInfo.address}
@@ -220,25 +213,20 @@ export default function StandardPremiumResumePdf({ values }) {
             </Section>
           )}
 
-
           {/* PROJECTS */}
           {projects?.length > 0 && (
             <Section title="Projects">
               {projects.map((project, i) => (
                 <View key={i} style={{ marginBottom: 8 }}>
-                  <Text style={[styles.text, styles.bold]}>
-                    {project.name}
-                  </Text>
+                  <Text style={[styles.text, styles.bold]}>{project.name}</Text>
 
                   {project.techStack && (
-                    <Text style={styles.text}>
+                    <Text style={styles.projectTechStack}>
                       {project.techStack}
                     </Text>
                   )}
 
-                  <Text style={styles.text}>
-                    {project.description}
-                  </Text>
+                  <Text style={styles.text}>{project.description}</Text>
 
                   {project.link && (
                     <Link style={styles.link} src={project.link}>
@@ -255,7 +243,6 @@ export default function StandardPremiumResumePdf({ values }) {
             <Section title="Experience">
               {experience.map((exp, i) => (
                 <View key={i} style={styles.expItem}>
-
                   <View style={styles.expHeader}>
                     <Text style={[styles.text, styles.bold]}>
                       {exp.company}
@@ -266,126 +253,103 @@ export default function StandardPremiumResumePdf({ values }) {
                     </Text>
                   </View>
 
-                  <Text style={styles.expRoleText}>
-                    {exp.role}
-                  </Text>
+                  <Text style={styles.expRoleText}>{exp.role}</Text>
 
                   {exp.location && (
-                    <Text style={styles.expLocationText}>
-                      {exp.location}
-                    </Text>
+                    <Text style={styles.expLocationText}>{exp.location}</Text>
                   )}
 
-                  <Text style={styles.text}>
-                    {exp.description}
-                  </Text>
-
+                  <Text style={styles.text}>{exp.description}</Text>
                 </View>
               ))}
             </Section>
           )}
 
-{/* SKILLS */}
-{validSkillGroups?.length > 0 && (
-  <Section title="Skills">
-    {validSkillGroups.map((group, i) => (
-      <View key={i} style={{ marginBottom: 6 }}>
-        <Text style={styles.text}>
-          <Text style={styles.bold}>
-            {group.category}:
-          </Text>{" "}
-          {group.skills?.filter(Boolean).join(", ")}
-        </Text>
-      </View>
-    ))}
-  </Section>
-)}
+          {/* SKILLS */}
+          {validSkillGroups?.length > 0 && (
+            <Section title="Skills">
+              {validSkillGroups.map((group, i) => (
+                <View key={i}>
+                  <Text style={styles.text}>
+                    <Text style={styles.bold}>{group.category}:</Text>{" "}
+                    {group.skills?.filter(Boolean).join(", ")}
+                  </Text>
+                </View>
+              ))}
+            </Section>
+          )}
 
           {/* EDUCATION */}
-{education?.length > 0 && (
-  <Section title="Education">
+          {education?.length > 0 && (
+            <Section title="Education">
+              {/* TABLE HEADER */}
+              <View style={[styles.tableRow, styles.tableHeader]}>
+                <Text style={[styles.cell, styles.cellBold, { flex: 2 }]}>
+                  Course
+                </Text>
 
-    {/* TABLE HEADER */}
-    <View style={[styles.tableRow, styles.tableHeader]}>
+                <Text style={[styles.cell, styles.cellBold, { flex: 3 }]}>
+                  Institute
+                </Text>
 
-      <Text style={[styles.cell, styles.cellBold, { flex: 2 }]}>
-        Course
-      </Text>
+                <Text style={[styles.cell, styles.cellBold, { flex: 2 }]}>
+                  Year
+                </Text>
 
-      <Text style={[styles.cell, styles.cellBold, { flex: 3 }]}>
-        Institute
-      </Text>
+                <Text style={[styles.cell, styles.cellBold, { flex: 2 }]}>
+                  Percentage
+                </Text>
+              </View>
 
-      <Text style={[styles.cell, styles.cellBold, { flex: 2 }]}>
-        Year
-      </Text>
+              {/* TABLE ROWS */}
+              {education.map((edu, i) => (
+                <View key={i} style={styles.tableRow} wrap={true}>
+                  <Text style={[styles.cell, { flex: 2 }]}>{edu.course}</Text>
 
-      <Text style={[styles.cell, styles.cellBold, { flex: 2 }]}>
-        Percentage
-      </Text>
+                  <Text style={[styles.cell, { flex: 3 }]}>
+                    {edu.institute}
+                  </Text>
 
-    </View>
+                  <Text style={[styles.cell, { flex: 2 }]}>
+                    {edu.passingYear}
+                  </Text>
 
-    {/* TABLE ROWS */}
-    {education.map((edu, i) => (
-      <View key={i} style={styles.tableRow} wrap={true}>
+                  <Text style={[styles.cell, { flex: 2 }]}>
+                    {edu.percentage}
+                  </Text>
+                </View>
+              ))}
+            </Section>
+          )}
 
-        <Text style={[styles.cell, { flex: 2 }]}>
-          {edu.course}
-        </Text>
+          {/* PERSONAL DETAILS */}
+          <Section title="Personal Details">
+            <View wrap={true}>
+              <View style={styles.personalRow}>
+                <Text style={styles.personalCell}>
+                  <Text style={styles.bold}>Date of Birth:</Text>{" "}
+                  {personalInfo?.dob}
+                </Text>
 
-        <Text style={[styles.cell, { flex: 3 }]}>
-          {edu.institute}
-        </Text>
+                <Text style={styles.personalCell}>
+                  <Text style={styles.bold}>Languages:</Text>{" "}
+                  {personalInfo?.languages}
+                </Text>
+              </View>
 
-        <Text style={[styles.cell, { flex: 2 }]}>
-          {edu.passingYear}
-        </Text>
+              <View style={styles.personalRow}>
+                <Text style={styles.personalCell}>
+                  <Text style={styles.bold}>Marital Status:</Text>{" "}
+                  {personalInfo?.maritalStatus}
+                </Text>
 
-        <Text style={[styles.cell, { flex: 2 }]}>
-          {edu.percentage}
-        </Text>
-
-      </View>
-    ))}
-
-  </Section>
-)}
-
-
-
- {/* PERSONAL DETAILS */}
-<Section title="Personal Details">
-  <View wrap={true}>
-
-    <View style={styles.personalRow}>
-      <Text style={styles.personalCell}>
-        <Text style={styles.bold}>Date of Birth:</Text>{" "}
-        {personalInfo?.dob}
-      </Text>
-
-      <Text style={styles.personalCell}>
-        <Text style={styles.bold}>Languages:</Text>{" "}
-        {personalInfo?.languages}
-      </Text>
-    </View>
-
-    <View style={styles.personalRow}>
-      <Text style={styles.personalCell}>
-        <Text style={styles.bold}>Marital Status:</Text>{" "}
-        {personalInfo?.maritalStatus}
-      </Text>
-
-      <Text style={styles.personalCell}>
-        <Text style={styles.bold}>Nationality:</Text>{" "}
-        {personalInfo?.nationality}
-      </Text>
-    </View>
-
-  </View>
-</Section>
-
-
+                <Text style={styles.personalCell}>
+                  <Text style={styles.bold}>Nationality:</Text>{" "}
+                  {personalInfo?.nationality}
+                </Text>
+              </View>
+            </View>
+          </Section>
         </View>
       </Page>
     </Document>

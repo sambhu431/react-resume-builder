@@ -30,7 +30,8 @@ export default function AcademicResume({ values = {} }) {
         <div className="mt-3 flex flex-wrap justify-center gap-x-2 text-xs sm:text-sm text-slate-600">
           {personalInfo.email && (
             <span className="break-all">{personalInfo.email}</span>
-          )}
+          )}{" "}
+          |
           {personalInfo.phone && (
             <span className="break-all">{personalInfo.phone}</span>
           )}
@@ -149,22 +150,26 @@ export default function AcademicResume({ values = {} }) {
                 key={index}
                 className="border-l-2 border-indigo-300 pl-4 break-inside-avoid"
               >
-                <div className="flex flex-col sm:flex-row sm:justify-between gap-1">
+                {/* Title block */}
+                <div className="min-w-0">
                   <h3 className="font-bold text-slate-900 wrap-break-word">
                     {exp.role} {exp.company && `— ${exp.company}`}
                   </h3>
 
-                  <span className="text-xs text-slate-500">
+                  {/* Date moved BELOW title */}
+                  <span className="text-xs text-slate-500 block">
                     {exp.startDate} - {exp.endDate}
                   </span>
                 </div>
 
+                {/* Location */}
                 {exp.location && (
-                  <p className="text-sm text-slate-500 wrap-break-word">
+                  <p className="text-sm text-slate-500 wrap-break-word ">
                     {exp.location}
                   </p>
                 )}
 
+                {/* Description */}
                 {exp.description && (
                   <div className="mt-2 text-sm text-slate-600 whitespace-pre-wrap wrap-break-word leading-relaxed overflow-hidden">
                     {exp.description}

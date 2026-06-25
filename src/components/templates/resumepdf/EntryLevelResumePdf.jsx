@@ -12,7 +12,7 @@ import {
 
 const styles = StyleSheet.create({
   page: {
-       paddingTop: 8,
+    paddingTop: 8,
     paddingHorizontal: 20,
     paddingBottom: 8,
     fontSize: 10,
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 10,
     color: "#475569",
     lineHeight: 1.4,
-    marginTop:2,
+    marginTop: 2,
   },
 
   /* LAYOUT (3 COLUMN SAFE FOR PDF) */
@@ -126,50 +126,49 @@ const styles = StyleSheet.create({
     color: "#475569",
   },
 
-
   /* PROJECTS */
 
-projectItem: {
-  marginBottom: 10,
-},
+  projectItem: {
+    marginBottom: 10,
+  },
 
-projectHeader: {
-  flexDirection: "row",
+  projectHeader: {
+    flexDirection: "row",
 
-  // IMPORTANT: prevents overlap
-  flexWrap: "wrap",
-  justifyContent: "space-between",
-  alignItems: "flex-start",
-},
+    // IMPORTANT: prevents overlap
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+  },
 
-projectName: {
-  fontSize: 11,
-  fontWeight: "bold",
-  color: "#1f2937",
-  flex: 1,
-  paddingRight: 6,
-  minWidth: 120,
-},
+  projectName: {
+    fontSize: 11,
+    fontWeight: "bold",
+    color: "#1f2937",
+    flex: 1,
+    paddingRight: 6,
+    minWidth: 120,
+  },
 
-projectLink: {
-  fontSize: 9,
-  color: "#2563eb",
-  textDecoration: "underline",
-  flexShrink: 0,
-},
+  projectLink: {
+    fontSize: 9,
+    color: "#2563eb",
+    textDecoration: "underline",
+    flexShrink: 0,
+  },
 
-projectTech: {
-  fontSize: 9,
-  color: "#6b7280",
-  marginTop: 2,
-},
+  projectTech: {
+    fontSize: 9,
+    color: "#6b7280",
+    marginTop: 2,
+  },
 
-projectDesc: {
-  fontSize: 9.5,
-  color: "#374151",
-  marginTop: 3,
-  lineHeight: 1.4,
-},
+  projectDesc: {
+    fontSize: 9.5,
+    color: "#374151",
+    marginTop: 3,
+    lineHeight: 1.4,
+  },
 });
 
 /* ---------------- COMPONENT ---------------- */
@@ -184,16 +183,14 @@ const EntryLevelResumePDF = ({ values = {} }) => {
     projects = [],
   } = values;
 
-        const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
 
   return (
     <Document>
       <Page size="A4" style={styles.page} wrap>
-
         {/* ================= HEADER ================= */}
         <View style={styles.header}>
           <Text style={styles.name}>
@@ -234,10 +231,8 @@ const EntryLevelResumePDF = ({ values = {} }) => {
 
         {/* ================= MAIN LAYOUT ================= */}
         <View style={styles.row}>
-
           {/* -------- SIDEBAR -------- */}
           <View style={styles.sidebar}>
-
             {/* SKILLS */}
             {validSkillGroups.length > 0 && (
               <View style={styles.section}>
@@ -245,9 +240,7 @@ const EntryLevelResumePDF = ({ values = {} }) => {
 
                 {validSkillGroups.map((group, i) => (
                   <View key={i} style={styles.item}>
-                    <Text style={styles.skillCategory}>
-                      {group.category}
-                    </Text>
+                    <Text style={styles.skillCategory}>{group.category}</Text>
 
                     <Text style={styles.skillText}>
                       {group.skills?.filter(Boolean).join(" • ")}
@@ -281,11 +274,9 @@ const EntryLevelResumePDF = ({ values = {} }) => {
               personalInfo.maritalStatus) && (
               <View style={styles.section}>
                 <Text style={styles.title}>Personal Info</Text>
-                
+
                 {personalInfo.dob && (
-                  <Text style={styles.small}>
-                    DOB: {personalInfo.dob}
-                  </Text>
+                  <Text style={styles.small}>DOB: {personalInfo.dob}</Text>
                 )}
                 {personalInfo.languages && (
                   <Text style={styles.small}>
@@ -308,50 +299,41 @@ const EntryLevelResumePDF = ({ values = {} }) => {
 
           {/* -------- MAIN -------- */}
           <View style={styles.main}>
+            {/* PROJECTS */}
+            {projects.length > 0 && (
+              <View style={styles.section}>
+                <Text style={styles.title}>Projects</Text>
 
-           {/* PROJECTS */}
-{projects.length > 0 && (
-  <View style={styles.section}>
-    <Text style={styles.title}>Projects</Text>
+                {projects.map((project, i) => (
+                  <View key={i} style={styles.projectItem}>
+                    {/* Header row: Name + Link */}
+                    <View style={styles.projectHeader}>
+                      <Text style={styles.projectName}>{project.name}</Text>
 
-    {projects.map((project, i) => (
-      <View key={i} style={styles.projectItem}>
+                      {project.link && (
+                        <Link src={project.link} style={styles.projectLink}>
+                          Link
+                        </Link>
+                      )}
+                    </View>
 
-        {/* Header row: Name + Link */}
-        <View style={styles.projectHeader}>
+                    {/* Tech Stack */}
+                    {project.techStack && (
+                      <Text style={styles.projectTech}>
+                        {project.techStack}
+                      </Text>
+                    )}
 
-          <Text style={styles.projectName}>
-            {project.name}
-          </Text>
-
-          {project.link && (
-            <Link src={project.link} style={styles.projectLink}>
-              Link
-            </Link>
-          )}
-
-        </View>
-
-        {/* Tech Stack */}
-        {project.techStack && (
-          <Text style={styles.projectTech}>
-            {project.techStack}
-          </Text>
-        )}
-
-        {/* Description */}
-        {project.description && (
-          <Text style={styles.projectDesc}>
-            {project.description}
-          </Text>
-        )}
-
-      </View>
-    ))}
-  </View>
-)}
-
-
+                    {/* Description */}
+                    {project.description && (
+                      <Text style={styles.projectDesc}>
+                        {project.description}
+                      </Text>
+                    )}
+                  </View>
+                ))}
+              </View>
+            )}
 
             {/* EXPERIENCE */}
             {experience.length > 0 && (
@@ -360,7 +342,12 @@ const EntryLevelResumePDF = ({ values = {} }) => {
 
                 {experience.map((exp, i) => (
                   <View key={i} style={styles.item}>
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                    <View
+                      style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
                       <Text style={styles.bold}>
                         {exp.role} {exp.company && `— ${exp.company}`}
                       </Text>
@@ -371,18 +358,14 @@ const EntryLevelResumePDF = ({ values = {} }) => {
                     </View>
 
                     {exp.description && (
-                      <Text style={styles.text}>
-                        {exp.description}
-                      </Text>
+                      <Text style={styles.text}>{exp.description}</Text>
                     )}
                   </View>
                 ))}
               </View>
             )}
-
           </View>
         </View>
-
       </Page>
     </Document>
   );

@@ -8,33 +8,24 @@ export default function SimpleATSResume({ values = {} }) {
     projects = [],
   } = values;
 
-            const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
 
   return (
-    <div  className="w-full max-w-4xl mx-auto mt-6 sm:mt-10 bg-white px-4 sm:px-6 md:px-8 py-6 text-black text-sm leading-relaxed overflow-hidden">
-
+    <div className="w-full max-w-4xl mx-auto mt-6 sm:mt-10 bg-white px-4 sm:px-6 md:px-8 py-6 text-black text-sm leading-relaxed overflow-hidden">
       {/* HEADER */}
       <header className="mb-6">
         <h1 className="text-2xl sm:text-3xl font-bold break-words w-full max-w-full">
           {personalInfo.firstName} {personalInfo.lastName}
         </h1>
 
-        <div className="mt-2 text-sm text-gray-700 break-words" >
-          {[
-            personalInfo.email,
-            personalInfo.phone,
-          ]
-            .filter(Boolean)
-            .join(" | ")}
+        <div className="mt-2 text-sm text-gray-700 break-words">
+          {[personalInfo.email, personalInfo.phone].filter(Boolean).join(" | ")}
         </div>
 
-        <div className="break-words">
-           {personalInfo.address}
-        </div>
+        <div className="break-words">{personalInfo.address}</div>
 
         {(personalInfo.linkedin || personalInfo.github) && (
           <div className="flex flex-col sm:flex-row sm:flex-wrap  mt-1">
@@ -66,12 +57,12 @@ export default function SimpleATSResume({ values = {} }) {
       {/* SUMMARY */}
       {careerObjective && (
         <Section title="Career Objective">
-          <p className="text-sm break-words">{careerObjective}</p> 
-        </Section> 
+          <p className="text-sm break-words">{careerObjective}</p>
+        </Section>
       )}
 
       {/* SKILLS */}
-      {validSkillGroups.length > 0  && (
+      {validSkillGroups.length > 0 && (
         <Section title="Skills">
           {validSkillGroups.map((group, index) => (
             <p key={index} className="break-words">
@@ -107,7 +98,9 @@ export default function SimpleATSResume({ values = {} }) {
                     .split("\n")
                     .filter(Boolean)
                     .map((line, i) => (
-                      <li key={i}  className="break-words">{line}</li>
+                      <li key={i} className="break-words">
+                        {line}
+                      </li>
                     ))}
                 </ul>
               )}
@@ -116,7 +109,7 @@ export default function SimpleATSResume({ values = {} }) {
         </Section>
       )}
 
-       {/* PROJECTS */}
+      {/* PROJECTS */}
       {projects.length > 0 && (
         <Section title="Projects">
           <div className="space-y-5">
@@ -154,9 +147,7 @@ export default function SimpleATSResume({ values = {} }) {
         </Section>
       )}
 
-
-
-   {/* EDUCATION */}
+      {/* EDUCATION */}
       {education.length > 0 && (
         <Section title="Education">
           <div className="space-y-4">
@@ -184,39 +175,31 @@ export default function SimpleATSResume({ values = {} }) {
         personalInfo.maritalStatus ||
         personalInfo.languages) && (
         <Section title="Additional Information">
-
           {personalInfo.dob && (
             <p className="break-words">
-              <strong>Date of Birth:</strong>{" "}
-              {personalInfo.dob}
+              <strong>Date of Birth:</strong> {personalInfo.dob}
             </p>
           )}
 
           {personalInfo.nationality && (
             <p className="break-words">
-              <strong>Nationality:</strong>{" "}
-              {personalInfo.nationality}
+              <strong>Nationality:</strong> {personalInfo.nationality}
             </p>
           )}
 
           {personalInfo.maritalStatus && (
             <p className="break-words">
-              <strong>Marital Status:</strong>{" "}
-              {personalInfo.maritalStatus}
+              <strong>Marital Status:</strong> {personalInfo.maritalStatus}
             </p>
           )}
 
           {personalInfo.languages && (
             <p className="break-words">
-              <strong>Languages:</strong>{" "}
-              {personalInfo.languages}
+              <strong>Languages:</strong> {personalInfo.languages}
             </p>
           )}
         </Section>
       )}
-
-
-      
     </div>
   );
 }

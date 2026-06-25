@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Document,
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
   },
 
   projectLink: {
-      fontSize: 10,
+    fontSize: 10,
     color: "#4F46E5",
     textDecoration: "underline",
     marginRight: 14,
@@ -102,28 +101,23 @@ const styles = StyleSheet.create({
   infoRow: {
     marginBottom: 4,
   },
-  
-  projectItem: {
-  marginBottom: 10,
-},
 
+  projectItem: {
+    marginBottom: 10,
+  },
 });
 
 function Section({ title, children }) {
   return (
     <View style={styles.section}>
-      <Text style={styles.sectionTitle}>
-        {title}
-      </Text>
+      <Text style={styles.sectionTitle}>{title}</Text>
 
       {children}
     </View>
   );
 }
 
-export default function SimpleATSResumePdf({
-  values = {},
-}) {
+export default function SimpleATSResumePdf({ values = {} }) {
   const {
     personalInfo = {},
     careerObjective,
@@ -139,23 +133,18 @@ export default function SimpleATSResumePdf({
     personalInfo.maritalStatus ||
     personalInfo.languages;
 
-
-            const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
-
 
   return (
     <Document>
       <Page size="A4" style={styles.page}>
-
         {/* HEADER */}
         <View style={styles.header}>
           <Text style={styles.name}>
-            {personalInfo.firstName}{" "}
-            {personalInfo.lastName}
+            {personalInfo.firstName} {personalInfo.lastName}
           </Text>
 
           <Text style={styles.contact}>
@@ -165,28 +154,19 @@ export default function SimpleATSResumePdf({
           </Text>
 
           {personalInfo.address && (
-            <Text style={styles.contact}>
-              {personalInfo.address}
-            </Text>
+            <Text style={styles.contact}>{personalInfo.address}</Text>
           )}
 
-          {(personalInfo.linkedin ||
-            personalInfo.github) && (
+          {(personalInfo.linkedin || personalInfo.github) && (
             <View style={styles.linksRow}>
               {personalInfo.linkedin && (
-                <Link
-                  src={personalInfo.linkedin}
-                  style={styles.link}
-                >
+                <Link src={personalInfo.linkedin} style={styles.link}>
                   LinkedIn
                 </Link>
               )}
 
               {personalInfo.github && (
-                <Link
-                  src={personalInfo.github}
-                  style={styles.link}
-                >
+                <Link src={personalInfo.github} style={styles.link}>
                   GitHub
                 </Link>
               )}
@@ -202,19 +182,12 @@ export default function SimpleATSResumePdf({
         )}
 
         {/* SKILLS */}
-        {validSkillGroups.length > 0  && (
+        {validSkillGroups.length > 0 && (
           <Section title="Skills">
             {validSkillGroups.map((group, index) => (
-              <Text
-                key={index}
-                style={{ marginBottom: 4 }}
-              >
-                <Text style={styles.bold}>
-                  {group.category} 
-                </Text>{" "}
-                {group.skills
-                  ?.filter(Boolean)
-                  .join(", ")}
+              <Text key={index} style={{ marginBottom: 4 }}>
+                <Text style={styles.bold}>{group.category}</Text>{" "}
+                {group.skills?.filter(Boolean).join(", ")}
               </Text>
             ))}
           </Section>
@@ -224,25 +197,19 @@ export default function SimpleATSResumePdf({
         {experience.length > 0 && (
           <Section title="Experience">
             {experience.map((exp, index) => (
-              <View
-                key={index}
-              >
+              <View key={index}>
                 <View style={styles.rowBetween}>
-                  <Text style={styles.bold}>
-                    {exp.role}
-                  </Text>
+                  <Text style={styles.bold}>{exp.role}</Text>
 
                   <Text>
                     {exp.startDate}
-                    {exp.endDate &&
-                      ` - ${exp.endDate}`}
+                    {exp.endDate && ` - ${exp.endDate}`}
                   </Text>
                 </View>
 
                 <Text style={styles.company}>
                   {exp.company}
-                  {exp.location &&
-                    ` | ${exp.location}`}
+                  {exp.location && ` | ${exp.location}`}
                 </Text>
 
                 {exp.description && (
@@ -251,19 +218,10 @@ export default function SimpleATSResumePdf({
                       .split("\n")
                       .filter(Boolean)
                       .map((line, i) => (
-                        <View
-                          key={i}
-                          style={styles.bulletRow}
-                        >
-                          <Text style={styles.bullet}>
-                            •
-                          </Text>
+                        <View key={i} style={styles.bulletRow}>
+                          <Text style={styles.bullet}>•</Text>
 
-                          <Text
-                            style={styles.bulletText}
-                          >
-                            {line}
-                          </Text>
+                          <Text style={styles.bulletText}>{line}</Text>
                         </View>
                       ))}
                   </View>
@@ -277,35 +235,20 @@ export default function SimpleATSResumePdf({
         {projects.length > 0 && (
           <Section title="Projects">
             {projects.map((project, index) => (
-              <View
-                key={index}
-                style={styles.projectItem}
-              >
-                <Text style={styles.bold}>
-                  {project.name}
-                </Text>
+              <View key={index} style={styles.projectItem}>
+                <Text style={styles.bold}>{project.name}</Text>
 
                 {project.techStack && (
                   <Text>
-                    <Text style={styles.bold}>
-                      Tech Stack:
-                    </Text>{" "}
+                    <Text style={styles.bold}>Tech Stack:</Text>{" "}
                     {project.techStack}
                   </Text>
                 )}
 
-                {project.description && (
-                  <Text
-                  >
-                    {project.description}
-                  </Text>
-                )}
+                {project.description && <Text>{project.description}</Text>}
 
                 {project.link && (
-                  <Link
-                    src={project.link}
-                    style={styles.projectLink}
-                  >
+                  <Link src={project.link} style={styles.projectLink}>
                     Project Link
                   </Link>
                 )}
@@ -318,20 +261,14 @@ export default function SimpleATSResumePdf({
         {education.length > 0 && (
           <Section title="Education">
             {education.map((edu, index) => (
-              <View
-                key={index}
-                
-              >
-                <Text style={styles.bold}>
-                  {edu.course}
-                </Text>
+              <View key={index}>
+                <Text style={styles.bold}>{edu.course}</Text>
 
                 <Text>{edu.institute}</Text>
 
                 <Text>
                   {edu.passingYear}
-                  {edu.percentage &&
-                    ` | ${edu.percentage}`}
+                  {edu.percentage && ` | ${edu.percentage}`}
                 </Text>
               </View>
             ))}
@@ -341,13 +278,10 @@ export default function SimpleATSResumePdf({
         {/* ADDITIONAL INFORMATION */}
         {hasAdditionalInfo && (
           <Section title="Additional Information">
-
             {personalInfo.dob && (
               <View style={styles.infoRow}>
                 <Text>
-                  <Text style={styles.bold}>
-                    Date of Birth:
-                  </Text>{" "}
+                  <Text style={styles.bold}>Date of Birth:</Text>{" "}
                   {personalInfo.dob}
                 </Text>
               </View>
@@ -356,9 +290,7 @@ export default function SimpleATSResumePdf({
             {personalInfo.nationality && (
               <View style={styles.infoRow}>
                 <Text>
-                  <Text style={styles.bold}>
-                    Nationality:
-                  </Text>{" "}
+                  <Text style={styles.bold}>Nationality:</Text>{" "}
                   {personalInfo.nationality}
                 </Text>
               </View>
@@ -367,9 +299,7 @@ export default function SimpleATSResumePdf({
             {personalInfo.maritalStatus && (
               <View style={styles.infoRow}>
                 <Text>
-                  <Text style={styles.bold}>
-                    Marital Status:
-                  </Text>{" "}
+                  <Text style={styles.bold}>Marital Status:</Text>{" "}
                   {personalInfo.maritalStatus}
                 </Text>
               </View>
@@ -378,17 +308,13 @@ export default function SimpleATSResumePdf({
             {personalInfo.languages && (
               <View style={styles.infoRow}>
                 <Text>
-                  <Text style={styles.bold}>
-                    Languages:
-                  </Text>{" "}
+                  <Text style={styles.bold}>Languages:</Text>{" "}
                   {personalInfo.languages}
                 </Text>
               </View>
             )}
-
           </Section>
         )}
-
       </Page>
     </Document>
   );

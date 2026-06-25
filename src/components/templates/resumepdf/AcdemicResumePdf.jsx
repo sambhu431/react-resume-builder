@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: "#64748b",
     marginTop: 3,
-    marginBottom:3,
+    marginBottom: 3,
   },
 
   projectLink: {
@@ -209,18 +209,14 @@ export default function AcademicResumePDF({ values }) {
     projects = [],
   } = values;
 
-
-    const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
       group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
 
   return (
-    <Document
-      title={`${personalInfo.firstName || "Resume"} Resume`}
-    >
+    <Document title={`${personalInfo.firstName || "Resume"} Resume`}>
       <Page size="A4" style={styles.page}>
-
         {/* HEADER */}
         <View style={styles.header}>
           <Text style={styles.name}>
@@ -229,43 +225,31 @@ export default function AcademicResumePDF({ values }) {
 
           <View style={styles.contactRow}>
             {personalInfo.email && (
-              <Text style={styles.contactText}>
-                {personalInfo.email}
-              </Text>
+              <Text style={styles.contactText}>{personalInfo.email}</Text>
             )}
 
             <Text> | </Text>
 
             {personalInfo.phone && (
-              <Text style={styles.contactText}>
-                {personalInfo.phone}
-              </Text>
+              <Text style={styles.contactText}>{personalInfo.phone}</Text>
             )}
           </View>
 
-          <View style={styles.contactRow}> 
+          <View style={styles.contactRow}>
             {personalInfo.address && (
-              <Text style={styles.contactText}>
-                {personalInfo.address}
-              </Text>
+              <Text style={styles.contactText}>{personalInfo.address}</Text>
             )}
           </View>
 
           <View style={styles.contactRow}>
             {personalInfo.linkedin && (
-              <Link
-                src={personalInfo.linkedin}
-                style={styles.socialLink}
-              >
+              <Link src={personalInfo.linkedin} style={styles.socialLink}>
                 LinkedIn
               </Link>
             )}
 
             {personalInfo.github && (
-              <Link
-                src={personalInfo.github}
-                style={styles.socialLink}
-              >
+              <Link src={personalInfo.github} style={styles.socialLink}>
                 GitHub
               </Link>
             )}
@@ -275,54 +259,32 @@ export default function AcademicResumePDF({ values }) {
         {/* SUMMARY */}
         {careerObjective && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Professional Summary
-            </Text>
+            <Text style={styles.sectionTitle}>Professional Summary</Text>
 
-            <Text style={styles.paragraph}>
-              {careerObjective}
-            </Text>
+            <Text style={styles.paragraph}>{careerObjective}</Text>
           </View>
         )}
 
         {/* EDUCATION */}
         {education.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Education
-            </Text>
+            <Text style={styles.sectionTitle}>Education</Text>
 
             {education.map((edu, index) => (
-              <View
-                key={index}
-                style={styles.timelineItem}
-              >
+              <View key={index} style={styles.timelineItem}>
                 <View style={styles.rowBetween}>
-                  <Text style={styles.title}>
-                    {edu.course}
-                  </Text>
+                  <Text style={styles.title}>{edu.course}</Text>
 
                   {edu.passingYear && (
-                    <Text style={styles.meta}>
-                      {edu.passingYear}
-                    </Text>
+                    <Text style={styles.meta}>{edu.passingYear}</Text>
                   )}
                 </View>
 
-                <View
-                  style={[
-                    styles.rowBetween,
-                    { marginTop: 3 },
-                  ]}
-                >
-                  <Text style={styles.subtitle}>
-                    {edu.institute}
-                  </Text>
+                <View style={[styles.rowBetween, { marginTop: 3 }]}>
+                  <Text style={styles.subtitle}>{edu.institute}</Text>
 
                   {edu.percentage && (
-                    <Text style={styles.meta}>
-                      {edu.percentage}
-                    </Text>
+                    <Text style={styles.meta}>{edu.percentage}</Text>
                   )}
                 </View>
               </View>
@@ -333,33 +295,19 @@ export default function AcademicResumePDF({ values }) {
         {/* SKILLS */}
         {validSkillGroups?.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Skills
-            </Text>
+            <Text style={styles.sectionTitle}>Skills</Text>
 
             <View style={styles.skillsGrid}>
               {validSkillGroups.map((group, index) => (
-                <View
-                  key={index}
-                  style={styles.skillGroup}
-                >
-                  <Text style={styles.skillCategory}>
-                    {group.category}
-                  </Text>
+                <View key={index} style={styles.skillGroup}>
+                  <Text style={styles.skillCategory}>{group.category}</Text>
 
                   <View style={styles.skillContainer}>
-                    {group.skills
-                      ?.filter(Boolean)
-                      .map((skill, i) => (
-                        <View
-                          key={i}
-                          style={styles.skillBadge}
-                        >
-                          <Text style={styles.skillText}>
-                            {skill}
-                          </Text>
-                        </View>
-                      ))}
+                    {group.skills?.filter(Boolean).map((skill, i) => (
+                      <View key={i} style={styles.skillBadge}>
+                        <Text style={styles.skillText}>{skill}</Text>
+                      </View>
+                    ))}
                   </View>
                 </View>
               ))}
@@ -370,43 +318,28 @@ export default function AcademicResumePDF({ values }) {
         {/* EXPERIENCE */}
         {experience.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Experience
-            </Text>
+            <Text style={styles.sectionTitle}>Experience</Text>
 
             {experience.map((exp, index) => (
-              <View
-                key={index}
-                style={styles.timelineItem}
-              >
+              <View key={index} style={styles.timelineItem}>
                 <Text style={styles.title}>
                   {exp.role}
-                  {exp.company &&
-                    ` — ${exp.company}`}
+                  {exp.company && ` — ${exp.company}`}
                 </Text>
 
                 <Text style={styles.meta}>
                   {exp.startDate}
-                  {exp.endDate &&
-                    ` - ${exp.endDate}`}
+                  {exp.endDate && ` - ${exp.endDate}`}
                 </Text>
 
                 {exp.location && (
-                  <Text style={styles.meta}>
-                    {exp.location}
-                  </Text>
+                  <Text style={styles.meta}>{exp.location}</Text>
                 )}
 
                 {exp.description && (
-                    <View
-                        style={styles.bulletRow}
-                      >
-                        <Text
-                          style={styles.bulletText}
-                        >
-                          {exp.description}
-                        </Text>
-                      </View>
+                  <View style={styles.bulletRow}>
+                    <Text style={styles.bulletText}>{exp.description}</Text>
+                  </View>
                 )}
               </View>
             ))}
@@ -416,46 +349,28 @@ export default function AcademicResumePDF({ values }) {
         {/* PROJECTS */}
         {projects.length > 0 && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Projects
-            </Text>
+            <Text style={styles.sectionTitle}>Projects</Text>
 
             {projects.map((project, index) => (
-              <View
-                key={index}
-                style={styles.projectItem}
-              >
+              <View key={index} style={styles.projectItem}>
                 <View style={styles.rowBetween}>
-                  <Text style={styles.title}>
-                    {project.name}
-                  </Text>
+                  <Text style={styles.title}>{project.name}</Text>
 
                   {project.link && (
-                    <Link
-                      src={project.link}
-                      style={styles.projectLink}
-                    >
+                    <Link src={project.link} style={styles.projectLink}>
                       View Project
                     </Link>
                   )}
                 </View>
 
                 {project.techStack && (
-                  <Text style={styles.projectTech}>
-                    {project.techStack}
-                  </Text>
+                  <Text style={styles.projectTech}>{project.techStack}</Text>
                 )}
 
                 {project.description && (
-                         <View
-                        style={styles.bulletRow}
-                      >
-                        <Text
-                          style={styles.bulletText}
-                        >
-                          {project.description}
-                        </Text>
-                      </View>
+                  <View style={styles.bulletRow}>
+                    <Text style={styles.bulletText}>{project.description}</Text>
+                  </View>
                 )}
               </View>
             ))}
@@ -468,17 +383,13 @@ export default function AcademicResumePDF({ values }) {
           personalInfo.nationality ||
           personalInfo.languages) && (
           <View style={styles.section}>
-            <Text style={styles.sectionTitle}>
-              Personal Information
-            </Text>
+            <Text style={styles.sectionTitle}>Personal Information</Text>
 
             <View style={styles.personalGrid}>
               {personalInfo.dob && (
                 <View style={styles.personalItem}>
                   <Text style={styles.personalText}>
-                    <Text style={styles.personalLabel}>
-                      Date of Birth:
-                    </Text>{" "}
+                    <Text style={styles.personalLabel}>Date of Birth:</Text>{" "}
                     {personalInfo.dob}
                   </Text>
                 </View>
@@ -487,9 +398,7 @@ export default function AcademicResumePDF({ values }) {
               {personalInfo.maritalStatus && (
                 <View style={styles.personalItem}>
                   <Text style={styles.personalText}>
-                    <Text style={styles.personalLabel}>
-                      Marital Status:
-                    </Text>{" "}
+                    <Text style={styles.personalLabel}>Marital Status:</Text>{" "}
                     {personalInfo.maritalStatus}
                   </Text>
                 </View>
@@ -498,9 +407,7 @@ export default function AcademicResumePDF({ values }) {
               {personalInfo.nationality && (
                 <View style={styles.personalItem}>
                   <Text style={styles.personalText}>
-                    <Text style={styles.personalLabel}>
-                      Nationality:
-                    </Text>{" "}
+                    <Text style={styles.personalLabel}>Nationality:</Text>{" "}
                     {personalInfo.nationality}
                   </Text>
                 </View>
@@ -509,9 +416,7 @@ export default function AcademicResumePDF({ values }) {
               {personalInfo.languages && (
                 <View style={styles.personalItem}>
                   <Text style={styles.personalText}>
-                    <Text style={styles.personalLabel}>
-                      Languages:
-                    </Text>{" "}
+                    <Text style={styles.personalLabel}>Languages:</Text>{" "}
                     {personalInfo.languages}
                   </Text>
                 </View>
@@ -519,7 +424,6 @@ export default function AcademicResumePDF({ values }) {
             </View>
           </View>
         )}
-
       </Page>
     </Document>
   );

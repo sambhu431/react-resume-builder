@@ -30,66 +30,69 @@ const ResumeDownload = () => {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      
       {/* HEADER */}
-    {/* HEADER */}
-<div className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-gray-200">
-  
-  <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+      {/* HEADER */}
+      <div className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-gray-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4">
+          {/* MOBILE: stacked layout */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            {/* Title */}
+            <div className="text-center sm:text-left">
+              <h1
+                className="text-base sm:text-lg 
+        font-semibold text-gray-900 "
+              >
+                Resume Preview
+              </h1>
 
+              <p className="text-xs sm:text-sm text-gray-500">
+                Review your resume before downloading
+              </p>
+            </div>
 
-    {/* MOBILE: stacked layout */}
-    <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="text-center">
+              <h2
+                className="text-lg font-sans 
+          uppercase font-medium bg-red-100"
+              >
+                {template.name}
+              </h2>
+            </div>
 
-      {/* Title */}
-      <div className="text-center sm:text-left">
-        <h1 className="text-base sm:text-lg 
-        font-semibold text-gray-900 ">
-          Resume Preview
-        </h1>
+            {/* Actions */}
+            <div className="flex items-center justify-center sm:justify-end gap-2 sm:gap-3">
+              <button
+                onClick={() => navigate(-1)}
+                className="text-xs sm:text-sm cursor-pointer text-gray-600 hover:text-black transition px-3 py-1.5"
+              >
+                Back
+              </button>
 
-        <p className="text-xs sm:text-sm text-gray-500" >
-          Review your resume before downloading
-        </p>
-      </div>
-
-      <div className="text-center">
-          <h2 
-          className="text-lg font-sans 
-          uppercase font-medium bg-red-100"> 
-          {template.name} 
-          </h2>
+              <PDFDownloadLink
+                document={<PDFDoc values={structuredClone(data)} />}
+                fileName={`${data.personalInfo.firstName}-resume.pdf`}
+              >
+                {({ loading }) => (
+                  <button className="bg-black text-white cursor-pointer text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-md hover:bg-gray-800 transition w-full sm:w-auto">
+                    {loading ? "Generating..." : "Download PDF"}
+                  </button>
+                )}
+              </PDFDownloadLink>
+            </div>
+          </div>
         </div>
-
-      {/* Actions */}
-      <div className="flex items-center justify-center sm:justify-end gap-2 sm:gap-3">
-
-        <button
-          onClick={() => navigate(-1)}
-          className="text-xs sm:text-sm cursor-pointer text-gray-600 hover:text-black transition px-3 py-1.5"
-        >
-          Back
-        </button>
-
-        <PDFDownloadLink
-          document={<PDFDoc values={structuredClone(data)} />}
-          fileName={`${data.personalInfo.firstName}-resume.pdf`}
-        >
-          {({ loading }) => (
-            <button className="bg-black text-white cursor-pointer text-xs sm:text-sm px-4 sm:px-5 py-2 rounded-md hover:bg-gray-800 transition w-full sm:w-auto">
-              {loading ? "Generating..." : "Download PDF"}
-            </button>
-          )}
-        </PDFDownloadLink>
-
       </div>
-
-    </div>
-  </div>
-</div>
 
       {/* CONTENT */}
       <div className="p-6">
+        <div className=" rounded border border-amber-200 bg-amber-50 p-2 text-sm text-amber-800">
+          <p>
+            Preview resume templates are for illustration purposes only. The
+            final downloadable PDF may have slight differences in spacing,
+            pagination, and formatting. Thanks.
+          </p>
+        </div>
+
         <div className="flex justify-center mb-10">
           <Preview values={data} />
         </div>

@@ -1,12 +1,9 @@
-
 import Section from "../components/landingpage/Section";
 
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-slate-50 py-10 px-4">
-
       <div className="max-w-3xl mx-auto bg-white shadow-xl border border-slate-200 rounded-xl p-6 sm:p-10">
-
         {/* HEADER */}
         <div className="mb-8 border-b pb-6">
           <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
@@ -14,8 +11,9 @@ export default function PrivacyPolicy() {
           </h1>
 
           <p className="text-sm text-slate-500 mt-2 leading-relaxed">
-            ResumeMaker is a free resume builder designed for students, freshers,
-            and professionals. We respect your privacy and keep your data secure.
+            ResumeMaker is a free resume builder designed for students,
+            freshers, and professionals. We respect your privacy and keep your
+            data secure.
           </p>
         </div>
 
@@ -28,22 +26,35 @@ export default function PrivacyPolicy() {
 
         {/* SECTION 2 */}
         <Section number="2" title="Data Storage">
-          Your data may be stored locally in your browser. We do not upload it to
-          any external servers unless explicitly stated.
+          Your resume information is stored locally in your browser to help you
+          continue editing your resume during future visits. We do not upload
+          your resume data to our servers unless explicitly stated. For privacy
+          and security, locally stored resume data is automatically removed
+          after 48 hours. So before 48 hour you can generate as many pdf you
+          like with your saved info.
         </Section>
 
         {/* SECTION 3 */}
         <Section number="3" title="Third Parties">
-          We do not share your personal information with third parties. Your data
-          remains private and is only used for resume generation.
+          We do not share your personal information with third parties. Your
+          data remains private and is only used for resume generation.
         </Section>
 
         {/* SECTION 4 */}
-        <Section number="4" title="Updates">
-          This policy may be updated as the product evolves. Users will be informed
-          if major changes are made.
+        <Section number="4" title="Resume Previews and PDF Output ">
+          Template previews are provided to help you choose a resume design. The
+          final downloadable PDF may differ slightly from the preview due to
+          differences in rendering, spacing, fonts, page breaks, and
+          device-specific behavior. This happens due to how react pdf renderer
+          renders pdf while css utilies are quite different on browser compared
+          to a pdf layouts. Thanks.
         </Section>
 
+        {/* SECTION 5 */}
+        <Section number="5" title="Updates">
+          This policy may be updated as the product evolves. Users will be
+          informed if major changes are made.
+        </Section>
       </div>
     </div>
   );

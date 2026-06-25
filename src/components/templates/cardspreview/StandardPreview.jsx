@@ -1,7 +1,6 @@
 export default function StandardPreview() {
   return (
     <div className="h-72 bg-white border rounded-lg p-4 overflow-hidden">
-
       {/* HEADER */}
       <div className="mb-4">
         <div className="h-4 bg-slate-800 rounded w-1/2" />
@@ -61,7 +60,6 @@ export default function StandardPreview() {
         <div className="h-2 bg-slate-200 rounded w-2/3" />
         <div className="h-2 bg-slate-200 rounded w-4/5" />
       </div>
-
     </div>
   );
 }

@@ -8,9 +8,8 @@ import {
 } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
-
   page: {
-     paddingTop: 8,
+    paddingTop: 8,
     paddingHorizontal: 20,
     paddingBottom: 8,
     fontSize: 10,
@@ -87,40 +86,40 @@ const styles = StyleSheet.create({
   },
 
   paragraph: {
-    marginTop:2,
+    marginTop: 2,
     color: "#475569",
   },
 
   /* SKILLS */
 
-skillsGrid: {
-  flexDirection: "row",
-  flexWrap: "wrap",
-},
+  skillsGrid: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
 
-skillCol: {
-  width: "49%",
-  paddingRight: 10,
-  marginBottom: 4,
-  marginTop:2,
-},
+  skillCol: {
+    width: "49%",
+    paddingRight: 10,
+    marginBottom: 4,
+    marginTop: 2,
+  },
 
-skillCategory: {
-  fontSize: 10,
-  fontWeight: "bold",
-  color: "#111827",
-  marginBottom: 4,
-},
+  skillCategory: {
+    fontSize: 10,
+    fontWeight: "bold",
+    color: "#111827",
+    marginBottom: 4,
+  },
 
-skillList: {
-  marginTop: 1,
-},
+  skillList: {
+    marginTop: 1,
+  },
 
-skillItem: {
-  fontSize: 9,
-  color: "#374151",
-  lineHeight: 1.5,
-},
+  skillItem: {
+    fontSize: 9,
+    color: "#374151",
+    lineHeight: 1.5,
+  },
 
   experienceItem: {
     borderLeftWidth: 1,
@@ -188,7 +187,7 @@ skillItem: {
   educationItem: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop:2,
+    marginTop: 2,
     marginBottom: 4,
   },
 
@@ -209,23 +208,23 @@ skillItem: {
   },
 
   infoGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    marginTop: 2,
-  },
-
-  infoBox: {
-    width: "50%",
+    padding: 8,
   },
 
   infoLabel: {
-    fontSize: 8,
+    fontSize: 9,
     textTransform: "uppercase",
     color: "#64748b",
   },
 
   infoValue: {
-    fontWeight: "bold",
+    fontSize: 9,
+    color: "#374151",
+    marginBottom: 2,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 14,
+    textTransform: "uppercase",
   },
 });
 
@@ -235,24 +234,12 @@ function Section({ title, children }) {
       <View style={styles.sectionHeader}>
         <View style={styles.sectionBar} />
 
-        <Text style={styles.sectionTitle}>
-            {title}
-        </Text>
+        <Text style={styles.sectionTitle}>{title}</Text>
 
         <View style={styles.sectionLine} />
       </View>
 
       {children}
-    </View>
-  );
-}
-
-function Info({ label, value }) {
-  return (
-    <View style={styles.infoBox}>
-      <Text style={styles.infoLabel}>{label}</Text>
-
-      <Text style={styles.infoValue}>{value}</Text>
     </View>
   );
 }
@@ -267,12 +254,10 @@ export default function PrimeATSResumePDF({ values }) {
     projects,
   } = values;
 
-          const validSkillGroups = skillGroups.filter(
+  const validSkillGroups = skillGroups.filter(
     (group) =>
-      group.category?.trim() ||
-      group.skills?.some((skill) => skill?.trim())
+      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   );
-
 
   return (
     <Document>
@@ -313,38 +298,30 @@ export default function PrimeATSResumePDF({ values }) {
         {/* SUMMARY */}
         {careerObjective && (
           <Section title="Career Objective">
-            <Text style={styles.paragraph}>
-                {careerObjective}
-            </Text>
+            <Text style={styles.paragraph}>{careerObjective}</Text>
           </Section>
         )}
 
-{/* SKILLS */}
-{validSkillGroups?.length > 0 && (
-  <Section title="Skills">
-    <View style={styles.skillsGrid}>
-      {validSkillGroups.map((group, index) => (
-        <View key={index} style={styles.skillCol}>
+        {/* SKILLS */}
+        {validSkillGroups?.length > 0 && (
+          <Section title="Skills">
+            <View style={styles.skillsGrid}>
+              {validSkillGroups.map((group, index) => (
+                <View key={index} style={styles.skillCol}>
+                  <Text style={styles.skillCategory}>{group.category}</Text>
 
-          <Text style={styles.skillCategory}>
-            {group.category}
-          </Text>
-
-          <View style={styles.skillList}>
-            {group.skills
-              ?.filter(Boolean)
-              .map((skill, idx) => (
-                <Text key={idx} style={styles.skillItem}>
-                  • {skill}
-                </Text>
+                  <View style={styles.skillList}>
+                    {group.skills?.filter(Boolean).map((skill, idx) => (
+                      <Text key={idx} style={styles.skillItem}>
+                        • {skill}
+                      </Text>
+                    ))}
+                  </View>
+                </View>
               ))}
-          </View>
-
-        </View>
-      ))}
-    </View>
-  </Section>
-)}
+            </View>
+          </Section>
+        )}
 
         {/* EXPERIENCE */}
         {experience?.length > 0 && (
@@ -401,9 +378,7 @@ export default function PrimeATSResumePDF({ values }) {
                   </View>
 
                   {project.link && (
-                    <Text 
-                    src={project.link} 
-                    style={styles.projectLink}>
+                    <Text src={project.link} style={styles.projectLink}>
                       View Project
                     </Text>
                   )}
@@ -445,20 +420,24 @@ export default function PrimeATSResumePDF({ values }) {
         {/* ADDITIONAL INFO */}
         <Section title="Additional Information">
           <View style={styles.infoGrid}>
-            {personalInfo.dob && (
-              <Info label="Date of Birth" value={personalInfo.dob} />
-            )}
-
-            {personalInfo.nationality && (
-              <Info label="Nationality" value={personalInfo.nationality} />
-            )}
-
-            {personalInfo.maritalStatus && (
-              <Info label="Marital Status" value={personalInfo.maritalStatus} />
-            )}
+            <View style={styles.infoValue}>
+              <Text> {personalInfo.dob && `DOB: ${personalInfo.dob}`} </Text>
+              <Text>
+                {" "}
+                {personalInfo.maritalStatus &&
+                  `Status: ${personalInfo.maritalStatus}`}{" "}
+              </Text>
+              <Text>
+                {" "}
+                {personalInfo.nationality &&
+                  `Nationality: ${personalInfo.nationality}`}{" "}
+              </Text>
+            </View>
 
             {personalInfo.languages && (
-              <Info label="Languages" value={personalInfo.languages} />
+              <View style={styles.infoValue}>
+                <Text> Languages: {personalInfo.languages} </Text>
+              </View>
             )}
           </View>
         </Section>
