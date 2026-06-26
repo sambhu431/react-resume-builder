@@ -10,10 +10,10 @@ export default function EntryLevelResume({ values = {} }) {
     projects = [],
   } = values || {};
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="w-full overflow-x-auto">
@@ -76,13 +76,13 @@ export default function EntryLevelResume({ values = {} }) {
           {/* LEFT SIDEBAR */}
           <aside className="w-[32%] space-y-4 text-[11px] sm:text-xs leading-snug shrink-0">
             {/* SKILLS */}
-            {validSkillGroups.length > 0 && (
+            {skillGroups.length > 0 && (
               <section>
                 <h2 className="text-sm sm:text-base font-semibold border-b pb-1 mb-2">
                   Skills
                 </h2>
 
-                {validSkillGroups.map((group, i) => (
+                {skillGroups.map((group, i) => (
                   <div key={i} className="mb-3 min-w-0">
                     <p className="font-medium text-slate-700 break-words">
                       {group.category}
@@ -190,14 +190,16 @@ export default function EntryLevelResume({ values = {} }) {
                 {experience.map((exp, i) => (
                   <div key={i} className="mb-2 sm:mb-3 min-w-0">
                     <div className="flex flex-col gap-1 sm:flex-row sm:justify-between min-w-0">
-                      <p className="font-semibold break-words">
-                        {exp.role} {exp.company && `— ${exp.company}`}
-                      </p>
+                      <div className="font-semibold break-words">
+                        {exp.role}
+                      </div>
 
                       <p className="text-xs text-slate-500 whitespace-nowrap">
                         {exp.startDate} - {exp.endDate || "Present"}
                       </p>
                     </div>
+
+                    <p> {exp.company && `${exp.company}`} — {exp.location} </p>
 
                     {exp.description && (
                       <p className="text-sm text-slate-600 mt-1 break-words">

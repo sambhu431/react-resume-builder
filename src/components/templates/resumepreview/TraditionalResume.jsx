@@ -10,10 +10,10 @@ export default function TraditionalResume({ values }) {
     projects,
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="bg-[#f5f6fa] py-6 sm:py-10 overflow-x-hidden">
@@ -123,10 +123,10 @@ export default function TraditionalResume({ values }) {
           )}
 
           {/* SKILLS */}
-          {validSkillGroups.length > 0 && (
+          {skillGroups.length > 0 && (
             <Section title="Skills">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {validSkillGroups.map((group, i) => (
+                {skillGroups.map((group, i) => (
                   <div
                     key={i}
                     className="border-l-2 border-gray-200 pl-2 min-w-0 flex flex-col"

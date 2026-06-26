@@ -254,10 +254,27 @@ export default function PrimeATSResumePDF({ values }) {
     projects,
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+
+  //   const clean = (v) => v?.trim();
+
+  // const validExperience = experience.filter(
+  //   (exp) => clean(exp.role) || clean(exp.company) || clean(exp.description),
+  // );
+
+  // const validProjects = projects.filter(
+  //   (p) => clean(p.name) || clean(p.description),
+  // );
+
+  // const validEducation = education.filter(
+  //   (e) => clean(e.course) || clean(e.institute),
+  // );
+
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
+
+
 
   return (
     <Document>
@@ -303,20 +320,16 @@ export default function PrimeATSResumePDF({ values }) {
         )}
 
         {/* SKILLS */}
-        {validSkillGroups?.length > 0 && (
+        {skillGroups?.length > 0 && (
           <Section title="Skills">
             <View style={styles.skillsGrid}>
-              {validSkillGroups.map((group, index) => (
+              {skillGroups.map((group, index) => (
                 <View key={index} style={styles.skillCol}>
                   <Text style={styles.skillCategory}>{group.category}</Text>
 
-                  <View style={styles.skillList}>
-                    {group.skills?.filter(Boolean).map((skill, idx) => (
-                      <Text key={idx} style={styles.skillItem}>
-                        • {skill}
-                      </Text>
-                    ))}
-                  </View>
+                  <Text style={styles.skillList}>
+                    {group.skills?.filter(Boolean).join(" • ")}
+                  </Text>
                 </View>
               ))}
             </View>

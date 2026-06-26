@@ -133,10 +133,10 @@ export default function SimpleATSResumePdf({ values = {} }) {
     personalInfo.maritalStatus ||
     personalInfo.languages;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <Document>
@@ -182,10 +182,10 @@ export default function SimpleATSResumePdf({ values = {} }) {
         )}
 
         {/* SKILLS */}
-        {validSkillGroups.length > 0 && (
+        {skillGroups.length > 0 && (
           <Section title="Skills">
-            {validSkillGroups.map((group, index) => (
-              <Text key={index} style={{ marginBottom: 4 }}>
+            {skillGroups.map((group, index) => (
+              <Text key={index} style={{ marginBottom: 1 }}>
                 <Text style={styles.bold}>{group.category}</Text>{" "}
                 {group.skills?.filter(Boolean).join(", ")}
               </Text>

@@ -8,10 +8,10 @@ export default function PrecisionATSResume({ values = {} }) {
     projects = [],
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="bg-white mt-6 sm:mt-10 text-black w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-6 text-sm leading-relaxed overflow-hidden">
@@ -68,10 +68,10 @@ export default function PrecisionATSResume({ values = {} }) {
       )}
 
       {/* SKILLS */}
-      {validSkillGroups.length > 0 && (
+      {skillGroups.length > 0 && (
         <ATSSection title="Skills">
           <div className="space-y-2">
-            {validSkillGroups.map((group, index) => (
+            {skillGroups.map((group, index) => (
               <div key={index} className="break-words">
                 <strong>{group.category}:</strong>{" "}
                 {group.skills?.filter(Boolean).join(", ")}

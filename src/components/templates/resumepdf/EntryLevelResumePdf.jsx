@@ -183,10 +183,26 @@ const EntryLevelResumePDF = ({ values = {} }) => {
     projects = [],
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const clean = (v) => v?.trim(); 
+
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
+
+  
+  // const validExperience = experience.filter(
+  //   (exp) => clean(exp.role) || clean(exp.company) || clean(exp.description),
+  // );
+
+  // const validProjects = projects.filter(
+  //   (p) => clean(p.name) || clean(p.description),
+  // );
+
+  // const validEducation = education.filter(
+  //   (e) => clean(e.course) || clean(e.institute),
+  // );
+
 
   return (
     <Document>
@@ -234,11 +250,11 @@ const EntryLevelResumePDF = ({ values = {} }) => {
           {/* -------- SIDEBAR -------- */}
           <View style={styles.sidebar}>
             {/* SKILLS */}
-            {validSkillGroups.length > 0 && (
+            {skillGroups.length > 0 && (
               <View style={styles.section}>
                 <Text style={styles.title}>Skills</Text>
 
-                {validSkillGroups.map((group, i) => (
+                {skillGroups.map((group, i) => (
                   <View key={i} style={styles.item}>
                     <Text style={styles.skillCategory}>{group.category}</Text>
 
@@ -271,7 +287,8 @@ const EntryLevelResumePDF = ({ values = {} }) => {
             {/* PERSONAL INFO */}
             {(personalInfo.languages ||
               personalInfo.nationality ||
-              personalInfo.maritalStatus) && (
+              personalInfo.maritalStatus || 
+              personalInfo.dob ) && (
               <View style={styles.section}>
                 <Text style={styles.title}>Personal Info</Text>
 
@@ -349,13 +366,17 @@ const EntryLevelResumePDF = ({ values = {} }) => {
                       }}
                     >
                       <Text style={styles.bold}>
-                        {exp.role} {exp.company && `— ${exp.company}`}
+                        {exp.role}
                       </Text>
 
                       <Text style={styles.small}>
                         {exp.startDate} - {exp.endDate || "Present"}
                       </Text>
                     </View>
+
+                    <Text>
+                      {exp.company && `${exp.company}`} — {exp.location}
+                    </Text>
 
                     {exp.description && (
                       <Text style={styles.text}>{exp.description}</Text>

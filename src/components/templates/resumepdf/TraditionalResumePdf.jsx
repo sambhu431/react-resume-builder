@@ -282,10 +282,10 @@ export default function TraditionalResumePdf({ values }) {
     projects,
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <Document>
@@ -382,10 +382,10 @@ export default function TraditionalResumePdf({ values }) {
             )}
 
             {/* SKILLS */}
-            {validSkillGroups.length > 0 && (
+            {skillGroups.length > 0 && (
               <Section title="Skills">
                 <View style={styles.skillGrid}>
-                  {validSkillGroups.map((group, i) => (
+                  {skillGroups.map((group, i) => (
                     <View key={i} style={styles.skillCard}>
                       <Text style={styles.skillTitle}>{group.category}</Text>
 

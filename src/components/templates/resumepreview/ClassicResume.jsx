@@ -8,10 +8,10 @@ export default function ClassicResume({ values = {} }) {
     projects = [],
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="w-full bg-slate-100 py-3 sm:py-6 md:py-10">
@@ -105,12 +105,12 @@ export default function ClassicResume({ values = {} }) {
           )}
 
           {/* SKILLS */}
-          {validSkillGroups.length > 0 && (
+          {skillGroups.length > 0 && (
             <section>
               <SectionHeading title="Skills" />
 
               <div className="space-y-3">
-                {validSkillGroups.map((group, index) => {
+                {skillGroups.map((group, index) => {
                   const skills = group.skills?.filter((s) => s?.trim()) || [];
 
                   return (

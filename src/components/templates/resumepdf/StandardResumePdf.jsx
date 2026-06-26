@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
   linksRow: {
     flexDirection: "row",
     flexWrap: "wrap",
-    marginTop: 6,
+    marginTop: 4,
+    marginBottom:8,
   },
 
   link: {
@@ -65,8 +66,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     alignSelf: "flex-start",
-    marginTop: 14,
-    marginBottom: 8,
+    marginTop:6,
+    marginBottom: 4,
   },
 
   sectionHeaderText: {
@@ -161,10 +162,10 @@ export default function StandardResumePdf({ values }) {
     projects,
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <Document>
@@ -244,9 +245,9 @@ export default function StandardResumePdf({ values }) {
           )}
 
           {/* ================= SKILLS ================= */}
-          {validSkillGroups?.length > 0 && (
+          {skillGroups?.length > 0 && (
             <Section title="Skills">
-              {validSkillGroups.map((group, i) => (
+              {skillGroups.map((group, i) => (
                 <View key={i}>
                   <Text style={styles.bold}>{group.category}</Text>
                   <Text style={styles.text}>

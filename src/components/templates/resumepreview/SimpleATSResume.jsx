@@ -8,10 +8,10 @@ export default function SimpleATSResume({ values = {} }) {
     projects = [],
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="w-full max-w-4xl mx-auto mt-6 sm:mt-10 bg-white px-4 sm:px-6 md:px-8 py-6 text-black text-sm leading-relaxed overflow-hidden">
@@ -62,9 +62,9 @@ export default function SimpleATSResume({ values = {} }) {
       )}
 
       {/* SKILLS */}
-      {validSkillGroups.length > 0 && (
+      {skillGroups.length > 0 && (
         <Section title="Skills">
-          {validSkillGroups.map((group, index) => (
+          {skillGroups.map((group, index) => (
             <p key={index} className="break-words">
               <strong>{group.category} : </strong>{" "}
               {group.skills?.filter(Boolean).join(", ")}

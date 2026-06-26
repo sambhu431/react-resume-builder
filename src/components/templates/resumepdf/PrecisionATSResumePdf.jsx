@@ -189,10 +189,25 @@ export default function PrecisionATSResumePdf({ values }) {
     projects = [],
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+
+  //   const clean = (v) => v?.trim();
+
+  // const validExperience = experience.filter(
+  //   (exp) => clean(exp.role) || clean(exp.company) || clean(exp.description),
+  // );
+
+  // const validProjects = projects.filter(
+  //   (p) => clean(p.name) || clean(p.description),
+  // );
+
+  // const validEducation = education.filter(
+  //   (e) => clean(e.course) || clean(e.institute),
+  // );
+
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <Document>
@@ -247,9 +262,9 @@ export default function PrecisionATSResumePdf({ values }) {
         )}
 
         {/* SKILLS */}
-        {validSkillGroups.length > 0 && (
+        {skillGroups.length > 0 && (
           <ATSSection title="Core Competencies">
-            {validSkillGroups.map((group, index) => (
+            {skillGroups.map((group, index) => (
               <Text key={index} style={styles.itemSpacing}>
                 <Text style={styles.strong}>{group.category}:</Text>{" "}
                 {group.skills?.filter(Boolean).join(", ")}

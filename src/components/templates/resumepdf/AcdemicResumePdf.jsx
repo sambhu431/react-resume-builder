@@ -209,10 +209,24 @@ export default function AcademicResumePDF({ values }) {
     projects = [],
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  //  const clean = (v) => v?.trim();
+
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
+
+  // const validExperience = experience.filter(
+  //   (exp) => clean(exp.role) || clean(exp.company) || clean(exp.description),
+  // );
+
+  // const validProjects = projects.filter(
+  //   (p) => clean(p.name) || clean(p.description),
+  // );
+
+  // const validEducation = education.filter(
+  //   (e) => clean(e.course) || clean(e.institute),
+  // );
 
   return (
     <Document title={`${personalInfo.firstName || "Resume"} Resume`}>
@@ -293,12 +307,12 @@ export default function AcademicResumePDF({ values }) {
         )}
 
         {/* SKILLS */}
-        {validSkillGroups?.length > 0 && (
+        {skillGroups?.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Skills</Text>
 
             <View style={styles.skillsGrid}>
-              {validSkillGroups.map((group, index) => (
+              {skillGroups.map((group, index) => (
                 <View key={index} style={styles.skillGroup}>
                   <Text style={styles.skillCategory}>{group.category}</Text>
 

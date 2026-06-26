@@ -14,10 +14,10 @@ export default function ProfessionalResume({ values = {} }) {
     personalInfo.nationality ||
     personalInfo.languages;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="w-full max-w-4xl mx-auto bg-white text-slate-900 px-4 sm:px-8 md:px-12 py-6 sm:py-10 my-6 sm:my-10 font-sans overflow-x-hidden">
@@ -62,14 +62,14 @@ export default function ProfessionalResume({ values = {} }) {
       )}
 
       {/* SKILLS */}
-      {validSkillGroups.length > 0 && (
+      {skillGroups.length > 0 && (
         <section className="mt-4">
           <h2 className="text-xs uppercase tracking-[0.25em] text-slate-500">
             Skills
           </h2>
 
           <div className=" space-y-2 text-sm text-slate-700">
-            {validSkillGroups.map((group, i) => (
+            {skillGroups.map((group, i) => (
               <div key={i} className="break-words leading-relaxed">
                 <p className="font-semibold text-slate-900">{group.category}</p>
                 <p> {group.skills?.filter(Boolean).join(", ")} </p>

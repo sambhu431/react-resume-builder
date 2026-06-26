@@ -37,10 +37,10 @@ export default function PrimeATSResume({ values = {} }) {
     projects = [],
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="bg-white mt-6 sm:mt-10 text-slate-900 w-full max-w-4xl mx-auto px-4 sm:px-6 md:px-10 py-6 sm:py-8 text-sm leading-relaxed overflow-hidden">
@@ -76,10 +76,10 @@ export default function PrimeATSResume({ values = {} }) {
       )}
 
       {/* SKILLS */}
-      {validSkillGroups.length > 0 && (
+      {skillGroups.length > 0 && (
         <Section title="Skills">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-4">
-            {validSkillGroups.map((group, index) => (
+            {skillGroups.map((group, index) => (
               <div key={index} className="min-w-0 flex flex-col">
                 <span className="font-semibold text-slate-900 break-words text-sm">
                   {group.category}

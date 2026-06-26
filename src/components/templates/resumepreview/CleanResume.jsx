@@ -35,10 +35,10 @@ export default function CleanResume({ values = {} }) {
     personalInfo.nationality ||
     personalInfo.languages;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="bg-white mt-6 sm:mt-10 text-slate-800 max-w-4xl mx-auto px-4 sm:px-8 md:px-12 py-6 sm:py-10 font-sans leading-relaxed overflow-x-hidden">
@@ -202,10 +202,10 @@ export default function CleanResume({ values = {} }) {
       )}
 
       {/* SKILLS */}
-      {validSkillGroups.length > 0 && (
+      {skillGroups.length > 0 && (
         <Section title="Skills">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {validSkillGroups.map((group, index) => (
+            {skillGroups.map((group, index) => (
               <div key={index}>
                 <h4 className="font-semibold text-slate-700 text-sm mb-2 break-words">
                   {group.category}
@@ -215,7 +215,7 @@ export default function CleanResume({ values = {} }) {
                   {group.skills?.filter(Boolean).map((skill, idx) => (
                     <span
                       key={idx}
-                      className="px-2 py-1 bg-slate-100 text-slate-700 rounded text-xs font-medium border border-slate-200 break-words"
+                      className="text-slate-700 text-xs font-medium break-words"
                     >
                       {skill}
                     </span>
@@ -230,40 +230,39 @@ export default function CleanResume({ values = {} }) {
       {/* ADDITIONAL */}
       {hasAdditionalInfo && (
         <Section title="Additional Information">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-sm">
             {personalInfo.dob && (
               <div className="break-words">
-                <span className="block text-xs text-slate-400 uppercase font-semibold">
-                  DOB
-                </span>
-                <span>{personalInfo.dob}</span>
+                <span>
+                  
+                  <span className="text-xs text-slate-400 uppercase font-semibold">
+                  DOB </span> : {personalInfo.dob}</span>
               </div>
             )}
 
             {personalInfo.nationality && (
               <div className="break-words">
-                <span className="block text-xs text-slate-400 uppercase font-semibold">
-                  Nationality
-                </span>
-                <span>{personalInfo.nationality}</span>
+                <span>
+                  
+                  <span className="text-xs text-slate-400 uppercase font-semibold">
+                  Nationality </span> : {personalInfo.nationality}</span>
               </div>
             )}
 
             {personalInfo.maritalStatus && (
               <div className="break-words">
-                <span className="block text-xs text-slate-400 uppercase font-semibold">
-                  Status
-                </span>
-                <span>{personalInfo.maritalStatus}</span>
+                <span> 
+                  
+                  <span className="text-xs text-slate-400 uppercase font-semibold"> Martial Status </span>
+                   :  {personalInfo.maritalStatus}</span>
               </div>
             )}
+          </div>
 
-            {personalInfo.languages && (
+          <div className="mt-1">
+                  {personalInfo.languages && (
               <div className="break-words">
-                <span className="block text-xs text-slate-400 uppercase font-semibold">
-                  Languages
-                </span>
-                <span>{personalInfo.languages}</span>
+                <span> <span className="text-xs text-slate-400 uppercase font-semibold"> Languages </span>  : {personalInfo.languages}</span>
               </div>
             )}
           </div>

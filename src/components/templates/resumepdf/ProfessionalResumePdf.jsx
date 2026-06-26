@@ -142,16 +142,33 @@ export default function ProfessionalResumePdf({ values }) {
     projects = [],
   } = values;
 
-  const hasAdditionalInfo =
+
+   const hasAdditionalInfo =
     personalInfo.dob ||
     personalInfo.nationality ||
     personalInfo.maritalStatus ||
     personalInfo.languages;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+
+  //   const clean = (v) => v?.trim();
+
+  // const validExperience = experience.filter(
+  //   (exp) => clean(exp.role) || clean(exp.company) || clean(exp.description),
+  // );
+
+  // const validProjects = projects.filter(
+  //   (p) => clean(p.name) || clean(p.description),
+  // );
+
+  // const validEducation = education.filter(
+  //   (e) => clean(e.course) || clean(e.institute),
+  // );
+
+ 
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <Document>
@@ -206,11 +223,11 @@ export default function ProfessionalResumePdf({ values }) {
         )}
 
         {/* SKILLS */}
-        {validSkillGroups.length > 0 && (
+        {skillGroups.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Skills</Text>
 
-            {validSkillGroups.map((group, i) => (
+            {skillGroups.map((group, i) => (
               <View key={i} style={styles.block}>
                 <Text style={styles.title}>{group.category}</Text>
 

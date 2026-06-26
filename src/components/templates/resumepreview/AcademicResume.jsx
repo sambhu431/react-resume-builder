@@ -14,10 +14,10 @@ export default function AcademicResume({ values = {} }) {
     </h2>
   );
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="w-full max-w-4xl mt-10 mx-auto bg-white rounded-xl shadow-lg px-4 py-5 sm:px-6 sm:py-7 md:px-10 md:py-8 text-slate-800 overflow-hidden">
@@ -112,12 +112,12 @@ export default function AcademicResume({ values = {} }) {
       )}
 
       {/* SKILLS */}
-      {validSkillGroups.length > 0 && (
+      {skillGroups.length > 0 && (
         <section className="mt-6">
           <SectionTitle>Skills</SectionTitle>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {validSkillGroups.map((group, index) => (
+            {skillGroups.map((group, index) => (
               <div key={index} className="break-inside-avoid">
                 <h3 className="font-semibold text-slate-900 mb-2">
                   {group.category}

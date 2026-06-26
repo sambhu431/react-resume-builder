@@ -60,10 +60,10 @@ export default function MinimalResume({ values = {} }) {
     personalInfo.nationality ||
     personalInfo.languages;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div
@@ -301,10 +301,10 @@ print:mt-0
       )}
 
       {/* ================= SKILLS ================= */}
-      {validSkillGroups.length > 0 && (
+      {skillGroups.length > 0 && (
         <Section title="Skills">
           <div className="space-y-2 text-sm">
-            {validSkillGroups.map((group, index) => (
+            {skillGroups.map((group, index) => (
               <div
                 key={index}
                 className="
@@ -325,7 +325,8 @@ print:mt-0
       {/* ================= ADDITIONAL INFO ================= */}
       {hasAdditionalInfo && (
         <Section title="Additional">
-          <div className="grid grid-cols-1 sm:grid-cols-4 lg:grid-cols-4 gap-y-2 gap-x-4 text-sm">
+          {/* ROW 1 */}
+          <div className="grid grid-cols-3 gap-x-4 gap-y-2 text-sm">
             {personalInfo.dob && (
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-slate-400">
@@ -334,6 +335,7 @@ print:mt-0
                 <p className="text-slate-700">{personalInfo.dob}</p>
               </div>
             )}
+
             {personalInfo.nationality && (
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-slate-400">
@@ -342,6 +344,7 @@ print:mt-0
                 <p className="text-slate-700">{personalInfo.nationality}</p>
               </div>
             )}
+
             {personalInfo.maritalStatus && (
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-slate-400">
@@ -350,15 +353,19 @@ print:mt-0
                 <p className="text-slate-700">{personalInfo.maritalStatus}</p>
               </div>
             )}
-            {personalInfo.languages && (
+          </div>
+
+          {/* ROW 2 (LANGUAGES FULL WIDTH) */}
+          {personalInfo.languages && (
+            <div className="mt-2 grid grid-cols-1 text-sm">
               <div>
                 <p className="text-[10px] uppercase tracking-wider text-slate-400">
                   Languages
                 </p>
                 <p className="text-slate-700">{personalInfo.languages}</p>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </Section>
       )}
     </div>

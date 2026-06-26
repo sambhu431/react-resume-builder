@@ -161,10 +161,25 @@ export default function ClassicResumePdf({ values }) {
     projects,
   } = values;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+  // const clean = (v) => v?.trim();
+
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
+
+  // const validExperience = experience.filter(
+  //   (exp) => clean(exp.role) || clean(exp.company) || clean(exp.description),
+  // );
+
+  // const validProjects = projects.filter(
+  //   (p) => clean(p.name) || clean(p.description),
+  // );
+
+  // const validEducation = education.filter(
+  //   (e) => clean(e.course) || clean(e.institute),
+  // );
+
 
   return (
     <Document>
@@ -189,7 +204,7 @@ export default function ClassicResumePdf({ values }) {
               {personalInfo.linkedin && (
                 <Link src={personalInfo.linkedin} style={styles.socialLink}>
                   LinkedIn
-                </Link>
+                </Link> 
               )}
 
               {personalInfo.linkedin && personalInfo.github && (
@@ -236,9 +251,9 @@ export default function ClassicResumePdf({ values }) {
         {/* SKILLS */}
 
         {/* SKILLS */}
-        {validSkillGroups?.length > 0 && (
+        {skillGroups?.length > 0 && (
           <Section title="Skills">
-            {validSkillGroups.map((group, index) => {
+            {skillGroups.map((group, index) => {
               const skills = group.skills?.filter((s) => s?.trim()) || [];
 
               return (
@@ -272,9 +287,10 @@ export default function ClassicResumePdf({ values }) {
                   </Text>
                 </View>
 
-                <Text>{exp.company}</Text>
+                <Text> {exp.company} </Text>
+                <Text> {exp.location} </Text>
 
-                {exp.description?.trim() && <Text> {exp.description}</Text>}
+                {exp.description && <Text> {exp.description}</Text>}
               </View>
             ))}
           </Section>
@@ -366,3 +382,5 @@ function Section({ title, children }) {
     </View>
   );
 }
+
+

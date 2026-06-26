@@ -2,6 +2,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { templates } from "../data/templates";
 import { resumeStorage } from "../localstorage/resumeStorage";
+import { cleanResumeData }  from "../utils/cleanResumeData";
+import { prepareResumeData } from "../utils/prepareResumeData";
 import PageUnavailable from "../components/others/PageUnavailable";
 
 const ResumeDownload = () => {
@@ -9,12 +11,15 @@ const ResumeDownload = () => {
   const navigate = useNavigate();
 
   const template = templates.find((t) => t.id === templateId);
-  const data = resumeStorage.get();
+  
+  const rawData = resumeStorage.get();
 
-  if (!template || !data) {
+  if (!template || !rawData) {
     navigate("/");
     return null;
   }
+
+  const data = prepareResumeData(cleanResumeData(structuredClone(rawData)));
 
   const Preview = template.resumepreview;
   const PDFDoc = template.pdf;
@@ -69,7 +74,7 @@ const ResumeDownload = () => {
               </button>
 
               <PDFDownloadLink
-                document={<PDFDoc values={structuredClone(data)} />}
+                document={<PDFDoc values={data} />}
                 fileName={`${data.personalInfo.firstName}-resume.pdf`}
               >
                 {({ loading }) => (

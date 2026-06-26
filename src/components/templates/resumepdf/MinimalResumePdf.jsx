@@ -185,6 +185,30 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: "#000301",
   },
+
+  projectLeft: {
+    flex: 1,
+    minWidth: 0, // IMPORTANT for text wrapping in react-pdf
+  },
+
+  projectRight: {
+    marginLeft: 8,
+    flexShrink: 0,
+    alignItems: "flex-end",
+  },
+
+  // Personal Information
+
+  gridRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    gap: 8,
+    marginBottom: 6,
+  },
+
+  fullWidthItem: {
+    width: "100%",
+  },
 });
 
 /* ================= SECTION WRAPPER ================= */
@@ -213,15 +237,29 @@ export default function MinimalResumePdf({ values = {} }) {
   } = values;
 
   const hasAdditionalInfo =
-    personalInfo.dob ||
+   personalInfo.dob||
     personalInfo.nationality ||
     personalInfo.maritalStatus ||
     personalInfo.languages;
 
-  const validSkillGroups = skillGroups.filter(
-    (group) =>
-      group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
-  );
+
+  // const clean = (v) => v?.trim();
+  // const validSkillGroups = skillGroups.filter(
+  //   (group) =>
+  //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
+  // );
+
+  // const validExperience = experience.filter(
+  //   (exp) => clean(exp.role) || clean(exp.company) || clean(exp.description),
+  // );
+
+  // const validProjects = projects.filter(
+  //   (p) => clean(p.name) || clean(p.description),
+  // );
+
+  // const validEducation = education.filter(
+  //   (e) => clean(e.course) || clean(e.institute),
+  // );
 
   return (
     <Document>
@@ -238,7 +276,9 @@ export default function MinimalResumePdf({ values = {} }) {
           )}
 
           <View style={styles.contactRow}>
-            {personalInfo.email && <Text>{personalInfo.email}</Text>}
+            {personalInfo.email && (
+              <Text>{personalInfo.email}</Text>
+            )}
 
             {personalInfo.phone && (
               <>
@@ -319,17 +359,22 @@ export default function MinimalResumePdf({ values = {} }) {
             {projects.map((project, i) => (
               <View key={i} style={{ marginBottom: 2 }}>
                 <View style={styles.entryRow}>
-                  <View>
+                  {/* LEFT SIDE (must be constrained) */}
+                  <View style={styles.projectLeft}>
                     <Text style={styles.title}>{project.name}</Text>
+
                     {project.techStack && (
                       <Text style={styles.subtitle}>{project.techStack}</Text>
                     )}
                   </View>
 
+                  {/* RIGHT SIDE (fixed width) */}
                   {project.link && (
-                    <Link style={styles.link} src={project.link}>
-                      View Project
-                    </Link>
+                    <View style={styles.projectRight}>
+                      <Link style={styles.link} src={project.link}>
+                        View Project
+                      </Link>
+                    </View>
                   )}
                 </View>
 
@@ -350,7 +395,6 @@ export default function MinimalResumePdf({ values = {} }) {
             ))}
           </Section>
         )}
-
         {/* ================= EDUCATION ================= */}
         {education.length > 0 && (
           <Section title="Education">
@@ -373,9 +417,9 @@ export default function MinimalResumePdf({ values = {} }) {
         )}
 
         {/* ================= SKILLS ================= */}
-        {validSkillGroups.length > 0 && (
+        {skillGroups.length > 0 && (
           <Section title="Skills">
-            {validSkillGroups.map((group, i) => (
+            {skillGroups.map((group, i) => (
               <View key={i} style={styles.skillRow}>
                 <Text style={styles.skillCategory}>{group.category}</Text>
                 <Text style={styles.skillText}>
@@ -389,7 +433,8 @@ export default function MinimalResumePdf({ values = {} }) {
         {/* ================= ADDITIONAL ================= */}
         {hasAdditionalInfo && (
           <Section title="Additional">
-            <View style={styles.grid}>
+            {/* ROW 1 */}
+            <View style={styles.gridRow}>
               {personalInfo.dob && (
                 <View style={styles.gridItem}>
                   <Text style={styles.label}>DOB</Text>
@@ -410,17 +455,22 @@ export default function MinimalResumePdf({ values = {} }) {
                   <Text style={styles.value}>{personalInfo.maritalStatus}</Text>
                 </View>
               )}
+            </View>
 
-              {personalInfo.languages && (
-                <View style={styles.gridItem}>
+            {/* ROW 2 */}
+            {personalInfo.languages && (
+              <View style={styles.gridRow}>
+                <View style={[styles.gridItem, styles.fullWidthItem]}>
                   <Text style={styles.label}>Languages</Text>
                   <Text style={styles.value}>{personalInfo.languages}</Text>
                 </View>
-              )}
-            </View>
+              </View>
+            )}
           </Section>
         )}
       </Page>
     </Document>
   );
 }
+
+

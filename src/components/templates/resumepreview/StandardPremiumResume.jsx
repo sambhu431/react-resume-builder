@@ -10,10 +10,10 @@ export default function StandardPremiumResume({ values = {} }) {
     projects = [],
   } = values;
 
-  const validSkillGroups = (skillGroups || []).filter(
-    (group) =>
-      group?.category?.trim() || group?.skills?.some((skill) => skill?.trim()),
-  );
+  // const validSkillGroups = (skillGroups || []).filter(
+  //   (group) =>
+  //     group?.category?.trim() || group?.skills?.some((skill) => skill?.trim()),
+  // );
 
   return (
     <div className="bg-slate-100 min-h-screen py-6 sm:py-10 px-3 sm:px-6 lg:px-10 flex justify-center">
@@ -172,9 +172,9 @@ export default function StandardPremiumResume({ values = {} }) {
         )}
 
         {/* SKILLS */}
-        {validSkillGroups?.length > 0 && (
+        {skillGroups?.length > 0 && (
           <Section title="Skills">
-            {validSkillGroups.map((group, i) => (
+            {skillGroups.map((group, i) => (
               <div
                 key={i}
                 className="mb-3 text-sm sm:text-base [overflow-wrap:anywhere]"
