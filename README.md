@@ -13,6 +13,42 @@ Responsive resume builder web application built using **React (Vite)** , **Tailw
 Build professional resumes instantly with real-time preview and PDF export.
 
 ---
+
+## Sample Resumes 
+
+Check how would your resume might look like. Check out these sample resumes.
+
+- [View All Samples](https://github.com/sambhu431/react-resume-builder/tree/main/sample-resume-pdf)
+
+
+### Direct PDFs:
+
+- [STANDARD-PREMIUM-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-STANDARD-PREMIUM-RESUME-Sample.pdf)
+
+- [STANDARD-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-STANDARD-RESUME-Sample.pdf)
+
+- [SIMPLE-ATS-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-SIMPLE-ATS-RESUME-Sample.pdf)
+
+- [PROFESSIONAL-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-PROFESSIONAL-RESUME-Sample.pdf)
+
+- [PRIME-ATS-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-PRIME-ATS-RESUME-Sample.pdf)
+
+- [TRADITIONAL-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-TRADITIONAL-RESUME-Sample.pdf)
+
+- [PRECISION-ATS-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-PRECISION-ATS-RESUME-Sample.pdf)
+
+- [MINIMAL-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-MINIMAL-RESUME-Sample.pdf)
+
+- [ENTRY-LEVEL-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-ENTRY-LEVEL-RESUME-Sample.pdf)
+
+- [CLEAN-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-CLEAN-RESUME-Sample.pdf)
+
+- [ACADEMIC-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-ACADEMIC-RESUME-Sample.pdf)
+
+- [CLASSIC-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-CLASSIC-RESUME-Sample.pdf)
+
+
+---
 ## Features
 
 - Multiple resume templates
