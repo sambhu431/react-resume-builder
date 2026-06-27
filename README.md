@@ -13,14 +13,6 @@ Responsive resume builder web application built using **React (Vite)** , **Tailw
 Build professional resumes instantly with real-time preview and PDF export.
 
 ---
-
-## Sample Resumes 
-
-Check how would your resume might look like. Check out these sample resumes.
-
-- [View All Samples](https://github.com/sambhu431/react-resume-builder/tree/main/sample-resume-pdf)
-
----
 ## Features
 
 - Multiple resume templates
@@ -42,6 +34,14 @@ Check how would your resume might look like. Check out these sample resumes.
 
 
 ---
+
+## Sample Resumes 
+
+Check how would your resume might look like. Check out these sample resumes.
+
+- [View All PDF Samples](https://github.com/sambhu431/react-resume-builder/tree/main/sample-resume-pdf)
+
+
 ### Images And Direct PDFs:
 
 - [STANDARD-PREMIUM-RESUME-PDF-LINK](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-STANDARD-PREMIUM-RESUME-Sample.pdf)
