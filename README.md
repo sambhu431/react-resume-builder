@@ -20,7 +20,28 @@ Check how would your resume might look like. Check out these sample resumes.
 
 - [View All Samples](https://github.com/sambhu431/react-resume-builder/tree/main/sample-resume-pdf)
 
+---
+## Features
 
+- Multiple resume templates
+- Dynamic form-based resume creation
+- Real-time preview updates
+- PDF download using `@react-pdf/renderer`
+- Image Zoom using `@react-zoom-pan-pinch`
+- Clean and responsive UI (Tailwind CSS)
+- Multiple sections:
+  - Personal Information
+  - Career Objective
+  - Experience
+  - Projects
+  - Education
+  - Skills
+- Mobile-friendly design
+- Skeleton Image Loading 
+- Shimmering Loading Effect 
+
+
+---
 ### Images And Direct PDFs:
 
 - [STANDARD-PREMIUM-RESUME-PDF-LINK](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-STANDARD-PREMIUM-RESUME-Sample.pdf)
@@ -59,24 +80,6 @@ Check how would your resume might look like. Check out these sample resumes.
 
 - [CLASSIC-RESUME-PDF-LINK](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-CLASSIC-RESUME-Sample.pdf)
 - ![CLASSIC-RESUME](public/sample-images/CLASSIC-RESUME/John-CLASSIC-RESUME-Sample_page-0001.jpg)
-
-
----
-## Features
-
-- Multiple resume templates
-- Dynamic form-based resume creation
-- Real-time preview updates
-- PDF download using `@react-pdf/renderer`
-- Clean and responsive UI (Tailwind CSS)
-- Multiple sections:
-  - Personal Information
-  - Career Objective
-  - Experience
-  - Projects
-  - Education
-  - Skills
-- Mobile-friendly design
 
 ---
 
