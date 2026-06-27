@@ -37,12 +37,12 @@ Build professional resumes instantly with real-time preview and PDF export.
 
 ## Sample Resumes 
 
-Check how would your resume might look like. Check out these sample resumes.
+Check out these sample resumes. Get an Idea how your resume might look.
 
 - [View All PDF Samples](https://github.com/sambhu431/react-resume-builder/tree/main/sample-resume-pdf)
 
 
-### Images And Direct PDFs:
+### Images And Direct PDF Links:
 
 - [STANDARD-PREMIUM-RESUME-PDF-LINK](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-STANDARD-PREMIUM-RESUME-Sample.pdf)
 - ![STANDARD-PREMIUM-RESUME](public/sample-images/STANDARD-PREMIUM-RESUME/John-STANDARD-PREMIUM-RESUME-Sample_page-0001.jpg)
