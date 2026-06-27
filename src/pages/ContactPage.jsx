@@ -34,6 +34,19 @@ export default function ContactPage() {
               our best to help everyone as quickly as possible.
             </p>
           </div>
+
+          <div className="text-center">
+            <button className="text-sm bg-indigo-200 px-1">
+              <a 
+              referrerpolicy
+              target="_blank"
+              rel="noopener"
+              href="https://github.com/sambhu431"> 
+                Visit Github 
+              </a>
+            </button>
+          </div>
+
         </div>
 
         {/* FOOTER TRUST LINE */}

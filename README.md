@@ -21,31 +21,44 @@ Check how would your resume might look like. Check out these sample resumes.
 - [View All Samples](https://github.com/sambhu431/react-resume-builder/tree/main/sample-resume-pdf)
 
 
-### Direct PDFs:
+### Images And Direct PDFs:
 
 - [STANDARD-PREMIUM-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-STANDARD-PREMIUM-RESUME-Sample.pdf)
+- ![STANDARD-PREMIUM-RESUME](public/sample-images/STANDARD-PREMIUM-RESUME/John-STANDARD-PREMIUM-RESUME-Sample_page-0001.jpg.png)
 
 - [STANDARD-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-STANDARD-RESUME-Sample.pdf)
+- ![STANDARD-RESUME](public/sample-images/STANDARD-RESUME/John-STANDARD-RESUME-Sample_page-0001.jpg)
 
 - [SIMPLE-ATS-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-SIMPLE-ATS-RESUME-Sample.pdf)
+- ![SIMPLE-ATS-RESUME](public/sample-images/SIMPLE-ATS-RESUME/John-SIMPLE-ATS-RESUME-Sample_page-0001.jpg)
 
 - [PROFESSIONAL-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-PROFESSIONAL-RESUME-Sample.pdf)
+- ![PROFESSIONAL-RESUME](public/sample-images/PROFESSIONAL-RESUME/John-PROFESSIONAL-RESUME-Sample_page-0001.jpg)
 
 - [PRIME-ATS-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-PRIME-ATS-RESUME-Sample.pdf)
+- ![PRIME-ATS-RESUME](public/sample-images/PRIME-ATS-RESUME/John-PRIME-ATS-RESUME-Sample_page-0001.jpg)
+
 
 - [TRADITIONAL-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-TRADITIONAL-RESUME-Sample.pdf)
+- ![TRADITIONAL-RESUME](public/sample-images/TRADITIONAL-RESUME/John-TRADITIONAL-RESUME-Sample_page-0001.jpg)
 
 - [PRECISION-ATS-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-PRECISION-ATS-RESUME-Sample.pdf)
+- ![PRECISION-ATS-RESUME](public/sample-images/PRECISION-ATS-RESUME/John-PRECISION-ATS-RESUME-Sample_page-0001.jpg)
 
 - [MINIMAL-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-MINIMAL-RESUME-Sample.pdf)
+- ![MINIMAL-RESUME](public/sample-images/MINIMAL-RESUME/John-MINIMAL-RESUME-Sample_page-0001.jpg)
 
 - [ENTRY-LEVEL-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-ENTRY-LEVEL-RESUME-Sample.pdf)
+- ![ENTRY-LEVEL-RESUME](public/sample-images//ENTRY-LEVEL-RESUME/John-ENTRY-LEVEL-RESUME-Sample_page-0001.jpg)
 
 - [CLEAN-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-CLEAN-RESUME-Sample.pdf)
+- ![CLEAN-RESUME](public/sample-images//CLEAN-RESUME/John-CLEAN-RESUME-Sample_page-0001.jpg)
 
 - [ACADEMIC-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-ACADEMIC-RESUME-Sample.pdf)
+- ![ACADEMIC-RESUME](public/sample-images//ACADEMIC-RESUME/John-ACADEMIC-RESUME-Sample_page-0001.jpg)
 
 - [CLASSIC-RESUME](https://github.com/sambhu431/react-resume-builder/blob/main/sample-resume-pdf/John-CLASSIC-RESUME-Sample.pdf)
+- ![CLASSIC-RESUME](public/sample-images/CLASSIC-RESUME/John-CLASSIC-RESUME-Sample_page-0001.jpg)
 
 
 ---
