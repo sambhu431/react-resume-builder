@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { sampleResumePics } from "../data/sampleResumePics";
 import { useNavigate } from "react-router-dom";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import ImageWithLoader from "../components/others/ShimmerFolder/ImageWithLoader";
 
 const SampleResumePics = () => {
   const [selectedGallery, setSelectedGallery] = useState(null);
@@ -76,7 +77,7 @@ const SampleResumePics = () => {
         {/* GRID */}
         <div
           className="mt-6 grid grid-cols-1 gap-6 
-        sm:grid-cols-2 lg:grid-cols-4 "
+        sm:grid-cols-2 lg:grid-cols-4 py-10"
         >
           {sampleResumePics.map((gallery) => (
             <div
@@ -92,10 +93,12 @@ const SampleResumePics = () => {
                 className="flex  items-center justify-center 
                 bg-slate-100 p-1 overflow-hidden"
               >
-                <img
-                  src={gallery.url[0]}
-                  alt={gallery.title}
-                  className="w-full p-1 h-auto object-contain"
+                <ImageWithLoader
+                src={gallery.url[0]}
+                alt={gallery.title}
+                variant="shimmer"
+                size="3xl"
+                className="w-full p-1 h-auto object-contain"
                 />
               </div>
 
