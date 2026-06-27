@@ -48,17 +48,16 @@ export default function StandardPremiumResume({ values = {} }) {
   "
           >
             <p className="break-all">
-              <span className="font-semibold">Email:</span>{" "}
               {personalInfo?.email}
             </p>
 
             <p className="[overflow-wrap:anywhere]">
-              <span className="font-semibold">Phone:</span>{" "}
+             
               {personalInfo?.phone}
             </p>
 
             <p className="[overflow-wrap:anywhere]">
-              <span className="font-semibold">Address:</span>{" "}
+            
               {personalInfo?.address}
             </p>
 

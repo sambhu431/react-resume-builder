@@ -21,6 +21,9 @@ export default function Footer() {
               <li>
                 <Link to="/">Home</Link>
               </li>
+                <li>
+                <Link to="/sample-resumes">View Resume Samples</Link>
+              </li>
               <li>
                 <Link to="/templates">Templates</Link>
               </li>

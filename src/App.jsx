@@ -10,6 +10,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import PolicyPage from "./pages/PolicyPage";
 import TermsPage from "./pages/TermsPage";
 import ContactPage from "./pages/ContactPage";
+import SampleResumePics from "./pages/SampleResumePics";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/policy" element={<PolicyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+           <Route path="/sample-resumes" element={<SampleResumePics />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 

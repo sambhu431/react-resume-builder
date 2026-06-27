@@ -2,11 +2,11 @@
 # Resume Builder (React + Vite)
 
 ## Project Overview
-Responsive resume builder web application built using **React (Vite)** , **Tailwind CSS** and **React-Renderer** allowing users to create professional resumes and export them as downloadable PDF files. 
+Responsive resume builder web application built using **React (Vite)** , **Tailwind CSS** , **React Zoom Pan Pinch** and **React-Renderer** allowing users to create professional resumes and export them as downloadable PDF files. 
 
 ---
 
-##  Live Demo (Website)
+## 🚀 Live Demo (Website)
 
 🔗 https://react-resume-builder-orcin.vercel.app/
 
@@ -89,6 +89,7 @@ Check how would your resume might look like. Check out these sample resumes.
 - Yup (validation)
 - React Router DOM
 - React PDF Renderer
+- React Zoom Pan Pinch
 
 ---
 

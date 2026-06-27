@@ -183,12 +183,12 @@ export default function StandardPremiumResumePdf({ values }) {
               {personalInfo.firstName} {personalInfo.lastName}
             </Text>
 
-            <Text style={styles.labelText}>Email: {personalInfo.email}</Text>
+            <Text style={styles.labelText}> {personalInfo.email}</Text>
 
-            <Text style={styles.labelText}>Phone: {personalInfo.phone}</Text>
+            <Text style={styles.labelText}> {personalInfo.phone}</Text>
 
             <Text style={styles.labelText}>
-              Address: {personalInfo.address}
+              {personalInfo.address}
             </Text>
 
             <View style={styles.linkRow}>
