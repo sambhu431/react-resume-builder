@@ -116,15 +116,15 @@ const handleTouchEnd = () => {
             >
               {/* IMAGE */}
               <div
-                className="flex  items-center justify-center 
-                bg-slate-100 p-1 overflow-hidden"
+                className="w-full aspect-[1241/1754] 
+                bg-slate-100 overflow-hidden relative"
               >
                 <ImageWithLoader
                 src={gallery.url[0]}
                 alt={gallery.title}
                 variant="shimmer"
                 size="3xl"
-                className="w-full p-1 h-auto object-contain"
+                className="absolute inset-0 w-full h-full object-contain"
                 />
               </div>
 
