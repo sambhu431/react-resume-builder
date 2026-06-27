@@ -7,8 +7,34 @@ import ImageWithLoader from "../components/others/ShimmerFolder/ImageWithLoader"
 const SampleResumePics = () => {
   const [selectedGallery, setSelectedGallery] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [touchEndX, setTouchEndX] = useState(0);
 
   const navigate = useNavigate();
+
+  const handleTouchStart = (e) => {
+  setTouchStartX(e.touches[0].clientX);
+};
+
+const handleTouchMove = (e) => {
+  setTouchEndX(e.touches[0].clientX);
+};
+
+const handleTouchEnd = () => {
+  const diff = touchStartX - touchEndX;
+
+  // swipe left → next
+  if (diff > 50) {
+    nextImage();
+  }
+
+  // swipe right → prev
+  if (diff < -50) {
+    prevImage();
+  }
+};
+
+
 
   const openGallery = (gallery) => {
     setSelectedGallery(gallery);
@@ -178,7 +204,11 @@ const SampleResumePics = () => {
           </div>
 
           {/* ZOOM AREA */}
-          <div className="relative z-10 flex flex-1 items-center justify-center px-2 overflow-hidden">
+          <div className="relative z-10 flex flex-1 items-center justify-center px-2 overflow-hidden"
+          onTouchStart={handleTouchStart}
+  onTouchMove={handleTouchMove}
+  onTouchEnd={handleTouchEnd}
+          >
             <TransformWrapper
               initialScale={1}
               minScale={1}
