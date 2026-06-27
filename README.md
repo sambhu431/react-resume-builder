@@ -31,6 +31,7 @@ Build professional resumes instantly with real-time preview and PDF export.
 - Mobile-friendly design
 - Skeleton Image Loading 
 - Shimmering Loading Effect 
+- Mobile Swipe Effects for Modal
 
 
 ---
@@ -152,6 +153,7 @@ npm run build
 - Export as DOCX
 - Cloud storage integration
 - AI-powered resume suggestions
+- OCR Implementation
 
 ---
 

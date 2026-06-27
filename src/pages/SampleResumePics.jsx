@@ -175,7 +175,7 @@ const handleTouchEnd = () => {
           <div className="absolute inset-0" onClick={closeGallery} />
 
           {/* TOP BAR */}
-          <div className="relative z-10 flex items-center justify-between px-3 py-3 sm:px-4">
+          <div className="relative z-10 flex items-center justify-between px-3 sm:px-4">
             <button
               onClick={(e) => {
                 e.stopPropagation();
