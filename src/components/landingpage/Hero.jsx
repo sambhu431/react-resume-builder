@@ -113,12 +113,10 @@ export default function Hero() {
           </Link>
         </div>
 
-        <div
-        className="mt-3"
-        >
+        <div className="mt-3">
           <Link
-          className="text-sm text-slate-800 bg-white px-2 underline"
-          to="/sample-resumes"
+            className="text-sm text-slate-800 bg-white px-2 underline"
+            to="/sample-resumes"
           >
             View Resume Samples
           </Link>

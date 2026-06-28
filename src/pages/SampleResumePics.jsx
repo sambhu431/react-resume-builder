@@ -13,28 +13,26 @@ const SampleResumePics = () => {
   const navigate = useNavigate();
 
   const handleTouchStart = (e) => {
-  setTouchStartX(e.touches[0].clientX);
-};
+    setTouchStartX(e.touches[0].clientX);
+  };
 
-const handleTouchMove = (e) => {
-  setTouchEndX(e.touches[0].clientX);
-};
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.touches[0].clientX);
+  };
 
-const handleTouchEnd = () => {
-  const diff = touchStartX - touchEndX;
+  const handleTouchEnd = () => {
+    const diff = touchStartX - touchEndX;
 
-  // swipe left → next
-  if (diff > 50) {
-    nextImage();
-  }
+    // swipe left → next
+    if (diff > 50) {
+      nextImage();
+    }
 
-  // swipe right → prev
-  if (diff < -50) {
-    prevImage();
-  }
-};
-
-
+    // swipe right → prev
+    if (diff < -50) {
+      prevImage();
+    }
+  };
 
   const openGallery = (gallery) => {
     setSelectedGallery(gallery);
@@ -120,11 +118,11 @@ const handleTouchEnd = () => {
                 bg-slate-100 overflow-hidden relative"
               >
                 <ImageWithLoader
-                src={gallery.url[0]}
-                alt={gallery.title}
-                variant="shimmer"
-                size="3xl"
-                className="absolute inset-0 w-full h-full object-contain"
+                  src={gallery.url[0]}
+                  alt={gallery.title}
+                  variant="shimmer"
+                  size="3xl"
+                  className="absolute inset-0 w-full h-full object-contain"
                 />
               </div>
 
@@ -204,10 +202,11 @@ const handleTouchEnd = () => {
           </div>
 
           {/* ZOOM AREA */}
-          <div className="relative z-10 flex flex-1 items-center justify-center px-2 overflow-hidden"
-          onTouchStart={handleTouchStart}
-  onTouchMove={handleTouchMove}
-  onTouchEnd={handleTouchEnd}
+          <div
+            className="relative z-10 flex flex-1 items-center justify-center px-2 overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             <TransformWrapper
               initialScale={1}

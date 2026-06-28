@@ -142,13 +142,11 @@ export default function ProfessionalResumePdf({ values }) {
     projects = [],
   } = values;
 
-
-   const hasAdditionalInfo =
+  const hasAdditionalInfo =
     personalInfo.dob ||
     personalInfo.nationality ||
     personalInfo.maritalStatus ||
     personalInfo.languages;
-
 
   //   const clean = (v) => v?.trim();
 
@@ -164,7 +162,6 @@ export default function ProfessionalResumePdf({ values }) {
   //   (e) => clean(e.course) || clean(e.institute),
   // );
 
- 
   // const validSkillGroups = skillGroups.filter(
   //   (group) =>
   //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),

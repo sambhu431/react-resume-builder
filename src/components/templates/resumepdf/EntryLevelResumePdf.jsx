@@ -183,14 +183,13 @@ const EntryLevelResumePDF = ({ values = {} }) => {
     projects = [],
   } = values;
 
-  // const clean = (v) => v?.trim(); 
+  // const clean = (v) => v?.trim();
 
   // const validSkillGroups = skillGroups.filter(
   //   (group) =>
   //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   // );
 
-  
   // const validExperience = experience.filter(
   //   (exp) => clean(exp.role) || clean(exp.company) || clean(exp.description),
   // );
@@ -202,7 +201,6 @@ const EntryLevelResumePDF = ({ values = {} }) => {
   // const validEducation = education.filter(
   //   (e) => clean(e.course) || clean(e.institute),
   // );
-
 
   return (
     <Document>
@@ -287,8 +285,8 @@ const EntryLevelResumePDF = ({ values = {} }) => {
             {/* PERSONAL INFO */}
             {(personalInfo.languages ||
               personalInfo.nationality ||
-              personalInfo.maritalStatus || 
-              personalInfo.dob ) && (
+              personalInfo.maritalStatus ||
+              personalInfo.dob) && (
               <View style={styles.section}>
                 <Text style={styles.title}>Personal Info</Text>
 
@@ -365,9 +363,7 @@ const EntryLevelResumePDF = ({ values = {} }) => {
                         justifyContent: "space-between",
                       }}
                     >
-                      <Text style={styles.bold}>
-                        {exp.role}
-                      </Text>
+                      <Text style={styles.bold}>{exp.role}</Text>
 
                       <Text style={styles.small}>
                         {exp.startDate} - {exp.endDate || "Present"}

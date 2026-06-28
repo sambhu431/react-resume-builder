@@ -254,7 +254,6 @@ export default function PrimeATSResumePDF({ values }) {
     projects,
   } = values;
 
-
   //   const clean = (v) => v?.trim();
 
   // const validExperience = experience.filter(
@@ -273,8 +272,6 @@ export default function PrimeATSResumePDF({ values }) {
   //   (group) =>
   //     group.category?.trim() || group.skills?.some((skill) => skill?.trim()),
   // );
-
-
 
   return (
     <Document>

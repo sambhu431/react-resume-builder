@@ -37,21 +37,21 @@ export default function ContactPage() {
 
           <div className="text-center">
             <button className="text-sm bg-indigo-200 px-1">
-              <a 
-              referrerpolicy
-              target="_blank"
-              rel="noopener"
-              href="https://github.com/sambhu431"> 
-                Visit Github 
+              <a
+                referrerpolicy
+                target="_blank"
+                rel="noopener"
+                href="https://github.com/sambhu431"
+              >
+                Visit Github
               </a>
             </button>
           </div>
-
         </div>
 
         {/* FOOTER TRUST LINE */}
         <div className="mt-8 pt-6 border-t text-xs text-slate-400 text-center">
-          ResumeMaker Support Team
+          BuildMyResumeStudio Support Team
         </div>
       </div>
     </div>

@@ -237,11 +237,10 @@ export default function MinimalResumePdf({ values = {} }) {
   } = values;
 
   const hasAdditionalInfo =
-   personalInfo.dob||
+    personalInfo.dob ||
     personalInfo.nationality ||
     personalInfo.maritalStatus ||
     personalInfo.languages;
-
 
   // const clean = (v) => v?.trim();
   // const validSkillGroups = skillGroups.filter(
@@ -276,9 +275,7 @@ export default function MinimalResumePdf({ values = {} }) {
           )}
 
           <View style={styles.contactRow}>
-            {personalInfo.email && (
-              <Text>{personalInfo.email}</Text>
-            )}
+            {personalInfo.email && <Text>{personalInfo.email}</Text>}
 
             {personalInfo.phone && (
               <>
@@ -472,5 +469,3 @@ export default function MinimalResumePdf({ values = {} }) {
     </Document>
   );
 }
-
-

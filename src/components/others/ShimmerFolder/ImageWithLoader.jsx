@@ -1,54 +1,44 @@
-
-import {useState} from "react";
+import { useState } from "react";
 import LoadingPage from "./LoadingPage";
 
 const ImageWithLoader = ({
-    src,
-    alt,
-    className = "",
-    spinnerColor = "black",
-    variant = "",
-    size = "md",
-    onClick,
-    }) => {
+  src,
+  alt,
+  className = "",
+  spinnerColor = "black",
+  variant = "",
+  size = "md",
+  onClick,
+}) => {
+  const [loaded, setLoaded] = useState(false);
 
-    const [loaded,setLoaded] = useState(false);
-
-    return (
-        <>
-        <div
-        onClick={onClick}
-        className={`relative ${className}`}>
-            {
-                !loaded && (
-                    <div
-                    className="absolute inset-0 flex 
+  return (
+    <>
+      <div onClick={onClick} className={`relative ${className}`}>
+        {!loaded && (
+          <div
+            className="absolute inset-0 flex 
                     items-center 
                     justify-center z-10 bg-gray-200"
-                    >
-                        <LoadingPage 
-                        variant={variant} 
-                        size={size} 
-                        color={spinnerColor}
-                        />
-                    </div>
-                )
-            }
-            <img 
-            src={src} 
-            alt={alt} 
-            loading="lazy"
-            onLoad={()=>{
-                setTimeout(() => setLoaded(true), 1500);
-            }}
-            className={` w-full h-full object-cover  
+          >
+            <LoadingPage variant={variant} size={size} color={spinnerColor} />
+          </div>
+        )}
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          onLoad={() => {
+            setTimeout(() => setLoaded(true), 1500);
+          }}
+          className={` w-full h-full object-cover  
                 transition-opacity duration-500
                 ${loaded ? "opacity-100" : "opacity-0"}
                 `}
-            />
-        </div>
-        </>
-    );
-}
+        />
+      </div>
+    </>
+  );
+};
 
 export default ImageWithLoader;

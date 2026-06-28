@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   },
 
   skillCard: {
-    width: "48%", 
+    width: "48%",
     marginBottom: 2,
   },
 
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
 
-  gridItem:{
+  gridItem: {
     marginRight: 10,
   },
 
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   gridValue: {
     fontSize: 9.5,
     color: "#334155",
-    textTransform:"capitalize",
+    textTransform: "capitalize",
   },
 });
 
@@ -201,8 +201,6 @@ const CleanResumePdf = ({ values = {} }) => {
     personalInfo.maritalStatus ||
     personalInfo.nationality ||
     personalInfo.languages;
-
- 
 
   return (
     <Document>
@@ -250,39 +248,38 @@ const CleanResumePdf = ({ values = {} }) => {
           </View>
         )}
 
-  {/* ---------------- EXPERIENCE ---------------- */}
-{experience.length > 0 && (
-  <View style={styles.section}>
-    <Text style={styles.sectionTitle}>Work Experience</Text>
+        {/* ---------------- EXPERIENCE ---------------- */}
+        {experience.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Work Experience</Text>
 
-    {experience.map((exp, i) => (
-      <View key={i} style={styles.item}>
-        
-        {/* ROLE + DATES */}
-        <View style={styles.rowBetween}>
-          <Text style={styles.title}>{exp.role}</Text>
+            {experience.map((exp, i) => (
+              <View key={i} style={styles.item}>
+                {/* ROLE + DATES */}
+                <View style={styles.rowBetween}>
+                  <Text style={styles.title}>{exp.role}</Text>
 
-          <Text style={styles.badge}>
-            {exp.startDate} – {exp.endDate || "Present"}
-          </Text>
-        </View>
+                  <Text style={styles.badge}>
+                    {exp.startDate} – {exp.endDate || "Present"}
+                  </Text>
+                </View>
 
-        {/* COMPANY + LOCATION (NEW) */}
-        <View style={{ marginTop: 2 }}>
-          <Text style={styles.small}>
-            {exp.company}
-            {exp.location ? ` • ${exp.location}` : ""}
-          </Text>
-        </View>
+                {/* COMPANY + LOCATION (NEW) */}
+                <View style={{ marginTop: 2 }}>
+                  <Text style={styles.small}>
+                    {exp.company}
+                    {exp.location ? ` • ${exp.location}` : ""}
+                  </Text>
+                </View>
 
-        {/* DESCRIPTION */}
-        {exp.description && (
-          <Text style={styles.text}>{exp.description}</Text>
+                {/* DESCRIPTION */}
+                {exp.description && (
+                  <Text style={styles.text}>{exp.description}</Text>
+                )}
+              </View>
+            ))}
+          </View>
         )}
-      </View>
-    ))}
-  </View>
-)}
 
         {/* ---------------- PROJECTS ---------------- */}
         {projects.length > 0 && (
@@ -360,60 +357,56 @@ const CleanResumePdf = ({ values = {} }) => {
           </View>
         )}
 
-{/* ---------------- ADDITIONAL INFO ---------------- */}
-{hasAdditionalInfo && (
-  <View style={styles.section}>
-    <Text style={styles.sectionTitle}>Additional Information</Text>
+        {/* ---------------- ADDITIONAL INFO ---------------- */}
+        {hasAdditionalInfo && (
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Additional Information</Text>
 
-    {/* GRID (DOB / Nationality / Status) */}
-    <View style={styles.grid4}>
-      {personalInfo.dob && (
-        <View style={styles.gridItem}>
-          <Text style={styles.gridLabel}>
-            DOB :{" "}
-            <Text style={styles.gridValue}>
-              {personalInfo.dob}
-            </Text>
-          </Text>
-        </View>
-      )}
+            {/* GRID (DOB / Nationality / Status) */}
+            <View style={styles.grid4}>
+              {personalInfo.dob && (
+                <View style={styles.gridItem}>
+                  <Text style={styles.gridLabel}>
+                    DOB :{" "}
+                    <Text style={styles.gridValue}>{personalInfo.dob}</Text>
+                  </Text>
+                </View>
+              )}
 
-      {personalInfo.nationality && (
-        <View style={styles.gridItem} >
-          <Text style={styles.gridLabel}>
-            Nationality :{" "}
-            <Text style={styles.gridValue}>
-              {personalInfo.nationality}
-            </Text>
-          </Text>
-        </View>
-      )}
+              {personalInfo.nationality && (
+                <View style={styles.gridItem}>
+                  <Text style={styles.gridLabel}>
+                    Nationality :{" "}
+                    <Text style={styles.gridValue}>
+                      {personalInfo.nationality}
+                    </Text>
+                  </Text>
+                </View>
+              )}
 
-      {personalInfo.maritalStatus && (
-        <View style={styles.gridItem}>
-          <Text style={styles.gridLabel}>
-            Martial Status :{" "}
-            <Text style={styles.gridValue}>
-              {personalInfo.maritalStatus}
-            </Text>
-          </Text>
-        </View>
-      )}
-    </View>
+              {personalInfo.maritalStatus && (
+                <View style={styles.gridItem}>
+                  <Text style={styles.gridLabel}>
+                    Martial Status :{" "}
+                    <Text style={styles.gridValue}>
+                      {personalInfo.maritalStatus}
+                    </Text>
+                  </Text>
+                </View>
+              )}
+            </View>
 
-    {/* LANGUAGES (separate row like your web version) */}
-    {personalInfo.languages && (
-      <View style={{ marginTop: 2 }}>
-        <Text style={styles.gridLabel}>
-          Languages :{" "}
-          <Text style={styles.gridValue}>
-            {personalInfo.languages}
-          </Text>
-        </Text>
-      </View>
-    )}
-  </View>
-)}
+            {/* LANGUAGES (separate row like your web version) */}
+            {personalInfo.languages && (
+              <View style={{ marginTop: 2 }}>
+                <Text style={styles.gridLabel}>
+                  Languages :{" "}
+                  <Text style={styles.gridValue}>{personalInfo.languages}</Text>
+                </Text>
+              </View>
+            )}
+          </View>
+        )}
       </Page>
     </Document>
   );

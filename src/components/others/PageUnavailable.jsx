@@ -1,17 +1,14 @@
-
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function PageUnavailable({ header, message }) {
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-br from-slate-50 via-white to-slate-100 px-6">
-      
       {/* Background Decoration */}
       <div className="absolute -top-32 -left-32 h-72 w-72 rounded-full bg-violet-200/30 blur-3xl" />
       <div className="absolute -bottom-32 -right-32 h-72 w-72 rounded-full bg-blue-200/30 blur-3xl" />
 
       <div className="relative w-full max-w-xl">
         <div className="rounded-3xl border border-slate-200/70 bg-white/80 p-10 text-center shadow-xl backdrop-blur-sm">
-
           {/* Status Badge */}
           <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-sm font-medium text-red-600">
             <span className="h-2 w-2 rounded-full bg-red-500" />
@@ -57,4 +54,3 @@ export default function PageUnavailable({ header, message }) {
     </div>
   );
 }
-

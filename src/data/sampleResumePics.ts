@@ -81,7 +81,7 @@ export const sampleResumePics = [
         ],
     },
     {
-        id:"standard-premium-ats",
+        id:"standard-premium-resume",
         title:"Standard Premium Resume",
         url:[
             "/sample-images/STANDARD-PREMIUM-RESUME/John-STANDARD-PREMIUM-RESUME-Sample_page-0001.jpg",
@@ -89,7 +89,7 @@ export const sampleResumePics = [
         ],
     },
     {
-        id:"standard-ats",
+        id:"standard-resume",
         title:"Standard Resume",
         url:[
             "/sample-images/STANDARD-RESUME/John-STANDARD-RESUME-Sample_page-0001.jpg",

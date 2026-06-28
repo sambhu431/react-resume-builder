@@ -125,7 +125,7 @@ export const templates = [
   {
     id: "clean",
     name: "Clean Resume",
-    description: "Modern minimalist resume",
+    description: "Modern clean resume",
     category: "professional",
     featured: false,
     cardpreview:CleanPreview,

@@ -187,9 +187,7 @@ export default function StandardPremiumResumePdf({ values }) {
 
             <Text style={styles.labelText}> {personalInfo.phone}</Text>
 
-            <Text style={styles.labelText}>
-              {personalInfo.address}
-            </Text>
+            <Text style={styles.labelText}>{personalInfo.address}</Text>
 
             <View style={styles.linkRow}>
               {personalInfo.linkedin && (

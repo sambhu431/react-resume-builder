@@ -189,7 +189,6 @@ export default function PrecisionATSResumePdf({ values }) {
     projects = [],
   } = values;
 
-
   //   const clean = (v) => v?.trim();
 
   // const validExperience = experience.filter(

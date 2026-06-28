@@ -26,7 +26,7 @@ function App() {
           <Route path="/policy" element={<PolicyPage />} />
           <Route path="/terms" element={<TermsPage />} />
           <Route path="/contact" element={<ContactPage />} />
-           <Route path="/sample-resumes" element={<SampleResumePics />} />
+          <Route path="/sample-resumes" element={<SampleResumePics />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
 

@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container mx-auto px-6 py-4 ">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <h3 className="font-bold text-slate-900">ResumeMaker</h3>
+            <h3 className="font-bold text-slate-900">BuildMyResumeStudio</h3>
 
             <p className="mt-3 text-sm text-slate-500">
               Free resume builder designed to help students, freshers, and
@@ -21,7 +21,7 @@ export default function Footer() {
               <li>
                 <Link to="/">Home</Link>
               </li>
-                <li>
+              <li>
                 <Link to="/sample-resumes">View Resume Samples</Link>
               </li>
               <li>
@@ -51,7 +51,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 border-t border-slate-200 pt-6 text-center text-sm text-slate-500">
-          © 2026 ResumeMaker. Built for job seekers.
+          © 2026 BuildMyResumeStudio. Built for job seekers.
         </div>
       </div>
     </footer>

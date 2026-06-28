@@ -180,7 +180,6 @@ export default function ClassicResumePdf({ values }) {
   //   (e) => clean(e.course) || clean(e.institute),
   // );
 
-
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -204,7 +203,7 @@ export default function ClassicResumePdf({ values }) {
               {personalInfo.linkedin && (
                 <Link src={personalInfo.linkedin} style={styles.socialLink}>
                   LinkedIn
-                </Link> 
+                </Link>
               )}
 
               {personalInfo.linkedin && personalInfo.github && (
@@ -382,5 +381,3 @@ function Section({ title, children }) {
     </View>
   );
 }
-
-

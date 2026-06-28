@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { templates } from "../data/templates";
 import { resumeStorage } from "../localstorage/resumeStorage";
-import { cleanResumeData }  from "../utils/cleanResumeData";
+import { cleanResumeData } from "../utils/cleanResumeData";
 import { prepareResumeData } from "../utils/prepareResumeData";
 import PageUnavailable from "../components/others/PageUnavailable";
 
@@ -11,7 +11,7 @@ const ResumeDownload = () => {
   const navigate = useNavigate();
 
   const template = templates.find((t) => t.id === templateId);
-  
+
   const rawData = resumeStorage.get();
 
   if (!template || !rawData) {

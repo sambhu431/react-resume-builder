@@ -47,19 +47,11 @@ export default function StandardPremiumResume({ values = {} }) {
     min-w-0
   "
           >
-            <p className="break-all">
-              {personalInfo?.email}
-            </p>
+            <p className="break-all">{personalInfo?.email}</p>
 
-            <p className="[overflow-wrap:anywhere]">
-             
-              {personalInfo?.phone}
-            </p>
+            <p className="[overflow-wrap:anywhere]">{personalInfo?.phone}</p>
 
-            <p className="[overflow-wrap:anywhere]">
-            
-              {personalInfo?.address}
-            </p>
+            <p className="[overflow-wrap:anywhere]">{personalInfo?.address}</p>
 
             <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
               {personalInfo?.linkedin && (

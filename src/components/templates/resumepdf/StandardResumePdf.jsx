@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     marginTop: 4,
-    marginBottom:8,
+    marginBottom: 8,
   },
 
   link: {
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     alignSelf: "flex-start",
-    marginTop:6,
+    marginTop: 6,
     marginBottom: 4,
   },
 

@@ -53,7 +53,10 @@ export default function ResumeFormPage() {
       email: Yup.string().email("Invalid email").required("Required"),
       phone: Yup.string().required("Required"),
       address: Yup.string().required("Required"),
-      languages: Yup.string().required("Required"),
+      dob: Yup.string(),
+      maritalStatus: Yup.string(),
+      nationality: Yup.string(),
+      languages: Yup.string(),
 
       linkedin: Yup.string()
         .transform((value) => (value === "" ? null : value))
@@ -97,7 +100,7 @@ export default function ResumeFormPage() {
       phone: "",
       address: "",
       dob: "",
-      maritalStatus: "UnMarried",
+      maritalStatus: "",
       nationality: "",
       languages: "",
       linkedin: "",
@@ -153,8 +156,8 @@ export default function ResumeFormPage() {
       <div className="mx-auto max-w-4xl px-4 py-8">
         <div className="mb-2 rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm text-slate-600">
           Resume form data is stored locally in the browser and will be
-          automatically removed after 48 hours. While filling the form Please beware of extra spaces 
-          and breaking sentences in between.   
+          automatically removed after 48 hours. While filling the form Please
+          beware of extra spaces and breaking sentences in between.
         </div>
 
         <div className="text-sm mb-2 font-semibold">
@@ -181,8 +184,7 @@ export default function ResumeFormPage() {
             personalInfo: {
               ...defaultValues.personalInfo,
               ...(savedResume?.personalInfo || {}),
-              maritalStatus:
-                savedResume?.personalInfo?.maritalStatus || "UnMarried",
+              maritalStatus: "",
             },
           }}
           validationSchema={validationSchema}
@@ -192,7 +194,14 @@ export default function ResumeFormPage() {
             setFormError("");
           }}
         >
-          {({ values, validateForm, submitForm, setValues, setFieldValue }) => {
+          {({
+            values,
+            validateForm,
+            submitForm,
+            setValues,
+            setFieldValue,
+            setTouched,
+          }) => {
             const canAddEducation = values.education.every(
               (e) =>
                 e.course?.trim() &&
@@ -280,13 +289,13 @@ export default function ResumeFormPage() {
 
                     <FormField
                       name="personalInfo.dob"
-                      label="Date of Birth"
+                      label="Date of Birth (Optional)"
                       placeholder="DD/MM/YYYY"
                     />
 
                     <div className="flex flex-col">
                       <label className="mb-1 text-xs font-semibold text-gray-700">
-                        Marital Status
+                        Marital Status (Optional)
                       </label>
 
                       <Field
@@ -294,40 +303,37 @@ export default function ResumeFormPage() {
                         name="personalInfo.maritalStatus"
                         className={inputClass}
                       >
+                        <option value="">
+                          Select marital status (Optional)
+                        </option>
                         <option value="UnMarried">UnMarried</option>
                         <option value="Married">Married</option>
                         <option value="Divorced">Divorced</option>
                         <option value="Widowed">Widowed</option>
                       </Field>
-
-                      <ErrorMessage
-                        name="personalInfo.maritalStatus"
-                        component="div"
-                        className="mt-1 text-xs text-red-500"
-                      />
                     </div>
 
                     <FormField
                       name="personalInfo.nationality"
-                      label="Nationality"
+                      label="Nationality (Optional)"
                       placeholder="e.g. Indian"
                     />
 
                     <FormField
                       name="personalInfo.languages"
-                      label="Languages"
+                      label="Languages (Optional)"
                       placeholder="English, Hindi, etc."
                     />
 
                     <FormField
                       name="personalInfo.linkedin"
-                      label="LinkedIn Profile"
+                      label="LinkedIn Profile (Optional)"
                       placeholder="https://linkedin.com/in/username"
                     />
 
                     <FormField
                       name="personalInfo.github"
-                      label="GitHub Profile"
+                      label="GitHub Profile (Optional)"
                       placeholder="https://github.com/username"
                     />
                   </div>
@@ -345,6 +351,11 @@ export default function ResumeFormPage() {
                     name="careerObjective"
                     placeholder="Write a short professional summary..."
                     className={`${inputClass} min-h-24`}
+                  />
+                  <ErrorMessage
+                    name="careerObjective"
+                    component="div"
+                    className="mt-1 text-xs text-red-500"
                   />
                 </section>
 
@@ -659,13 +670,13 @@ export default function ResumeFormPage() {
                           onClick={() => {
                             if (!canAddExperience) {
                               setSectionError(
-                                "education",
-                                "Please fill existing education fields first.",
+                                "experience",
+                                "Please fill existing experience fields first.",
                               );
                               return;
                             }
 
-                            setSectionError("education", "");
+                            setSectionError("experience", "");
 
                             push({
                               company: "",
@@ -680,9 +691,9 @@ export default function ResumeFormPage() {
                         >
                           + Add Experience
                         </button>
-                        {sectionErrors.education && (
+                        {sectionErrors.experience && (
                           <p className="text-xs text-red-500 mt-1">
-                            {sectionErrors.education}
+                            {sectionErrors.experience}
                           </p>
                         )}
                       </div>
@@ -771,7 +782,7 @@ export default function ResumeFormPage() {
                             if (!canAddProject) {
                               setSectionError(
                                 "project",
-                                "Please fill existing education fields first.",
+                                "Please fill existing project fields first.",
                               );
                               return;
                             }
@@ -805,6 +816,27 @@ export default function ResumeFormPage() {
                     onClick={async () => {
                       setFormError("");
 
+                      setTouched(
+                        {
+                          personalInfo: {
+                            firstName: true,
+                            lastName: true,
+                            email: true,
+                            phone: true,
+                            address: true,
+                            dob: true,
+                          },
+                          careerObjective: true,
+                          education: values.education.map(() => ({
+                            course: true,
+                            institute: true,
+                            passingYear: true,
+                            percentage: true,
+                          })),
+                        },
+                        true,
+                      );
+
                       const errors = await validateForm();
 
                       if (Object.keys(errors).length > 0) {
@@ -815,10 +847,8 @@ export default function ResumeFormPage() {
                       setIsSaving(true);
 
                       try {
-                        await submitForm(); // saves to localStorage via Formik onSubmit
-                        navigate("/templates"); // 🚀 immediate navigation (no timeout)
-                      } catch (err) {
-                        setFormError("Something went wrong while saving.");
+                        await submitForm();
+                        navigate("/templates");
                       } finally {
                         setIsSaving(false);
                       }
@@ -828,6 +858,11 @@ export default function ResumeFormPage() {
                   >
                     {isSaving ? "Saving..." : "Save Resume"}
                   </button>
+                  {formError && (
+                    <div className="text-center text-red-600 text-sm font-medium">
+                      {formError}
+                    </div>
+                  )}
                 </div>
               </Form>
             );
